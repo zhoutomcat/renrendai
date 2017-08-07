@@ -91,7 +91,8 @@ create table AttentionMark(
 	u_id  			int,   --关注人的id
 	udi_id  		int, --借贷表id外键
 	am_time 		date,   --关注时间
-	am_stauts	int 	--关注状态   0代表取消关注   1代表正在关注			修改
+	am_stauts	int, 	--关注状态   0代表取消关注   1代表正在关注			修改
+	am_weight   int  default 0,        --权重越大     越排在前面
 	temp varchar(100) default null,
 	temp varchar(100) default null,
 	temp varchar(100) default null
@@ -134,7 +135,7 @@ create table Admin(
 --消息
 create table AdminToUserMessage(
 	atum_id 			int primary key auto_increment,
-	atum_id 			int ,                   --用户id
+	u_id 			int ,                   --用户id
 	atum_time 			date,               --时间
 	atum_content 		varchar(2000),   --内容
 	atum_status 		int default 1   --  0 表示已读  1  表示未读

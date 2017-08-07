@@ -11,6 +11,9 @@ insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate)
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('b','b','','',to_date('2017/7/26','yyyy/MM/dd'));
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('c','c','','',to_date('2017/7/27','yyyy/MM/dd'));
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('d','d','','',to_date('2017/7/28','yyyy/MM/dd'));
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('e','e','','',to_date('2017/7/28','yyyy/MM/dd'));
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('f','f','','',to_date('2017/7/28','yyyy/MM/dd'));
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('g','g','','',to_date('2017/7/28','yyyy/MM/dd'));
 select * from user;
 
 
@@ -24,47 +27,58 @@ commit;
 ------------------------------------------
 insert into userDebitIn(udi_title,u_idin,udi_money,udi_status,udi_profit, udi_publishdate, udi_date,
 udi_refundnormaldate,udi_refundrealitydate,udi_use,udi_refundway)
- values('买房',1,'','',
-to_date('2013/7/28','yyyy/MM/dd'),100000,0,12.50,
+ values('买房',1,100000,1,12.50,
 to_date('2013/7/28','yyyy/MM/dd'),
 to_date('2013/7/28','yyyy/MM/dd'),
 to_date('2013/7/28','yyyy/MM/dd'),
-1,1,,'计划在海边买一栋别墅',19);
-insert into userDebitIn values(2,'','',
-to_date('2013/7/28','yyyy/MM/dd'),100000,0,12.50,
+to_date('2013/7/28','yyyy/MM/dd'),
+'计划在海边买一栋别墅',1);
+insert into userDebitIn(udi_title,u_idin,udi_money,udi_status,udi_profit, udi_publishdate, udi_date,
+udi_refundnormaldate,udi_refundrealitydate,udi_use,udi_refundway)
+ values('买车',2,100000,1,12.50,
 to_date('2013/7/28','yyyy/MM/dd'),
 to_date('2013/7/28','yyyy/MM/dd'),
 to_date('2013/7/28','yyyy/MM/dd'),
-1,1,'买房','计划在海边买一栋别墅',1);
-insert into userDebitIn values(3,'','',
-to_date('2013/7/28','yyyy/MM/dd'),150000,0,12.50,
+to_date('2013/7/28','yyyy/MM/dd'),
+'计划在海边买一栋别墅',1);
+insert into userDebitIn(udi_title,u_idin,udi_money,udi_status,udi_profit, udi_publishdate, udi_date,
+udi_refundnormaldate,udi_refundrealitydate,udi_use,udi_refundway)
+ values('买药',3,100000,1,12.50,
 to_date('2013/7/28','yyyy/MM/dd'),
 to_date('2013/7/28','yyyy/MM/dd'),
 to_date('2013/7/28','yyyy/MM/dd'),
-1,1,'买车','计划买一两奥迪',3);
-insert into userDebitIn values(4,'','',
-to_date('2013/7/28','yyyy/MM/dd'),150000,0,12.50,
 to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2023/7/28','yyyy/MM/dd'),
-to_date('2023/7/28','yyyy/MM/dd'),
-1,1,'买车','计划买一两奥迪',3);
-select * from userDebitIn;
+'计划在海边买一栋别墅',1);
+insert into userDebitIn(udi_title,u_idin,udi_money,udi_status,udi_profit, udi_publishdate, udi_date,
+udi_refundnormaldate,udi_refundrealitydate,udi_use,udi_refundway)
+ values('投资',4,100000,1,12.50,
+to_date('2013/7/28','yyyy/MM/dd'),
+to_date('2013/7/28','yyyy/MM/dd'),
+to_date('2013/7/28','yyyy/MM/dd'),
+to_date('2013/7/28','yyyy/MM/dd'),
+'计划在海边买一栋别墅',0);
+select * from userDebitIn;     --uid唯一       只能借贷一次，除非已经还款
 -----------------------------------
-insert into userDebitOut values(1,'','',to_date('2013/7/28','yyyy/MM/dd'),14000,1,1);
-insert into userDebitOut values(2,'','',to_date('2013/7/28','yyyy/MM/dd'),34500,2,1);
-insert into userDebitOut values(3,'','',to_date('2013/7/28','yyyy/MM/dd'),14500,3,1);
+insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,5,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
+insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,6,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
+insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,7,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
+insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(2,8,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
+insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(2,9,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
+insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(2,7,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
 ------------------------------------
 --自动生成
 --insert into r_PerRefund values(1,to_date('2013/8/28','yyyy/MM/dd'),10000,0,1)
 -------------------------------------
-insert into AttentionMark values(1,to_date('2013/7/28','yyyy/MM/dd'),'','',1,1);
-insert into AttentionMark values(2,to_date('2013/7/28','yyyy/MM/dd'),'','',2,1);
-insert into AttentionMark values(3,to_date('2013/7/28','yyyy/MM/dd'),'','',1,2);
-insert into AttentionMark values(4,to_date('2013/7/28','yyyy/MM/dd'),'','',2,2);
+insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(6,1,to_date('2013/7/28','yyyy/MM/dd'),1,default);
+insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(7,1,to_date('2013/7/28','yyyy/MM/dd'),1,10);
+insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(8,1,to_date('2013/7/28','yyyy/MM/dd'),1,default);
+insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(9,2,to_date('2013/7/28','yyyy/MM/dd'),1,default);
 select * from AttentionMark;
 --------------------------------------------------------------------
-insert into AttentionUser values(1,'','',to_date('2013/7/28','yyyy/MM/dd'),2,1);
-insert into AttentionUser values(2,'','',to_date('2013/7/28','yyyy/MM/dd'),1,2);
+insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(1,5,to_date('2013/7/28','yyyy/MM/dd'),1);
+insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(2,6,to_date('2013/7/28','yyyy/MM/dd'),1);
+insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(3,6,to_date('2013/7/28','yyyy/MM/dd'),1);
+insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(4,6,to_date('2013/7/28','yyyy/MM/dd'),0);
 select * from AttentionUser;
 --------------------------------------------------------------------
 insert into Admins values(1,'','','管理员a','a',1,1);
@@ -89,15 +103,21 @@ select * from AdminLogger;
 commit;
 insert into AdminToUserMessage values(1,'','','恭喜您在注册成功',1,to_date('2013/7/28','yyyy/MM/dd'),1);
 --------------------------------------------------------------------
-insert into userMessage values(1,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',1);
-insert into userMessage values(2,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',2);
-insert into userMessage values(3,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',3);
-select * from userMessage;
-
-------------------------------------------------------------------------
 --insert into userlogger values(1,'','','a说你的信用有问题',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,1,2,2);
 select * from userlogger;
 ----------------------------------------------------------------------
+insert into  admin(a_name,a_password,a_role,a_status) values('yc','a',default,default);
+
+----------------------------------------------------------------------
+insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(1,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',1);
+insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(2,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',0);
+insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(3,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',1);
+insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(4,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',0);
+
+------------------------------------------------------------------------
+insert into UserMessage(u_id,) values(2,'','','15386028352','404html.jpg','衡阳','蔡蒂民',1,'13812345678',2);
+insert into UserMessage values(3,'','','17674756360','404html.jpg','衡阳','蔡蒂民',1,'13812345678',3);
+------------------------------------------------------------------------
 insert into Dictionary values(1,1,'男','sex');
 insert into Dictionary values(2,0,'女','sex');
 insert into Dictionary values(3,1,'显示','status');
