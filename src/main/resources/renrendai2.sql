@@ -146,15 +146,16 @@ create table AdminToUserMessage(
 --个人资料
 create table UserMessage(
        um_id   		int primary key auto_increment,	   --
-       u_id          int,
-       udi_id       int,
+       u_id          int,        --用户表id
        um_reallyName 	varchar(100),	   --真实姓名
        um_idCard     	varchar(100),	   --身份证
        um_tel  	     	varchar(100),	   --手机号码
-       um_sex       	 int,	   --性别 1 男  0 女      
-       um_nowPlaceTel   varchar(100),   --居住地电话
+       um_sex       	 int,	         --性别    年龄     出生日期    居住地    都通过身份证获取
+       um_age         int,
+       um_birthday  date,                  --出生日期 
+       um_nowPlace varchar(200),   --居住地
        um_email varchar(100),
-       um_image           --图像
+       um_image           --图像                          --资料就先写这么多，像人人贷一样,到时候可以接一些接口,个人征信报告，微粒贷记录
        
 );
 
