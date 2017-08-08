@@ -8,6 +8,10 @@ create table User(
       u_creditnumber  		int default(0) not null,  --信誉积分
       u_creditdegree   	varchar(6) default('HR') check in('AA','A','B','C','D','HR'), --信誉等级
       u_registerdate 		date   --注册时间
+      
+      u_tel varchar(11),			--手机号码							新增
+	  u_email varchar(50)			--邮箱							新增
+      
 	  temp varchar(100) default null,
 	  temp varchar(100) default null,
 	  temp varchar(100) default null
@@ -25,6 +29,7 @@ create table UserFund(
 	   temp varchar(100) default null
 	   
 )
+
 
 --借贷表
 udi_moneysure           number(10,2), --已借金额  		--去掉 		 修改	--把这个字段放在用户表中（可以统计每个用户每次借款的信息）
@@ -53,7 +58,7 @@ create table UserDebitOut(
        u_id 		int  --user的外键(放贷人id)  一对多
        udo_startdate		date, --放贷开始的时间()
        udo_date 		date, --放贷贷日期(放贷成功时)   
-       udo_money 		number(10,2)	--放贷的金额
+       udo_money 		number(10,2)	--放贷的金额	
 	   temp varchar(100) default null,
 	   temp varchar(100) default null,
 	   temp varchar(100) default null       
@@ -167,6 +172,15 @@ create table Dictionary()
 UserMessage  um1 和  um2
 
 
+
+--银行卡信息表
+create table bankInfo(
+	bi_id int ,		
+	bi_name,					--银行卡持有人姓名
+	bi_idCard varchar(20),		--银行卡号
+	u_id int ,					--用户id    外键约束
+	bi_status int 				--银行卡状态（是否在用）
+)
 
 
 
