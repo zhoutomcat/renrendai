@@ -8,6 +8,10 @@ create table User(
       u_creditnumber  		int default(0) not null,  --信誉积分
       u_creditdegree   	varchar(6) default('HR') check in('AA','A','B','C','D','HR'), --信誉等级
       u_registerdate 		date   --注册时间
+      
+      u_tel varchar(11),			--手机号码							新增
+	  u_email varchar(50)			--邮箱							新增
+      
 	  temp varchar(100) default null,
 	  temp varchar(100) default null,
 	  temp varchar(100) default null
@@ -25,6 +29,7 @@ create table UserFund(
 	   temp varchar(100) default null
 	   
 )
+
 
 --借贷表
 udi_moneysure           number(10,2), --已借金额  		--去掉 		 修改	--把这个字段放在用户表中（可以统计每个用户每次借款的信息）
@@ -53,7 +58,7 @@ create table UserDebitOut(
        u_id 		int  --user的外键(放贷人id)  一对多
        udo_startdate		date, --放贷开始的时间()
        udo_date 		date, --放贷贷日期(放贷成功时)   
-       udo_money 		number(10,2)	--放贷的金额
+       udo_money 		number(10,2)	--放贷的金额	
 	   temp varchar(100) default null,
 	   temp varchar(100) default null,
 	   temp varchar(100) default null       
@@ -91,8 +96,7 @@ create table AttentionMark(
 	u_id  			int,   --关注人的id
 	udi_id  		int, --借贷表id外键
 	am_time 		date,   --关注时间
-	am_stauts	int, 	--关注状态   0代表取消关注   1代表正在关注			修改
-	am_weight   int  default 0,        --权重越大     越排在前面
+	am_stauts	int 	--关注状态   0代表取消关注   1代表正在关注			修改
 	temp varchar(100) default null,
 	temp varchar(100) default null,
 	temp varchar(100) default null
@@ -135,7 +139,7 @@ create table Admin(
 --消息
 create table AdminToUserMessage(
 	atum_id 			int primary key auto_increment,
-	u_id 			int ,                   --用户id
+	atum_id 			int ,                   --用户id
 	atum_time 			date,               --时间
 	atum_content 		varchar(2000),   --内容
 	atum_status 		int default 1   --  0 表示已读  1  表示未读
@@ -146,16 +150,12 @@ create table AdminToUserMessage(
 --个人资料
 create table UserMessage(
        um_id   		int primary key auto_increment,	   --
-       u_id          int,        --用户表id
        um_reallyName 	varchar(100),	   --真实姓名
-       um_idCard     	varchar(100),	   --身份证
+       um_idCard     	varchar(100),	   --省份证
        um_tel  	     	varchar(100),	   --手机号码
-       um_sex       	 int,	         --性别    年龄     出生日期    居住地    都通过身份证获取
-       um_age         int,
-       um_birthday  date,                  --出生日期 
-       um_nowPlace varchar(200),   --居住地
-       um_email varchar(100),
-       um_image           --图像                          --资料就先写这么多，像人人贷一样,到时候可以接一些接口,个人征信报告，微粒贷记录
+       um_sex       	 int,	   --性别 1 男  0 女      
+       um_nowPlaceTel   varchar(100),   --居住地电话
+       um_image           --图像
        
 );
 
@@ -172,6 +172,15 @@ create table Dictionary()
 UserMessage  um1 和  um2
 
 
+
+--银行卡信息表
+create table bankInfo(
+	bi_id int ,		
+	bi_name,					--银行卡持有人姓名
+	bi_idCard varchar(20),		--银行卡号
+	u_id int ,					--用户id    外键约束
+	bi_status int 				--银行卡状态（是否在用）
+)
 
 
 
