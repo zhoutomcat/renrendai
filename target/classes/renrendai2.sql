@@ -146,11 +146,14 @@ create table AdminToUserMessage(
 --个人资料
 create table UserMessage(
        um_id   		int primary key auto_increment,	   --
+       u_id          int,
+       udi_id       int,
        um_reallyName 	varchar(100),	   --真实姓名
-       um_idCard     	varchar(100),	   --省份证
+       um_idCard     	varchar(100),	   --身份证
        um_tel  	     	varchar(100),	   --手机号码
        um_sex       	 int,	   --性别 1 男  0 女      
        um_nowPlaceTel   varchar(100),   --居住地电话
+       um_email varchar(100),
        um_image           --图像
        
 );
