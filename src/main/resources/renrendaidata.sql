@@ -1,24 +1,17 @@
----------后台--------------
-select * from r_admin ;
-select * from r_backfund;
-insert into r_admin values(1,'','','a','a',0,1);--后台管理员
-insert into r_backfund values(2,0,'','a123456',0.0,0.0,0.0,'a',to_date('2013/7/28','yyyy/MM/dd'));  --为后台开一个账户
-select hibernate_sequence.nextval from dual;
-commit;
-
 -------------------------------------------
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('a','a','','',to_date('2017/7/25','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('b','b','','',to_date('2017/7/26','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('c','c','','',to_date('2017/7/27','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('d','d','','',to_date('2017/7/28','yyyy/MM/dd'));
-<<<<<<< HEAD
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('e','e','','',to_date('2017/7/28','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('f','f','','',to_date('2017/7/28','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('g','g','','',to_date('2017/7/28','yyyy/MM/dd'));
+--用户表
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('a','a','','',to_date('2017/7/25','yyyy/MM/dd'),17674756360,1226225589@qq.com);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','b','','',to_date('2017/7/26','yyyy/MM/dd'),15386028352,1046051715@qq.com);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('c','c','','',to_date('2017/7/27','yyyy/MM/dd'),18273474977,dadad@163.com);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('d','d','','',to_date('2017/7/28','yyyy/MM/dd'),18874610678,dad@163.com);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('e','e','','',to_date('2017/7/28','yyyy/MM/dd'),17674737157,dadadadawr@163.com);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('f','f','','',to_date('2017/7/28','yyyy/MM/dd'),18570461942,dadadawr@163.com);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('g','g','','',to_date('2017/7/28','yyyy/MM/dd'),18473481898,dadawr@163.com);
 select * from user;
 
 
-----------------------------------------
+-------------------------------------------------------------------
+--用户的账户表
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(1,0.00,0.00,0.00);
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(2,0.00,0.00,0.00);
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(3,0.00,0.00,0.00);
@@ -26,6 +19,7 @@ select * from userFund;
 commit;
 
 ------------------------------------------
+--借贷表
 insert into userDebitIn(udi_title,u_idin,udi_money,udi_status,udi_profit, udi_publishdate, udi_date,
 udi_refundnormaldate,udi_refundrealitydate,udi_use,udi_refundway)
  values('买房',1,100000,1,12.50,
@@ -60,6 +54,7 @@ to_date('2013/7/28','yyyy/MM/dd'),
 '计划在海边买一栋别墅',0);
 select * from userDebitIn;     --uid唯一       只能借贷一次，除非已经还款
 -----------------------------------
+--放贷表
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,5,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,6,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,7,to_date('2013/7/28','yyyy/MM/dd'),to_date('2013/7/28','yyyy/MM/dd'),10000);
@@ -69,145 +64,59 @@ insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(2,
 ------------------------------------
 --自动生成
 --insert into r_PerRefund values(1,to_date('2013/8/28','yyyy/MM/dd'),10000,0,1)
+--还贷表  --还贷详情. 
+--insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(1,0,1000,'2019/8/8');    
+--insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(2,1,6000,'2020/8/8');   
+--insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(3,2,5000,'2018/8/8');   
+--insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(4,0,1000,'2019/8/8');   
 -------------------------------------
+--关注投标表: 
 insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(6,1,to_date('2013/7/28','yyyy/MM/dd'),1,default);
 insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(7,1,to_date('2013/7/28','yyyy/MM/dd'),1,10);
 insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(8,1,to_date('2013/7/28','yyyy/MM/dd'),1,default);
 insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(9,2,to_date('2013/7/28','yyyy/MM/dd'),1,default);
 select * from AttentionMark;
 --------------------------------------------------------------------
+--关注用户表: 
 insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(1,5,to_date('2013/7/28','yyyy/MM/dd'),1);
 insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(2,6,to_date('2013/7/28','yyyy/MM/dd'),1);
 insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(3,6,to_date('2013/7/28','yyyy/MM/dd'),1);
 insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(4,6,to_date('2013/7/28','yyyy/MM/dd'),0);
 select * from AttentionUser;
---------------------------------------------------------------------
-insert into Admins values(1,'','','管理员a','a',1,1);
-insert into Admins values(2,'','','管理员b','b',0,1);
--------------------------------------------------------------------
-insert into userLogger values(1,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-insert into userLogger values(2,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-insert into userLogger values(3,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-select * from AdminLogger;
- UL_ID
- UL1
- UL2
- UL_CONTE
- UL_MONEY
- UL_OP_TY
- UL_TIME
- U_ID
- UBY_ID
- UDI_ID
- UDO_ID
---------------------------------------------------------------------
-commit;
-insert into AdminToUserMessage values(1,'','','恭喜您在注册成功',1,to_date('2013/7/28','yyyy/MM/dd'),1);
---------------------------------------------------------------------
---insert into userlogger values(1,'','','a说你的信用有问题',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,1,2,2);
-select * from userlogger;
 ----------------------------------------------------------------------
+---------后台管理员表--------------
+select * from admin ;
+insert into admin values('a','a',0,1);--后台管理员
 insert into  admin(a_name,a_password,a_role,a_status) values('yc','a',default,default);
-
-----------------------------------------------------------------------
+commit;
+--消息表
+-------------------------------------------------------------------
 insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(1,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',1);
 insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(2,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',0);
 insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(3,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',1);
 insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(4,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',0);
+-------------------------------------------------------------------
+--个人资料表        --通过身份证或者 sex，age，birthday,居住地
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_birthday,um_nowPlace,um_workinfo,um_incomeinfo,um_image) values(1,'黄凌翔',439004199611206214,'男','21','19996/11/20','湖南省岳阳市汨罗市','yc带头人','8000',default);  
+commit;
+--------------------------------------------------------------------
+--银行卡信息表
+insert into AdminToUserMessage(bi_name,bi_idCard,u_id,bi_status) values('zsc','3114433543655634643',1,1);
+insert into AdminToUserMessage(bi_name,bi_idCard,u_id,bi_status) values('zzz','1123438568050350545',2,1);
+insert into AdminToUserMessage(bi_name,bi_idCard,u_id,bi_status) values('hlx','2193050425309043058',3,0);
+insert into AdminToUserMessage(bi_name,bi_idCard,u_id,bi_status) values('zzc','3239450455430545454',4,0);
+--------------------------------------------------------------------
+
+
+
+
 
 ------------------------------------------------------------------------
 insert into UserMessage(u_id,) values(2,'','','15386028352','404html.jpg','衡阳','蔡蒂民',1,'13812345678',2);
 insert into UserMessage values(3,'','','17674756360','404html.jpg','衡阳','蔡蒂民',1,'13812345678',3);
 ------------------------------------------------------------------------
-=======
-select * from user;
 
 
-----------------------------------------
-insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(1,0.00,0.00,0.00);
-insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(2,0.00,0.00,0.00);
-insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(3,0.00,0.00,0.00);
-select * from userFund;
-commit;
-
-------------------------------------------
-insert into userDebitIn(udi_title,u_idin,udi_money,udi_status,udi_profit, udi_publishdate, udi_date,
-udi_refundnormaldate,udi_refundrealitydate,udi_use,udi_refundway)
- values('买房',1,'','',
-to_date('2013/7/28','yyyy/MM/dd'),100000,0,12.50,
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2013/7/28','yyyy/MM/dd'),
-1,1,,'计划在海边买一栋别墅',19);
-insert into userDebitIn values(2,'','',
-to_date('2013/7/28','yyyy/MM/dd'),100000,0,12.50,
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2013/7/28','yyyy/MM/dd'),
-1,1,'买房','计划在海边买一栋别墅',1);
-insert into userDebitIn values(3,'','',
-to_date('2013/7/28','yyyy/MM/dd'),150000,0,12.50,
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2013/7/28','yyyy/MM/dd'),
-1,1,'买车','计划买一两奥迪',3);
-insert into userDebitIn values(4,'','',
-to_date('2013/7/28','yyyy/MM/dd'),150000,0,12.50,
-to_date('2013/7/28','yyyy/MM/dd'),
-to_date('2023/7/28','yyyy/MM/dd'),
-to_date('2023/7/28','yyyy/MM/dd'),
-1,1,'买车','计划买一两奥迪',3);
-select * from userDebitIn;
------------------------------------
-insert into userDebitOut values(1,'','',to_date('2013/7/28','yyyy/MM/dd'),14000,1,1);
-insert into userDebitOut values(2,'','',to_date('2013/7/28','yyyy/MM/dd'),34500,2,1);
-insert into userDebitOut values(3,'','',to_date('2013/7/28','yyyy/MM/dd'),14500,3,1);
-------------------------------------
---自动生成
---insert into r_PerRefund values(1,to_date('2013/8/28','yyyy/MM/dd'),10000,0,1)
--------------------------------------
-insert into AttentionMark values(1,to_date('2013/7/28','yyyy/MM/dd'),'','',1,1);
-insert into AttentionMark values(2,to_date('2013/7/28','yyyy/MM/dd'),'','',2,1);
-insert into AttentionMark values(3,to_date('2013/7/28','yyyy/MM/dd'),'','',1,2);
-insert into AttentionMark values(4,to_date('2013/7/28','yyyy/MM/dd'),'','',2,2);
-select * from AttentionMark;
---------------------------------------------------------------------
-insert into AttentionUser values(1,'','',to_date('2013/7/28','yyyy/MM/dd'),2,1);
-insert into AttentionUser values(2,'','',to_date('2013/7/28','yyyy/MM/dd'),1,2);
-select * from AttentionUser;
---------------------------------------------------------------------
-insert into Admins values(1,'','','管理员a','a',1,1);
-insert into Admins values(2,'','','管理员b','b',0,1);
--------------------------------------------------------------------
-insert into userLogger values(1,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-insert into userLogger values(2,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-insert into userLogger values(3,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-select * from AdminLogger;
- UL_ID
- UL1
- UL2
- UL_CONTE
- UL_MONEY
- UL_OP_TY
- UL_TIME
- U_ID
- UBY_ID
- UDI_ID
- UDO_ID
---------------------------------------------------------------------
-commit;
-insert into AdminToUserMessage values(1,'','','恭喜您在注册成功',1,to_date('2013/7/28','yyyy/MM/dd'),1);
---------------------------------------------------------------------
-insert into userMessage values(1,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',1);
-insert into userMessage values(2,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',2);
-insert into userMessage values(3,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',3);
-select * from userMessage;
-
-------------------------------------------------------------------------
---insert into userlogger values(1,'','','a说你的信用有问题',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,1,2,2);
-select * from userlogger;
-----------------------------------------------------------------------
->>>>>>> refs/remotes/origin/zzc
 insert into Dictionary values(1,1,'男','sex');
 insert into Dictionary values(2,0,'女','sex');
 insert into Dictionary values(3,1,'显示','status');
