@@ -1,10 +1,6 @@
 -------------------------------------------
-<<<<<<< HEAD
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('a','a','','',to_date('2017/7/25','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('b','b','','',to_date('2017/7/26','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('c','c','','',to_date('2017/7/27','yyyy/MM/dd'));
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate) values('d','d','','',to_date('2017/7/28','yyyy/MM/dd'));
-=======
+create database renrendai;
+user  renrendai;
 --用户表
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('a','a','','',to_date('2017/7/25','yyyy/MM/dd'),17674756360,1226225589@qq.com);
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','b','','',to_date('2017/7/26','yyyy/MM/dd'),15386028352,1046051715@qq.com);
@@ -13,65 +9,10 @@ insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('e','e','','',to_date('2017/7/28','yyyy/MM/dd'),17674737157,dadadadawr@163.com);
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('f','f','','',to_date('2017/7/28','yyyy/MM/dd'),18570461942,dadadawr@163.com);
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('g','g','','',to_date('2017/7/28','yyyy/MM/dd'),18473481898,dadawr@163.com);
->>>>>>> refs/remotes/origin/hlx
 select * from user;
 
 
 -------------------------------------------------------------------
-<<<<<<< HEAD
-insert into userLogger values(1,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-insert into userLogger values(2,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-insert into userLogger values(3,'','','1关注了用户b',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,null,null,null);
-select * from AdminLogger;
- UL_ID
- UL1
- UL2
- UL_CONTE
- UL_MONEY
- UL_OP_TY
- UL_TIME
- U_ID
- UBY_ID
- UDI_ID
- UDO_ID
---------------------------------------------------------------------
-commit;
-insert into AdminToUserMessage values(1,'','','恭喜您在注册成功',1,to_date('2013/7/28','yyyy/MM/dd'),1);
---------------------------------------------------------------------
-insert into userMessage values(1,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',1);
-insert into userMessage values(2,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',2);
-insert into userMessage values(3,'','','123456789','404html.jpg','衡阳','蔡蒂民',1,'13812345678',3);
-select * from userMessage;
-
-------------------------------------------------------------------------
---insert into userlogger values(1,'','','a说你的信用有问题',0,1,to_date('2013/7/28','yyyy/MM/dd'),1,1,2,2);
-select * from userlogger;
-----------------------------------------------------------------------
-insert into Dictionary values(1,1,'男','sex');
-insert into Dictionary values(2,0,'女','sex');
-insert into Dictionary values(3,1,'显示','status');
-insert into Dictionary values(4,0,'不显示','status');
-insert into Dictionary values(5,1,'HR','degree');
-insert into Dictionary values(6,2,'D','degree');
-insert into Dictionary values(7,3,'C','degree');
-insert into Dictionary values(8,4,'B','degree');
-insert into Dictionary values(9,5,'A','degree');
-insert into Dictionary values(10,6,'AA','degree');
-insert into Dictionary values(11,1,'超级管理员','role');
-insert into Dictionary values(12,0,'普通管理员','role');
-insert into Dictionary values(13,1,'凑钱中','in_status');
-insert into Dictionary values(14,2,'已经凑到钱','in_status');
-insert into Dictionary values(15,3,'还款成功','in_status');
-insert into Dictionary values(16,4,'还款失败','in_status');
-insert into Dictionary values(17,1,'还款中','per_in_status');
-insert into Dictionary values(18,2,'成功','per_in_status');
-insert into Dictionary values(19,3,'失败','per_in_status');
-insert into Dictionary values(20,1,'按月还款','in_way');
-insert into Dictionary values(21,0,'一次性坏款','in_way');
-
-insert into Dictionary values(22,1,'删除用户','admin_op_type');
-insert into Dictionary values(32,1,'关注用户','user_op_type');
-=======
 --用户的账户表
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(1,0.00,0.00,0.00);
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(2,0.00,0.00,0.00);
@@ -158,8 +99,7 @@ insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(3
 insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(4,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',0);
 -------------------------------------------------------------------
 --个人资料表        --通过身份证或者 sex，age，birthday,居住地
-insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_birthday,um_nowPlace,um_workinfo,um_incomeinfo,um_image) values(1,'黄凌翔',439004199611206214,'男','21','19996/11/20','湖南省岳阳市汨罗市','yc带头人','8000',default);  
->>>>>>> refs/remotes/origin/hlx
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_nowPlace,um_workinfo,um_incomeinfo,um_image) values(1,'黄凌翔',439004199611206214,'湖南省岳阳市汨罗市','yc带头人','8000',default);  
 commit;
 --------------------------------------------------------------------
 --银行卡信息表

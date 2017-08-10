@@ -1,4 +1,6 @@
 -------------------------------------------
+create database renrendai;
+user  renrendai;
 --用户表
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('a','a','','',to_date('2017/7/25','yyyy/MM/dd'),17674756360,1226225589@qq.com);
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','b','','',to_date('2017/7/26','yyyy/MM/dd'),15386028352,1046051715@qq.com);
@@ -97,7 +99,7 @@ insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(3
 insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(4,to_date('2013/7/28','yyyy/MM/dd'),'请的借款期限快到了，请及时还款',0);
 -------------------------------------------------------------------
 --个人资料表        --通过身份证或者 sex，age，birthday,居住地
-insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_birthday,um_nowPlace,um_workinfo,um_incomeinfo,um_image) values(1,'黄凌翔',439004199611206214,'男','21','19996/11/20','湖南省岳阳市汨罗市','yc带头人','8000',default);  
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_nowPlace,um_workinfo,um_incomeinfo,um_image) values(1,'黄凌翔',439004199611206214,'湖南省岳阳市汨罗市','yc带头人','8000',default);  
 commit;
 --------------------------------------------------------------------
 --银行卡信息表
