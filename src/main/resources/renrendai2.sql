@@ -5,7 +5,7 @@ create table User(
       u_id 			int primary key auto_increment,
       u_name 			varchar(100),
       u_password 		varchar(100), 
-      u_creditnumber date, 
+      u_creditnumber int, 
       u_creditdegree	varchar(6) default 'HR', 
       u_registerdate	date,  
       u_tel	varchar(11),						

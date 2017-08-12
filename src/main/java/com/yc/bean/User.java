@@ -10,7 +10,7 @@ public class User implements Serializable {
 	private Integer u_id;
 	private String u_name;
 	private String u_password;
-	private Date u_creditnumber;
+	private Integer u_creditnumber;
 	private String u_creditdegree;
 	private Date u_registerdate;
 	private String u_tel;
@@ -44,10 +44,10 @@ public class User implements Serializable {
 	public void setU_password(String u_password) {
 		this.u_password = u_password;
 	}
-	public Date getU_creditnumber() {
+	public Integer getU_creditnumber() {
 		return u_creditnumber;
 	}
-	public void setU_creditnumber(Date u_creditnumber) {
+	public void setU_creditnumber(Integer u_creditnumber) {
 		this.u_creditnumber = u_creditnumber;
 	}
 	public String getU_creditdegree() {

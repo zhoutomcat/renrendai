@@ -5,7 +5,7 @@ create table User(
       u_id 			int primary key auto_increment,
       u_name 			varchar(100),
       u_password 		varchar(100), 
-      u_creditnumber date, 
+      u_creditnumber int, 
       u_creditdegree	varchar(6) default 'HR', 
       u_registerdate	date,  
       u_tel	varchar(11),						
@@ -16,6 +16,8 @@ create table User(
 );
 
 select * from user;
+
+select * from user where u_name='a' and u_password= 'a'
 
 --用户的账户表--user的外键   一对一    --账户余额(可用余额+冻结余额) --可用余额--冻结余额
 create table UserFund(
