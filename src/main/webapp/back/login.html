@@ -5,10 +5,10 @@
 <title>用户登录</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link rel="stylesheet" href="commons/css/bootstrap.min.css">
-<link rel="stylesheet" href="commons/css/login.css">
-<script src="../js/jquery-1.9.1.js"></script>
-<script src="commons/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/login.css">
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
@@ -54,21 +54,21 @@
                 	<div class="panel-heading login-top">用户登录</div>
                     <div class="panel-body">
                     	<form class="form-group col-lg-10 col-md-offset-1" action="admin.action" method="post" role="form">
-                    	<input type="hidden"  name="op"   value="login" />
+                    	 <input type="hidden"  name="op"   value="login" />
                 			
                             <div class="input-group">
                             	<label for="aname" class="input-group-addon">用户名</label>
-                                <input type="text" class="form-control" name="aname" id="aname" required placeholder="请输入用户名"/>
+                                <input type="text" class="form-control" name="a_name" id="a_name" value="a" required placeholder="请输入用户名"/>
                             </div>
                             <br />
                             <div class="input-group">
                             	<label for="pwd" class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</label>
-                                <input type="password" class="form-control" name="pwd" id="pwd" required  placeholder="请输入密码"/>
+                                <input type="password" class="form-control" name="a_password" id="a_password" value="a" required  placeholder="请输入密码"/>
                             </div>
                             <br />
                             <div class="input-group">
                             	<label for="vcode" class="input-group-addon">验证码</label>
-                                <input type="text" class="form-control" name="vcode" id="vcode" required placeholder="请输入右边的验证码"/>
+                                <input type="text" class="form-control" name="zccode" id="zccode" required placeholder="请输入右边的验证码"/>
                                 <label class="input-group-btn"><img src="../image.jsp"  /></label>
                             </div>
                             <br/>

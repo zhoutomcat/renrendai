@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 public class Admin implements Serializable {
 
-	private static final long serialVersionUID = 371525309521087732L;
 
-	private Integer a_id;
-	private String a_name;
-	private String a_password;
+	private static final long serialVersionUID = -6280620995660339848L;
+	private Integer a_id; 		
+	private String a_name; 			
+	private String a_password;		
 	private Integer a_role;
-	private Integer a_status;
+	private Integer a_status; 
+	private String zccode;
 	public Integer getA_id() {
 		return a_id;
 	}
@@ -41,10 +42,20 @@ public class Admin implements Serializable {
 	public void setA_status(Integer a_status) {
 		this.a_status = a_status;
 	}
+	public String getZccode() {
+		return zccode;
+	}
+	public void setZccode(String zccode) {
+		this.zccode = zccode;
+	}
 	@Override
 	public String toString() {
 		return "Admin [a_id=" + a_id + ", a_name=" + a_name + ", a_password=" + a_password + ", a_role=" + a_role
-				+ ", a_status=" + a_status + "]";
+				+ ", a_status=" + a_status + ", zccode=" + zccode + "]";
 	}
 	
+	
+	
+	
+
 }

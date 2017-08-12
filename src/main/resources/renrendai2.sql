@@ -5,7 +5,7 @@ create table User(
       u_id 			int primary key auto_increment,
       u_name 			varchar(100),
       u_password 		varchar(100), 
-      u_creditnumber int, 
+      u_creditnumber int default 100, 
       u_creditdegree	varchar(6) default 'HR', 
       u_registerdate	date,  
       u_tel	varchar(11),						
@@ -14,7 +14,7 @@ create table User(
 	  temp2 varchar(100) default null,
 	  temp3 varchar(100) default null
 );
-
+drop table user;
 select * from user;
 
 select * from user where u_name='a' and u_password= 'a'
@@ -30,6 +30,7 @@ create table UserFund(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null
 )
+select * from userfund
 
 --借贷表
 --借贷主题(借贷介绍)--user的外键(借贷人id)--借贷金额--借贷状态  (1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败)
@@ -54,7 +55,7 @@ create table UserDebitIn(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null	   
 )
-
+select * from UserDebitIn
 --放贷表
 --借贷表的外键(借贷表id)  --user的外键(放贷人id)  一对多--放贷开始的时间()--放贷贷日期(放贷成功时)  
 --放贷的金额  --放贷类型          暂定              以后用的时候再说 
@@ -70,7 +71,7 @@ create table UserDebitOut(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null       
 )
-
+select * from  UserDebitOut
 --还贷详情.  : 一个借贷计划每月实际的还款情况
 --借贷表外键--还贷状态(0 正在还款， 1 已还，2，逾期)  --影响信额度--每月还贷金额	--还贷时间	
 create table PerRefund(
@@ -84,7 +85,7 @@ create table PerRefund(
 	temp3 varchar(100) default null
 )
 
-
+select * from  PerRefund
 --关注投标表: 
   --关注人的id--借贷表id外键 --关注时间--关注状态   0代表取消关注   1代表正在关注			修改 --权重越大     越排在前面
 create table AttentionMark(
@@ -98,7 +99,7 @@ create table AttentionMark(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
-
+select * from  AttentionMark
 
 --关注用户表: 
  --关注人的id--被关注人的id --关注时间 --关注状态   0代表取消关注   1代表正在关注        	修改 
@@ -126,7 +127,7 @@ create table Admin(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
-
+select * from  Admin
 --消息
    --用户id
     --时间 --内容   --  0 表示已读  1  表示未读
@@ -140,7 +141,7 @@ create table AdminToUserMessage(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
-
+select * from  AdminToUserMessage
 --个人资料
        um_sex       	 int,	         --性别    年龄     出生日期    居住地    都通过身份证获取
        um_age         int,
@@ -162,7 +163,7 @@ create table UserMessage(
 	   temp4 varchar(100) default null,
 	   temp5 varchar(100) default null	   
 );
-
+select * from  UserMessage
 
 
 --银行卡信息表
@@ -177,6 +178,11 @@ create table BankInfo(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
+select * from  BankInfo
+
+
+
+
 
 
 
