@@ -169,9 +169,6 @@
 			<version>1.7.2.RELEASE</version>
 		</dependency>
 
-
-
-
 	</dependencies>
 	<build>
 		<finalName>springtx1</finalName>
