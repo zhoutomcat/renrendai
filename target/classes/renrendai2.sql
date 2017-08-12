@@ -5,23 +5,17 @@ create table User(
       u_id 			int primary key auto_increment,
       u_name 			varchar(100),
       u_password 		varchar(100), 
-<<<<<<< HEAD
-      u_creditnumber int, 
-=======
-      u_creditnumber int default 100, 
->>>>>>> refs/remotes/origin/hlx
+      u_creditnumber int default 100,
       u_creditdegree	varchar(6) default 'HR', 
       u_registerdate	date,  
-      u_tel	varchar(11),						
-	  u_email	varchar(50) ,			
+      u_tel	varchar(11),
+	  u_email	varchar(50) ,
 	  temp1 varchar(100) default null,
 	  temp2 varchar(100) default null,
 	  temp3 varchar(100) default null
 );
 drop table user;
 select * from user;
-
-select * from user where u_name='a' and u_password= 'a'
 
 select * from user where u_name='a' and u_password= 'a'
 
@@ -134,6 +128,9 @@ create table Admin(
 	temp3 varchar(100) default null
 )
 select * from  Admin
+
+insert into Admin(a_name, a_password) values('a','a');
+
 --消息
    --用户id
     --时间 --内容   --  0 表示已读  1  表示未读
