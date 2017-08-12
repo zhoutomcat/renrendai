@@ -36,10 +36,10 @@
 		<filter-name>rightFilter</filter-name>
 		<url-pattern>/user/*</url-pattern>
 	</filter-mapping>
-	<filter-mapping>
+<!-- 	<filter-mapping>
 		<filter-name>rightFilter</filter-name>
 		<url-pattern>/back/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 
 
@@ -64,6 +64,9 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
+	
+	
+	
 
 	<!-- spring容器初始化 -->
 	<listener>
@@ -73,6 +76,23 @@
 	<listener>
 		<listener-class>com.yc.web.listeners.InitListener</listener-class>
 	</listener>
+	
+	
+	<servlet>
+  	<servlet-name>adminServlet</servlet-name>
+  	<servlet-class>com.yc.web.servlets.AdminServlet</servlet-class>
+  </servlet>
+  
+    <servlet-mapping>
+    <servlet-name>adminServlet</servlet-name>
+    <url-pattern>/back/admin.action</url-pattern>
+  </servlet-mapping>
+	
+	
+	
+	
+	
+	
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

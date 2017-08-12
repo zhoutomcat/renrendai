@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta charset="utf-8" />
+
 <%
 		String path= request.getContextPath();   //bbs
 		//                              http://                                       localhost  :
@@ -24,7 +20,5 @@
 <script type="text/javascript" src="back/manager/easyui15/jquery.min.js"></script>
 <script type="text/javascript" src="back/manager/easyui15/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="back/manager/easyui15/jquery.edatagrid.js"></script>
-<title>人人贷管理系统后台欢迎您</title>	
-</head>
 
 
