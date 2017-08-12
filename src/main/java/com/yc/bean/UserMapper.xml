@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.bean.UserMapper">
+	<!--加入带日志的ehcache缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
+
+	<!-- 根据用户名和密码查询用户 -->
+	<select id="getUserByLogin" parameterType="User" resultType="User">
+		select * from user where u_name=#{u_name} and u_password=#{u_password}
+	</select>
+
+	<!-- 根据id查用户 <select id="getUser" parameterType="User" resultType="User"> 
+		select * from User where uid=#{uid} </select> -->
+
+	<!-- 添加用户，要返回用户的编号 -->
+	<insert id="saveUser" parameterType="User" useGeneratedKeys="true"
+		keyProperty="u_id">
+		insert into
+		User(u_name,u_password,u_registerdate,u_tel,u_email)
+		values(#{u_password}, #{u_password}, now(), #{u_tel}, #{u_email})
+	</insert>
+
+
+
+	<!-- 判断用户是否存在 -->
+	<select id="isUnameExists" resultType="User" parameterType="User">
+		select * from User where uname=#{uname}
+	</select>
+
+
+
+
+
+
+
+</mapper>

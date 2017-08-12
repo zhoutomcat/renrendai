@@ -71,11 +71,11 @@ select * from userDebitOut
 ------------------------------------
 --自动生成
 --insert into r_PerRefund values(1,to_date('2013/8/28','yyyy/MM/dd'),10000,0,1)
---还贷表  --还贷详情. 
---insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(1,0,1000,'2019/8/8');    
---insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(2,1,6000,'2020/8/8');   
---insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(3,2,5000,'2018/8/8');   
---insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(4,0,1000,'2019/8/8');   
+--还贷表  --还贷详情.    还贷可以考虑一下自动生成
+insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(1,0,1000,'2019/8/8');    
+insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(2,1,6000,'2020/8/8');   
+insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(3,2,5000,'2018/8/8');   
+insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(4,0,1000,'2019/8/8');   
 -------------------------------------
 --关注投标表: 
 insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(6,1,'2016/7/28',1,default);

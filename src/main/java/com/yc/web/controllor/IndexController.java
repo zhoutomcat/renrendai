@@ -21,6 +21,12 @@ public class IndexController {
 			//return "/WEB-INF/pages/login.jsp";   //没有视图解析器  InternalResoureceViewResolver
 		}
 		
+		@RequestMapping(value="/toHello.action" )
+		public String toHello(){
+			return "hello"; 
+			//return "/WEB-INF/pages/login.jsp";   //没有视图解析器  InternalResoureceViewResolver
+		}
+		
 		/**
 		 * 官方文档：
 		@RestController is a stereotype annotation that combines @ResponseBody and @Controller.
