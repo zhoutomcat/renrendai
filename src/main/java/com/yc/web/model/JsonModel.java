@@ -10,9 +10,33 @@ public class JsonModel<T> implements Serializable {
 	private Object obj;
 
 	private Integer total; // *总记录数
-	private Integer pages; // * 当前为第几页
+	private Integer page; // * 当前为第几页
 	private Integer pagesize; // *每页xx条
 	private List<T> rows; // 记录集合
+	
+	private String sort;
+	private String order;
+	
+	
+
+	
+
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
 
 	public JsonModel(int code, String msg, Object obj) {
 		super();
@@ -58,13 +82,6 @@ public class JsonModel<T> implements Serializable {
 		this.total = total;
 	}
 
-	public Integer getPages() {
-		return pages;
-	}
-
-	public void setPages(Integer pages) {
-		this.pages = pages;
-	}
 
 	public Integer getPagesize() {
 		return pagesize;
@@ -82,4 +99,14 @@ public class JsonModel<T> implements Serializable {
 		this.rows = rows;
 	}
 
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	
+	
+	
 }

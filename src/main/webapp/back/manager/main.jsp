@@ -56,14 +56,14 @@
 		
 		
 		var treeDataAdmins = [ {
-			"text" : "权限管理",
+			"text" : "用户管理",
 			"state" : "closed",
 			"children" : [
 					{
 						"text" : "用户维护",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/admins/manadmins.jsp' />"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/admins/managerUser.jsp' />"
 						}
 					} ]
 		} ];

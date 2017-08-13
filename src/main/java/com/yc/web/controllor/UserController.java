@@ -1,11 +1,20 @@
 package com.yc.web.controllor;
 
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yc.bean.User;
 import com.yc.biz.UserBiz;
 import com.yc.web.model.JsonModel;
@@ -71,7 +80,8 @@ public class UserController {
 			return jm;
 		}
 		try {
-			userBiz.register(user); // 添加时User没有id 但更新一定有 所以可以写到一起
+			user.setU_registerdate(System.currentTimeMillis());
+			userBiz.register(user);    //添加时User没有id   但更新一定有  所以可以写到一起
 			jm.setCode(1);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,12 +91,56 @@ public class UserController {
 		return jm;
 	}
 
-	/*
-	 * @RequestMapping("/User_isUnameExist.action") public JsonModel
-	 * isUnameExist(User user){ JsonModel jm=new JsonModel(); try { User
-	 * vu=userBiz.isUnameExist(user); if(vu==null){ jm.setCode(1); }else{
-	 * jm.setCode(0); } } catch (Exception e) { e.printStackTrace();
-	 * jm.setCode(0); jm.setMsg(e.getMessage()); } return jm; }
+	
+/*	@RequestMapping("/User_isUnameExist.action")
+	public JsonModel isUnameExist(User user){
+		JsonModel jm=new JsonModel();
+		try {
+			User vu=userBiz.isUnameExist(user);
+			if(vu==null){
+				jm.setCode(1);
+			}else{
+				jm.setCode(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+			jm.setMsg(e.getMessage());
+		}
+		return jm;
+	}*/
+	
+	
+	/**
+	 * 后台查询所有的用户
+	 * @param user
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
 	 */
+	@RequestMapping("/back/findAllUser.action")
+	public String findAllUser(User user,HttpServletRequest request, HttpServletResponse resp,HttpSession session) throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start=(pages-1)*pagesize;
+		Map<String,Integer> map=new HashMap<String,Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm= userBiz.searchUser(map);
+		
+		Gson  gson=new Gson();
+		Type jsonType=new TypeToken<JsonModel>(){			
+		}.getType();
+		String jsonStr=gson.toJson(jm, jsonType);
+
+		return jsonStr;
+		
+
+	}
+
+
+	
 
 }

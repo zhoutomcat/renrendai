@@ -10,7 +10,7 @@ public class AttentionUser implements Serializable {
 	private Integer au_id;
 	private Integer u_id;
 	private Integer u_idbyAttention;
-	private Date au_time;
+	private long au_time;
 	private Integer au_status;
 	public Integer getAu_id() {
 		return au_id;
@@ -30,10 +30,10 @@ public class AttentionUser implements Serializable {
 	public void setU_idbyAttention(Integer u_idbyAttention) {
 		this.u_idbyAttention = u_idbyAttention;
 	}
-	public Date getAu_time() {
+	public long getAu_time() {
 		return au_time;
 	}
-	public void setAu_time(Date au_time) {
+	public void setAu_time(long au_time) {
 		this.au_time = au_time;
 	}
 	public Integer getAu_status() {

@@ -3,7 +3,9 @@ package com.yc.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+import com.yc.web.model.JsonModel;
+
+public class User extends JsonModel  implements Serializable {
 
 	private static final long serialVersionUID = -4750369623346428567L;
 
@@ -12,14 +14,13 @@ public class User implements Serializable {
 	private String u_password;
 	private Integer u_creditnumber;
 	private String u_creditdegree;
-	private Date u_registerdate;
+	private long u_registerdate;
 	private String u_tel;
 	private String u_email;
 	
 	private String reu_password;
 	
-	
-	
+
 	public String getReu_password() {
 		return reu_password;
 	}
@@ -56,10 +57,10 @@ public class User implements Serializable {
 	public void setU_creditdegree(String u_creditdegree) {
 		this.u_creditdegree = u_creditdegree;
 	}
-	public Date getU_registerdate() {
+	public long getU_registerdate() {
 		return u_registerdate;
 	}
-	public void setU_registerdate(Date u_registerdate) {
+	public void setU_registerdate(long u_registerdate) {
 		this.u_registerdate = u_registerdate;
 	}
 	public String getU_tel() {
