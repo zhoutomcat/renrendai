@@ -11,7 +11,7 @@ public class PerRefund implements Serializable {
 	private Integer udi_id;
 	private Integer pr_status;
 	private Double pr_money;
-	private Date pr_date;
+	private long pr_date;
 	public Integer getPr_id() {
 		return pr_id;
 	}
@@ -36,10 +36,10 @@ public class PerRefund implements Serializable {
 	public void setPr_money(Double pr_money) {
 		this.pr_money = pr_money;
 	}
-	public Date getPr_date() {
+	public long getPr_date() {
 		return pr_date;
 	}
-	public void setPr_date(Date pr_date) {
+	public void setPr_date(long pr_date) {
 		this.pr_date = pr_date;
 	}
 	@Override

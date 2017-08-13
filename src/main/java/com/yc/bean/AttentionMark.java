@@ -10,7 +10,7 @@ public class AttentionMark implements Serializable {
 	private Integer am_id;
 	private Integer u_id;
 	private Integer udi_id;
-	private Date am_time;
+	private long am_time;
 	private Integer am_stauts;
 	private Integer am_weight;
 	public Integer getAm_id() {
@@ -31,10 +31,10 @@ public class AttentionMark implements Serializable {
 	public void setUdi_id(Integer udi_id) {
 		this.udi_id = udi_id;
 	}
-	public Date getAm_time() {
+	public long getAm_time() {
 		return am_time;
 	}
-	public void setAm_time(Date am_time) {
+	public void setAm_time(long am_time) {
 		this.am_time = am_time;
 	}
 	public Integer getAm_stauts() {

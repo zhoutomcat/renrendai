@@ -1,6 +1,9 @@
 package com.yc.biz;
 
+import java.util.Map;
+
 import com.yc.bean.User;
+import com.yc.web.model.JsonModel;
 
 public interface UserBiz {
 	
@@ -22,5 +25,8 @@ public interface UserBiz {
 	public User isUnameExist(User user);
 
 	public void saveOrUpdate(User user);
+
+
+	public JsonModel searchUser(Map<String, Integer> map);
 
 }

@@ -13,9 +13,10 @@ public class UserDebitIn implements Serializable {
 	private Double udi_money;
 	private Integer udi_status;
 	private Double udi_profit;
-	private Date udi_date;
-	private Date udi_refundnormaldate;
-	private Date udi_refundrealitydate;
+	private long udi_date;
+	private long udi_publishdate;
+	private long udi_refundnormaldate;
+	private long udi_refundrealitydate;
 	private String udi_use;
 	private Integer udi_refundway;
 	private String udi_type;
@@ -55,24 +56,23 @@ public class UserDebitIn implements Serializable {
 	public void setUdi_profit(Double udi_profit) {
 		this.udi_profit = udi_profit;
 	}
-	public Date getUdi_date() {
-		return udi_date;
+	
+	public long getUdi_publishdate() {
+		return udi_publishdate;
 	}
-	public void setUdi_date(Date udi_date) {
+	public void setUdi_publishdate(long udi_publishdate) {
+		this.udi_publishdate = udi_publishdate;
+	}
+	public void setUdi_date(long udi_date) {
 		this.udi_date = udi_date;
 	}
-	public Date getUdi_refundnormaldate() {
-		return udi_refundnormaldate;
-	}
-	public void setUdi_refundnormaldate(Date udi_refundnormaldate) {
+	public void setUdi_refundnormaldate(long udi_refundnormaldate) {
 		this.udi_refundnormaldate = udi_refundnormaldate;
 	}
-	public Date getUdi_refundrealitydate() {
-		return udi_refundrealitydate;
-	}
-	public void setUdi_refundrealitydate(Date udi_refundrealitydate) {
+	public void setUdi_refundrealitydate(long udi_refundrealitydate) {
 		this.udi_refundrealitydate = udi_refundrealitydate;
 	}
+	
 	public String getUdi_use() {
 		return udi_use;
 	}

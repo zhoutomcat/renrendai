@@ -10,8 +10,8 @@ public class UserDebitOut implements Serializable {
 	private Integer udo_id;
 	private Integer udi_id;
 	private Integer u_id;
-	private Date udo_startdate;
-	private Date udo_date;
+	private long udo_startdate;
+	private long udo_date;
 	private Double udo_money;
 	private String udo_type;
 	
@@ -33,16 +33,16 @@ public class UserDebitOut implements Serializable {
 	public void setU_id(Integer u_id) {
 		this.u_id = u_id;
 	}
-	public Date getUdo_startdate() {
+	public long getUdo_startdate() {
 		return udo_startdate;
 	}
-	public void setUdo_startdate(Date udo_startdate) {
+	public void setUdo_startdate(long udo_startdate) {
 		this.udo_startdate = udo_startdate;
 	}
-	public Date getUdo_date() {
+	public long getUdo_date() {
 		return udo_date;
 	}
-	public void setUdo_date(Date udo_date) {
+	public void setUdo_date(long udo_date) {
 		this.udo_date = udo_date;
 	}
 	public Double getUdo_money() {

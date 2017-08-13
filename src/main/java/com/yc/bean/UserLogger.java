@@ -11,7 +11,7 @@ public class UserLogger implements Serializable {
 	private Integer u_id;
 	private Integer ul_optype;
 	private Double ul_money;
-	private Date ul_time;
+	private long ul_time;
 	public Integer getUl_id() {
 		return ul_id;
 	}
@@ -36,10 +36,10 @@ public class UserLogger implements Serializable {
 	public void setUl_money(Double ul_money) {
 		this.ul_money = ul_money;
 	}
-	public Date getUl_time() {
+	public long getUl_time() {
 		return ul_time;
 	}
-	public void setUl_time(Date ul_time) {
+	public void setUl_time(long ul_time) {
 		this.ul_time = ul_time;
 	}
 	@Override

@@ -1,12 +1,19 @@
 package com.yc.biz.impl;
 
 
+import java.util.List;
+
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+
 import com.yc.bean.User;
 import com.yc.biz.UserBiz;
 import com.yc.dao.BaseDao;
+import com.yc.web.model.JsonModel;
 
 @Service
 @Transactional
@@ -54,4 +61,19 @@ public class UserBizImpl implements UserBiz {
 		
 	}
 
-}
+
+	@Override
+	public JsonModel searchUser(Map<String, Integer> map) {
+			List<User> list=baseDao.findAll(User.class, "findUserCondition", map);
+			int total=(int) baseDao.getFunc(User.class, "findUserConditionCount",map);
+			
+			JsonModel<User> jsonModel=new JsonModel<User>();
+			jsonModel.setRows(list);
+			jsonModel.setTotal(total);
+			jsonModel.setPage(map.get("page"));
+			jsonModel.setPagesize(map.get("pagesize"));
+			return jsonModel;
+		}
+	}
+
+

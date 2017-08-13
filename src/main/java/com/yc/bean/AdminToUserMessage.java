@@ -9,7 +9,7 @@ public class AdminToUserMessage implements Serializable {
 
 	private Integer atum_id;
 	private Integer u_id;
-	private Date atum_time;
+	private long atum_time;
 	private String atum_content;
 	private Integer atum_status;
 	public Integer getAtum_id() {
@@ -24,10 +24,10 @@ public class AdminToUserMessage implements Serializable {
 	public void setU_id(Integer u_id) {
 		this.u_id = u_id;
 	}
-	public Date getAtum_time() {
+	public long getAtum_time() {
 		return atum_time;
 	}
-	public void setAtum_time(Date atum_time) {
+	public void setAtum_time(long atum_time) {
 		this.atum_time = atum_time;
 	}
 	public String getAtum_content() {

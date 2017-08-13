@@ -2,7 +2,9 @@ package com.yc.bean;
 
 import java.io.Serializable;
 
-public class Admin implements Serializable {
+
+
+public class Admin  implements Serializable {
 
 
 	private static final long serialVersionUID = -6280620995660339848L;
@@ -12,6 +14,9 @@ public class Admin implements Serializable {
 	private Integer a_role;
 	private Integer a_status; 
 	private String zccode;
+	
+	
+	
 	public Integer getA_id() {
 		return a_id;
 	}

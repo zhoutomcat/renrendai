@@ -12,7 +12,7 @@ public class AdminLogger implements Serializable {
 	private String al_content;
 	private Integer al_optype;
 	private String al_opclassname;
-	private Date al_time;
+	private long al_time;
 	public Integer getAl_id() {
 		return al_id;
 	}
@@ -43,10 +43,10 @@ public class AdminLogger implements Serializable {
 	public void setAl_opclassname(String al_opclassname) {
 		this.al_opclassname = al_opclassname;
 	}
-	public Date getAl_time() {
+	public long getAl_time() {
 		return al_time;
 	}
-	public void setAl_time(Date al_time) {
+	public void setAl_time(long al_time) {
 		this.al_time = al_time;
 	}
 	@Override
