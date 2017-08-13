@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 //@RestController //类注解  同时使用   @Controller  和  @ResponseBody
 public class IndexController {
-		@RequestMapping(value="/index.action",method=RequestMethod.GET)
+		@RequestMapping(value="/index.action" )
 		public String index(){
+			return "index";
+		}
+		
+		@RequestMapping(value="/toLogin.action" )
+		public String toLogin(){
 			return "login";
 		}
 		
-		@RequestMapping(value="/toRegister.action",method=RequestMethod.GET)
+		@RequestMapping(value="/toRegister.action" )
 		public String toRegister(){
 			return "register"; 
 			//return "/WEB-INF/pages/login.jsp";   //没有视图解析器  InternalResoureceViewResolver
