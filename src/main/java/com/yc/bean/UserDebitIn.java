@@ -20,6 +20,8 @@ public class UserDebitIn implements Serializable {
 	private String udi_use;
 	private Integer udi_refundway;
 	private String udi_type;
+	
+	
 	public Integer getUdi_id() {
 		return udi_id;
 	}
