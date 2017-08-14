@@ -23,6 +23,11 @@ isELIgnored="false"%>
 <link type="text/css" rel="stylesheet" href="css/c.css" />
 <link type="text/css" rel="stylesheet" href="css/d.css" />
 <link type="text/css" rel="stylesheet" href="css/e.css" />
+<link type="text/css" rel="stylesheet" href="css/f.css" />
+<link type="text/css" rel="stylesheet" href="css/g.css" />
+<link type="text/css" rel="stylesheet" href="css/h.css" />
+<link type="text/css" rel="stylesheet" href="css/i.css" />
+<link type="text/css" rel="stylesheet" href="css/calculate.css" />
 <script type="text/javascript" src="js/function.js"></script>
 <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>

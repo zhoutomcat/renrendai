@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+#uplanIndex {
+	-webkit-font-smoothing: antialiased
+}
+
+#uplanIndex :focus {
+	outline: 0
+}
+
+#uplanIndex input {
+	outline: 0
+}
+
+#uplanIndex .container_12_1080 {
+	margin-left: auto;
+	margin-right: auto;
+	width: 1080px
+}
+
+#uplanIndex .color-white-bg {
+	background: #fff
+}
+
+#uplanIndex .ui-title {
+	padding: 30px 0;
+	font-size: 18px;
+	color: #2b2b2b
+}
+
+#uplanIndex .ui-title .fn-right {
+	font-size: 12px;
+	color: #9c9c9c
+}
+
+#uplanIndex .uplan {
+	width: 1080px;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 30px
+}
