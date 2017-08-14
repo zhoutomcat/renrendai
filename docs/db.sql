@@ -44,12 +44,22 @@ create table UserDebitIn(
        udi_refundnormaldate 	date, --标的正常还贷日期    
        udi_refundrealitydate	date, --实际还贷日期        --影响信额度 
        udi_use	                varchar(2000),	      --借款用途
-       udi_refundway		int, 	--还款方式（月还贷 1，一次性还贷 0）
-       udi_type          varchar(100),      --借贷类型          暂定              以后用的时候再说
+       udi_refundway		int, 	--还款方式（月还贷 1，一次性还贷 0）ppppppp
+       udi_type          varchar(100),      --借贷类型          暂定              以后用的时候再说pppp
 	   temp varchar(100) default null,
 	   temp varchar(100) default null,
 	   temp varchar(100) default null	   
 )
+
+--借贷类型表
+create table UserDebitInType(
+	udit_id int  primary key auto_increment,	
+	udit_name varchar(50),
+	udit_
+	
+)
+
+
 
 --放贷表
 create table UserDebitOut(
