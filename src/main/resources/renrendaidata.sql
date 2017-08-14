@@ -7,14 +7,14 @@
 create database renrendai;
 user  renrendai;
 --用户表         
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('a','a',default,default,1407855893,'17674756360','1226225589@qq.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','b',default,default,1407855893,'15386028352','1046051715@qq.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('c','c',default,default,1407855893,'18273474977','dadad@163.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('d','d',default,default,1439355893,'18874610678','dad@163.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('e','e',default,default,1439355893,'17674737157','dadadadawr@163.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('f','f',2,'A',1439355893,'18570461942','dadadawr@163.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('g','g',5,'B',1502584941 ,'18473481898','dadawr@163.com');
-insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('h','h',5,'B',1502584941 ,'18473481898','dadawr@163.com');
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('a','a',default,default,1407855893,'17674756360','1226225589@qq.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('b','b',default,default,1407855893,'15386028352','1046051715@qq.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('c','c',default,default,1407855893,'18273474977','dadad@163.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('d','d',default,default,1439355893,'18874610678','dad@163.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('e','e',default,default,1439355893,'17674737157','dadadadawr@163.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('f','f',2,'A',1439355893,'18570461942','dadadawr@163.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('g','g',5,'B',1502584941 ,'18473481898','dadawr@163.com',1);
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email,u_status) values('h','h',5,'B',1502584941 ,'18473481898','dadawr@163.com',1);
 select * from user;
 
 

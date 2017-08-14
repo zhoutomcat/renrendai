@@ -17,10 +17,18 @@ public class User extends JsonModel  implements Serializable {
 	private long u_registerdate;
 	private String u_tel;
 	private String u_email;
+	private Integer u_status;
 	
 	private String reu_password;
 	
+	
 
+	public Integer getU_status() {
+		return u_status;
+	}
+	public void setU_status(Integer u_status) {
+		this.u_status = u_status;
+	}
 	public String getReu_password() {
 		return reu_password;
 	}
@@ -79,6 +87,8 @@ public class User extends JsonModel  implements Serializable {
 	public String toString() {
 		return "User [u_id=" + u_id + ", u_name=" + u_name + ", u_password=" + u_password + ", u_creditnumber="
 				+ u_creditnumber + ", u_creditdegree=" + u_creditdegree + ", u_registerdate=" + u_registerdate
-				+ ", u_tel=" + u_tel + ", u_email=" + u_email + "]";
+				+ ", u_tel=" + u_tel + ", u_email=" + u_email + ", u_status=" + u_status + ", reu_password=" + reu_password
+				+ "]";
 	}
+
 }

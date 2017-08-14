@@ -37,6 +37,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="u_tel  !=  null and u_tel  !=  ''">
 			u_tel=#{u_tel}
 		</if>
+		<if test="u_status !=  null and u_status  !=  ''">
+			and u_status=#{u_status}
+		</if>
 		<if test="u_name!=null and u_name!=null">
 			and u_name=#{u_name}
 		</if>
@@ -88,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 修改用户 -->
 <update id="updateuser" parameterType="User">
 update user set u_creditdegree=#{u_creditdegree},u_creditnumber=#{u_creditnumber},u_email=#{u_email},u_name=#{u_name},u_password=#{u_password},
-u_registerdate=#{u_registerdate},u_tel=#{u_tel} where u_id=#{u_id}
+u_registerdate=#{u_registerdate},u_tel=#{u_tel},u_status=#{u_status} where u_id=#{u_id}
 </update>
 
 

@@ -82,6 +82,12 @@
 						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
 						    return  tt;  
 						} 
+				},{
+					field:'u_status',
+					title:'用户状态',
+					width:30,
+					align:'center',
+					editor:{type:"text",options:{required:true}},
 				}
 	
 				]],
