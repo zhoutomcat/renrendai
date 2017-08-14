@@ -41,6 +41,7 @@ public class UserController {
 				user = userBiz.login(user);
 				if (user != null) {
 					session.setAttribute("user", user);
+//					System.out.println("------------------"  +  session.getAttribute("user"));
 					jm.setCode(1);
 					user.setU_password(null); // 设为空后，密码就不会传到页面
 					jm.setObj(user);

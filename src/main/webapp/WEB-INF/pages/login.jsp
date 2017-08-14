@@ -13,7 +13,7 @@
 				success : function(data) {
 					if (data.code == 1) {
 						alert("登录成功！");
-						location.href = "toHello.action";
+						location.href = "index.action";
 					} else {
 						alert("登录失败！原因" + data.msg);
 					}
