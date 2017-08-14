@@ -61,7 +61,9 @@ public class UserBizImpl implements UserBiz {
 		
 	}
 
-
+	/**
+	 * 找到所有的用户   查所有
+	 */
 	@Override
 	public JsonModel searchUser(Map<String, Integer> map) {
 			List<User> list=baseDao.findAll(User.class, "findUserCondition", map);
@@ -74,6 +76,23 @@ public class UserBizImpl implements UserBiz {
 			jsonModel.setPagesize(map.get("pagesize"));
 			return jsonModel;
 		}
+
+
+	@Override
+	public boolean updateUser(User user) {
+		baseDao.update(user, "updateuser");
+		return true;
 	}
+
+
+	@Override
+	public boolean delUser(User user) {
+		baseDao.del(user, "deluser");
+		return true;
+	}
+	
+	
+	
+}
 
 

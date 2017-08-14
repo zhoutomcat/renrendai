@@ -26,7 +26,7 @@ create table UserFund(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null
 )
-
+drop table userfund
 --借贷表
 --借贷主题(借贷介绍)--user的外键(借贷人id)--借贷金额--借贷状态  (1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败)
 --借贷利率 --发出这个标的的日期 --借款成功日期(借成功时)--标的正常还贷日期     --实际还贷日期        --影响信额度 

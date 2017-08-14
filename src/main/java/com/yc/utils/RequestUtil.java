@@ -95,6 +95,9 @@ public class RequestUtil<T> {
 						} else if ("double".equals(typeClassName) || "java.lang.Double".equals(typeClassName)) {
 							double v = Double.parseDouble(value);
 							m.invoke(obj, v);
+						} else if ("long".equals(typeClassName) || "java.lang.Long".equals(typeClassName)) {
+							long  v = Long.parseLong(value);
+							m.invoke(obj, v);
 						} else {
 							m.invoke(obj, value); // u.setUname(xxx);
 						}

@@ -72,22 +72,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 分页条件的拼接 -->
  <sql id="pageSql">
 	<if test="start!=null ">
-	    limit #{start},#{pageSize}
+	    limit #{start},#{pagesize}
 	</if>
 </sql>
 
 <!-- 带查询条件，分页条件 排序条件的查询 -->
-<select id="findUserCondition"    resultType="User">
-	select * <include refid="conditionSql"></include>
+<select id="findUserCondition"  resultType="User">
+	select * <include refid="conditionSql" /> <include refid="orderSql" /> <include refid="pageSql" />
 </select>
 <!-- 带查询条件统计查询 -->
 <select id="findUserConditionCount" parameterType="Map" resultType="int">
-	select count(1)  from user where 1=1
+	select count(1)  <include refid="conditionSql" />
 </select>
 
+<!-- 修改用户 -->
+<update id="updateuser" parameterType="User">
+update user set u_creditdegree=#{u_creditdegree},u_creditnumber=#{u_creditnumber},u_email=#{u_email},u_name=#{u_name},u_password=#{u_password},
+u_registerdate=#{u_registerdate},u_tel=#{u_tel} where u_id=#{u_id}
+</update>
 
 
-
+<!-- 删除用户  冻结用户 -->
+<delete id="deluser">
+delete from user where u_id=#{u_id}
+</delete>
 
 
 

@@ -14,6 +14,7 @@ insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('e','e',default,default,1439355893,'17674737157','dadadadawr@163.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('f','f',2,'A',1439355893,'18570461942','dadadawr@163.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('g','g',5,'B',1502584941 ,'18473481898','dadawr@163.com');
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('h','h',5,'B',1502584941 ,'18473481898','dadawr@163.com');
 select * from user;
 
 

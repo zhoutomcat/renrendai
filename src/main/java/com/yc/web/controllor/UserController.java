@@ -1,5 +1,6 @@
 package com.yc.web.controllor;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yc.bean.User;
 import com.yc.biz.UserBiz;
+import com.yc.utils.RequestUtil;
 import com.yc.web.model.JsonModel;
 
 @RestController // 类注解,同时使用@Controller 和@ResponseBody
@@ -121,7 +123,7 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/back/findAllUser.action")
-	public String findAllUser(User user,HttpServletRequest request, HttpServletResponse resp,HttpSession session) throws Exception {
+	public JsonModel findAllUser(User user,HttpServletRequest request, HttpServletResponse resp,HttpSession session) throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
 		int start=(pages-1)*pagesize;
@@ -130,17 +132,49 @@ public class UserController {
 		map.put("pagesize", pagesize);
 		JsonModel jm= userBiz.searchUser(map);
 		
-		Gson  gson=new Gson();
+/*		Gson  gson=new Gson();
 		Type jsonType=new TypeToken<JsonModel>(){			
 		}.getType();
-		String jsonStr=gson.toJson(jm, jsonType);
+		String jsonStr=gson.toJson(jm, jsonType);*/          //jsonModel型是不需要转成gson型的
 
-		return jsonStr;
-		
-
+		return jm;
 	}
+	
+	
+	@RequestMapping("/back/updateuser.action")
+	private JsonModel updateUser(User user,HttpServletRequest request, HttpServletResponse response) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		JsonModel jm=new JsonModel();
+		user=RequestUtil.getParemeter(request, User.class);
+		 boolean result=userBiz.updateUser(user);
+		 
+		 if(result){
+			 jm.setCode(1);
+		 }else{
+			 jm.setCode(0);
+		 }
+		 return jm;
+	}
+	
+	
+	
+	@RequestMapping("/back/deluser.action")
+	private JsonModel delUser(User user,HttpServletRequest request, HttpServletResponse response) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		JsonModel jm=new JsonModel();
+		user=RequestUtil.getParemeter(request, User.class);
+		boolean result=userBiz.delUser(user);
+		 if(result){
+			 jm.setCode(1);
+		 }else{
+			 jm.setCode(0);
+		 }
+		 return jm;
+	}
+}
+	
+	
+	
 
 
 	
 
-}
+
