@@ -1,6 +1,6 @@
 create database renrendai;
 select  * from user
---用户编号  --用户名(账号) --信誉积分--信誉等级	--手机号码		 --注册时间 --邮箱  check in('AA','A','B','C','D','HR')
+--用户编号  --用户名(账号) --信誉积分--信誉等级	--手机号码		 --注册时间 --邮箱  check in('AA','A','B','C','D','HR')   u_status int,   用户的状态  默认为1  
 create table User(
       u_id 	int primary key auto_increment,
       u_name varchar(100),
@@ -15,6 +15,7 @@ create table User(
 	  temp2 varchar(100) default null,
 	  temp3 varchar(100) default null
 );
+
 drop table user;
 --用户的账户表--user的外键   一对一    --账户余额(可用余额+冻结余额) --可用余额--冻结余额
 create table UserFund(
@@ -27,6 +28,7 @@ create table UserFund(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null
 )
+
 drop table Userfund
 
 --借贷表

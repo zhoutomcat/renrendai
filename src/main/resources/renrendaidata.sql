@@ -7,10 +7,13 @@
 create database renrendai;
 user  renrendai;
 --用户表         
+
+
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('a','a',default,default,1407855893,'1','a@qq.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','a',default,default,1407855893,'1','b@qq.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('c','a',2,'A',1439355893,'1','c@163.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('d','a',5,'B',1502584941 ,'1','d@163.com');
+
 select * from user;
 
 

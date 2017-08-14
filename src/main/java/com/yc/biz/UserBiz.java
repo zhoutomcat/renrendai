@@ -29,4 +29,8 @@ public interface UserBiz {
 
 	public JsonModel searchUser(Map<String, Integer> map);
 
+	public boolean updateUser(User user);
+
+	public boolean delUser(User user);
+
 }

@@ -7,10 +7,13 @@
 create database renrendai;
 user  renrendai;
 --用户表         
+
+
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('a','a',default,default,1407855893,'1','a@qq.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','a',default,default,1407855893,'1','b@qq.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('c','a',2,'A',1439355893,'1','c@163.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('d','a',5,'B',1502584941 ,'1','d@163.com');
+
 select * from user;
 
 
@@ -68,6 +71,15 @@ udi_refundrealitydate,udi_use,udi_refundway,udi_type)
 --实例还贷日期不确定，到时候前段需要修改    显示正在还款
 select * from userDebitIn;     --uid唯一       只能借贷一次，除非已经还款
 -----------------------------------
+
+--借贷类型表
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 6  , 1);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 6.6 , 3);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 7.2 , 6);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 8.8 , 12);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 10   , 24);
+
+
 --放贷表
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,1,1439355893,1439355893 ,10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,2,1439355893,1439355893 ,10000);

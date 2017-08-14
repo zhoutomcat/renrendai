@@ -11,60 +11,42 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.yc.bean.User;
+import com.yc.biz.AttentionMarkBiz;
 import com.yc.biz.UserBiz;
 import com.yc.dao.BaseDao;
 import com.yc.web.model.JsonModel;
 
 @Service
 @Transactional
-public class UserBizImpl implements UserBiz {
+public class AttentionMarkBizImpl implements AttentionMarkBiz{
 	@Resource(name="baseDao")
 	//private BaseDao<VoteUser> baseDao;
 	private BaseDao baseDao;
 
-
-	/**
-	 * 用户注册
-	 */
 	@Override
-	public boolean register(User user) throws Exception {
-		try {
-			baseDao.save(user, "saveUser");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-
-
-	@Override
-	public User login(User user) throws Exception {
-		try {
-			user = (User) this.baseDao.findOne(user, "getUserByLogin");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		return user;
-	}
-
-
-	@Override
-	public User isUnameExist(User user) {
+	public JsonModel searchUser(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	@Override
-	public void saveOrUpdate(User user) {
-		
+	public boolean updateUser(User user) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
+	@Override
+	public boolean delUser(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	
 	/**
 	 * 找到所有的用户   查所有
 	 */
-	@Override
+/*	@Override
 	public JsonModel searchUser(Map<String, Integer> map) {
 			List<User> list=baseDao.findAll(User.class, "findUserCondition", map);
 			int total=(int) baseDao.getFunc(User.class, "findUserConditionCount",map);
@@ -89,7 +71,7 @@ public class UserBizImpl implements UserBiz {
 	public boolean delUser(User user) {
 		baseDao.del(user, "deluser");
 		return true;
-	}
+	}*/
 	
 	
 	
