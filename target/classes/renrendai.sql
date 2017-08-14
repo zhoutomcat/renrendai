@@ -2,14 +2,15 @@ create database renrendai;
 select  * from user
 --用户编号  --用户名(账号) --信誉积分--信誉等级	--手机号码		 --注册时间 --邮箱  check in('AA','A','B','C','D','HR')
 create table User(
-      u_id 			int primary key auto_increment,
-      u_name 			varchar(100),
-      u_password 		varchar(100), 
-      u_creditnumber int default 100, 
-      u_creditdegree	varchar(6) default 'HR', 
-      u_registerdate	long,   
-      u_tel	varchar(11),						
-	  u_email	varchar(50) ,			
+      u_id 	int primary key auto_increment,
+      u_name varchar(100),
+      u_password varchar(100),
+      u_creditnumber int default 100,
+      u_creditdegree	varchar(6) default 'HR',
+      u_registerdate	long,
+      u_tel	varchar(11),
+	  u_email	varchar(50),
+	  u_status int default 1,
 	  temp1 varchar(100) default null,
 	  temp2 varchar(100) default null,
 	  temp3 varchar(100) default null
@@ -18,7 +19,7 @@ drop table user;
 --用户的账户表--user的外键   一对一    --账户余额(可用余额+冻结余额) --可用余额--冻结余额
 create table UserFund(
        uf_id 			int primary key auto_increment,
-       u_id 			int,  
+       u_id 			int,
        uf_balance 		double,
        uf_available 	double,
        uf_freeze 		double,   
@@ -26,6 +27,7 @@ create table UserFund(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null
 )
+drop table Userfund
 
 --借贷表
 --借贷主题(借贷介绍)--user的外键(借贷人id)--借贷金额--借贷状态  (1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败)
@@ -38,19 +40,42 @@ create table UserDebitIn(
        u_id			int, 
        udi_money 		double, 
        udi_status 		int , 
-       udi_profit 		double,  
        udi_publishdate         long,
        udi_date 		long,
-       udi_refundnormaldate 	long, 
        udi_refundrealitydate	long,
-       udi_use	                varchar(2000),	  
+       udi_use	                varchar(2000),
        udi_refundway		int, 	
-       udi_type          varchar(100),     
+       udi_type          int,     
 	   temp1 varchar(100) default null,
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null	   
 )
+
 drop table UserDebitIn 
+select * from UserDebitIn
+
+select udit_profit,udit_month from UserDebitInType;
+
+
+create table UserDebitInType(
+	udit_id int  primary key auto_increment,
+	udit_name varchar(50),
+	udit_profit  double,  
+	udit_month double,			--借贷月数
+	temp1 varchar(100) default null,
+	temp2 varchar(100) default null,
+	temp3 varchar(100) default null
+)
+select * from UserDebitInType
+
+drop table UserDebitInType
+
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 0.06  , 1);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 0.066 , 3);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 0.072 , 6);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 0.088 , 12);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 0.1   , 24);
+
 --放贷表
 --借贷表的外键(借贷表id)  --user的外键(放贷人id)  一对多--放贷开始的时间()--放贷贷日期(放贷成功时)  
 --放贷的金额  --放贷类型          暂定              以后用的时候再说 
@@ -67,6 +92,8 @@ create table UserDebitOut(
 	   temp3 varchar(100) default null       
 )
 drop table UserDebitOut
+
+
 --还贷详情.  : 一个借贷计划每月实际的还款情况
 --借贷表外键--还贷状态(0 正在还款， 1 已还，2，逾期)  --影响信额度--每月还贷金额	--还贷时间	
 create table PerRefund(
@@ -124,6 +151,8 @@ create table Admin(
 	temp3 varchar(100) default null
 )
 
+drop table admin;
+
 --消息
    --用户id
     --时间 --内容   --  0 表示已读  1  表示未读
@@ -159,6 +188,7 @@ create table UserMessage(
 	   temp4 varchar(100) default null,
 	   temp5 varchar(100) default null	   
 );
+drop table UserMessage
 
 
 
@@ -176,7 +206,7 @@ create table bankInfo(
 )
 
 
-
+drop table bankinfo
 
 
 
@@ -219,10 +249,11 @@ create table UserLogger(
 	temp3 varchar(100) default null
 )
 
+drop table userlogger;
+
 
 
 create table Dictionary()
-
 
 
 

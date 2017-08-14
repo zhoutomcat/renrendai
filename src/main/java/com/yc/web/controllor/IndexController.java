@@ -14,21 +14,32 @@ public class IndexController {
 		public String index(){
 			return "index";
 		}
-		
+		/**
+		 * 跳转到登录界面
+		 * @return
+		 */
 		@RequestMapping(value="/toLogin.action" )
 		public String toLogin(){
 			return "login";
 		}
 		
+		@RequestMapping(value="/toUplanDetail.action" )
+		public String toUplanDetail(){
+			return "uplanDetail";
+		}
+		
+		/**
+		 * 跳转到u计划页面
+		 * @return
+		 */
+		@RequestMapping(value="/toUplan.action" )
+		public String toUplan(){
+			return "uplan2";
+		}
+		
 		@RequestMapping(value="/toRegister.action" )
 		public String toRegister(){
 			return "register"; 
-			//return "/WEB-INF/pages/login.jsp";   //没有视图解析器  InternalResoureceViewResolver
-		}
-		
-		@RequestMapping(value="/toHello.action" )
-		public String toHello(){
-			return "hello"; 
 			//return "/WEB-INF/pages/login.jsp";   //没有视图解析器  InternalResoureceViewResolver
 		}
 		
