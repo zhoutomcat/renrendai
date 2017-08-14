@@ -48,6 +48,7 @@ create table UserDebitIn(
        udi_use	                varchar(2000),
        udi_refundway		int, 	
        udi_type          int,     
+       udi_weight   int  default 0,    --	修改 --权重越大     越排在前面
 	   temp1 varchar(100) default null,
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null	   
@@ -109,14 +110,13 @@ create table PerRefund(
 drop table  PerRefund
 
 --关注投标表: 
-  --关注人的id--借贷表id外键 --关注时间--关注状态   0代表取消关注   1代表正在关注			修改 --权重越大     越排在前面
+  --关注人的id--借贷表id外键 --关注时间--关注状态   0代表取消关注   1代表正在关注		
 create table AttentionMark(
 	am_id 			int primary key auto_increment,
 	u_id  			int, 
 	udi_id  		int, 
 	am_time 		long,  
-	am_status	int, 	
-	am_weight   int  default 0,       
+	am_status	int default 1, 	
 	temp1 varchar(100) default null,
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
@@ -134,7 +134,7 @@ create table AttentionUser(
 	au_status int,    
 	temp1 varchar(100) default null,
 	temp2 varchar(100) default null,
-	temp3 varchar(100) default null	
+	temp3 varchar(100) default null
 )
 drop table  AttentionUser
 --管理员表

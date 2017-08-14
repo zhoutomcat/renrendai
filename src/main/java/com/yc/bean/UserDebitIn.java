@@ -12,16 +12,24 @@ public class UserDebitIn implements Serializable {
 	private Integer u_id;
 	private Double udi_money;
 	private Integer udi_status;
-	private Double udi_profit;
 	private long udi_date;
 	private long udi_publishdate;
-	private long udi_refundnormaldate;
 	private long udi_refundrealitydate;
 	private String udi_use;
 	private Integer udi_refundway;
 	private String udi_type;
 	
+
+	private Integer udi_weight;
 	
+	
+	
+	public Integer getUdi_weight() {
+		return udi_weight;
+	}
+	public void setUdi_weight(Integer udi_weight) {
+		this.udi_weight = udi_weight;
+	}
 	public Integer getUdi_id() {
 		return udi_id;
 	}
@@ -52,12 +60,6 @@ public class UserDebitIn implements Serializable {
 	public void setUdi_status(Integer udi_status) {
 		this.udi_status = udi_status;
 	}
-	public Double getUdi_profit() {
-		return udi_profit;
-	}
-	public void setUdi_profit(Double udi_profit) {
-		this.udi_profit = udi_profit;
-	}
 	
 	public long getUdi_publishdate() {
 		return udi_publishdate;
@@ -67,9 +69,6 @@ public class UserDebitIn implements Serializable {
 	}
 	public void setUdi_date(long udi_date) {
 		this.udi_date = udi_date;
-	}
-	public void setUdi_refundnormaldate(long udi_refundnormaldate) {
-		this.udi_refundnormaldate = udi_refundnormaldate;
 	}
 	public void setUdi_refundrealitydate(long udi_refundrealitydate) {
 		this.udi_refundrealitydate = udi_refundrealitydate;
@@ -96,9 +95,9 @@ public class UserDebitIn implements Serializable {
 	@Override
 	public String toString() {
 		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", u_id=" + u_id + ", udi_money="
-				+ udi_money + ", udi_status=" + udi_status + ", udi_profit=" + udi_profit + ", udi_date=" + udi_date
-				+ ", udi_refundnormaldate=" + udi_refundnormaldate + ", udi_refundrealitydate=" + udi_refundrealitydate
-				+ ", udi_use=" + udi_use + ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + "]";
+				+ udi_money + ", udi_status=" + udi_status + ", udi_date=" + udi_date + ", udi_publishdate="
+				+ udi_publishdate + ", udi_refundrealitydate=" + udi_refundrealitydate + ", udi_use=" + udi_use
+				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight + "]";
 	}
 
 	
