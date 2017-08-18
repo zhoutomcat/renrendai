@@ -72,7 +72,7 @@ public class UserBizImpl implements UserBiz {
 			JsonModel<User> jsonModel=new JsonModel<User>();
 			jsonModel.setRows(list);
 			jsonModel.setTotal(total);
-			jsonModel.setPage(map.get("page"));
+			jsonModel.setPages(Integer.parseInt(map.get("page").toString()));
 			jsonModel.setPagesize(map.get("pagesize"));
 			return jsonModel;
 		}

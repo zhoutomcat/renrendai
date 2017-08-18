@@ -127,7 +127,6 @@ public class BaseDaoMybatisImpl<T> extends SqlSessionDaoSupport implements BaseD
 			return null;
 		}
 	}
-	
 
 	@Override
 	public double getFunc(Class<T> clazz, String sqlId) {
@@ -144,7 +143,4 @@ public class BaseDaoMybatisImpl<T> extends SqlSessionDaoSupport implements BaseD
 		return new Double( super.getSqlSession().selectOne(MAPPERPATH+clazz.getSimpleName()+ "Mapper." + sqlId ,parameterMap).toString());
 	}
 	
-	
-
-
 }

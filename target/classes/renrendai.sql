@@ -54,18 +54,89 @@ create table UserDebitIn(
 	   temp3 varchar(100) default null	   
 )
 
+alter table UserDebitIn set udi_status=0 where udi_id = 5
+
 drop table UserDebitIn 
 select * from UserDebitIn
 
 select udit_profit,udit_month from UserDebitInType;
 
+--查询U计划中所有的钱数
+select sum(udi_money) from UserDebitIn , UserDebitInType   
+	where udit_id = udi_type and udit_name ='U计划' 
 
+select udit_id,udit_name from UserDebitInType
+
+--查询U计划中的所有数据
+select udi_id,udi_money,udit_profit,udit_month from UserDebitInType , UserDebitIn where udit_id=udi_type
+
+--查询U计划的历史期数与利息收益
+select udi_title, peopleCount,totalMoney,udit_profit,udit_month  from
+(select udi_type,udi_title,count(u_id) as peopleCount,sum(udi_money) as totalMoney 
+	from UserDebitIn group by udi_type
+)a left join
+(select udit_id,udit_profit,udit_month
+	from UserDebitInType
+)b on b.udit_id=a.udi_type
+
+select
+		udi_id,udi_title,
+		peopleCount,totalMoney,udi_money,udit_profit,udit_month,udi_status
+		from
+		(select
+		udi_id,udi_type,udi_title,udi_status,count(u_id) as
+		peopleCount,udi_money,sum(udi_money) as
+		totalMoney
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+
+		
+		select
+		udi_id,udi_title,totalMoney,udi_money,udit_profit,udit_month,udi_status
+		from
+		( (select
+		udi_id,udi_type,udi_title,udi_status,udi_money,sum(udi_money) as
+		totalMoney
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+		) where udi_title !=
+		'U计划'
+		
+				select
+		count(udi_id)
+		from
+		( (select
+		udi_id,udi_type,udi_title,udi_status,count(u_id) as
+		peopleCount,udi_money,sum(udi_money) as
+		totalMoney
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+		) where udi_title != 'U计划'
+		
 create table UserDebitInType(
 	udit_id int  primary key auto_increment,
 	udit_name varchar(50),
 	udit_profit  double,  
 	udit_month double,			--借贷月数
-	udit_status int default 1,
+	udit_status int default 1,  --1代表借款状态   0代表还款状态
 	temp1 varchar(100) default null,
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
@@ -94,6 +165,7 @@ create table UserDebitOut(
 )
 drop table UserDebitOut
 
+select * from UserDebitOut;
 
 --还贷详情.  : 一个借贷计划每月实际的还款情况
 --借贷表外键--还贷状态(0 正在还款， 1 已还，2，逾期)  --影响信额度--每月还贷金额	--还贷时间	

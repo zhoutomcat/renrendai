@@ -32,6 +32,7 @@ isELIgnored="false"%>
 <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/add.js"></script>
+<script type="text/javascript" src="js/ycPageBar.js"></script>
 
 </head>
 <body>
