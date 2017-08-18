@@ -106,6 +106,14 @@ public class JsonModel<T> implements Serializable {
 	public void setPage(Integer page) {
 		this.page = page;
 	}
+
+	@Override
+	public String toString() {
+		return "JsonModel [code=" + code + ", msg=" + msg + ", obj=" + obj + ", total=" + total + ", page=" + page
+				+ ", pagesize=" + pagesize + ", rows=\n" + rows + ", sort=" + sort + ", order=" + order + "]";
+	}
+	
+	
 	
 	
 	

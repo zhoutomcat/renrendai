@@ -23,7 +23,23 @@ public class UserDebitIn implements Serializable {
 	private Integer udi_weight;
 	
 	
+	private UserDebitInType userDebitInType;
 	
+	
+
+
+	public UserDebitInType getUserDebitInType() {
+		return userDebitInType;
+	}
+	public void setUserDebitInType(UserDebitInType userDebitInType) {
+		this.userDebitInType = userDebitInType;
+	}
+	public long getUdi_date() {
+		return udi_date;
+	}
+	public long getUdi_refundrealitydate() {
+		return udi_refundrealitydate;
+	}
 	public Integer getUdi_weight() {
 		return udi_weight;
 	}
@@ -92,13 +108,17 @@ public class UserDebitIn implements Serializable {
 	public void setUdi_type(String udi_type) {
 		this.udi_type = udi_type;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", u_id=" + u_id + ", udi_money="
 				+ udi_money + ", udi_status=" + udi_status + ", udi_date=" + udi_date + ", udi_publishdate="
 				+ udi_publishdate + ", udi_refundrealitydate=" + udi_refundrealitydate + ", udi_use=" + udi_use
-				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight + "]";
+				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight
+				+ ",  userDebitInType\n=" + userDebitInType + "]";
 	}
+
 
 	
 		

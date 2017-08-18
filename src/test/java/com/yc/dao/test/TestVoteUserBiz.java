@@ -1,4 +1,4 @@
-package com.yc.dao.test;
+/*package com.yc.dao.test;
 
 
 import java.util.List;
@@ -46,3 +46,4 @@ public class TestVoteUserBiz{
 	
 	
 }
+*/

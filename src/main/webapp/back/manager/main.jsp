@@ -64,16 +64,16 @@
 					//"url":"back/manager/newstype/addType.jsp"
 					"url" : "<iframe width='100%' height='100%'  src='back/manager/attention/attentionMark.jsp' />"
 				}
-			} ],
-			"text" : "关注用户管理",
+			} ]
+			/* "text" : "关注用户管理",
 			"state" : "closed",
 			"children" : [ {
 				"text" : "关注用户维护",
 				"attributes" : {
 					//"url":"back/manager/newstype/addType.jsp"
-					"url" : "<iframe width='100%' height='100%'  src='back/attention/data/attentionUser.jsp' />"
+					"url" : "<iframe width='100%' height='100%'  src='back/attention/attentionUser.jsp' />"
 				}
-			} ]
+			} ] */
 		} ];
 
 		showTree("newsTypeTree", treeData);
@@ -182,11 +182,8 @@
 			</div>
 			<div title="数据字典" style="overflow: auto; padding: 10px;">数据字典</div>
 			<div title="关注管理" style="overflow: auto; padding: 10px;">
-				<div class="easyui-panel" style="padding: 5px">
 					<ul id="AttentionTypeTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
-				</div>
-				系统备份还原的
 			</div>
 		</div>
 	</div>

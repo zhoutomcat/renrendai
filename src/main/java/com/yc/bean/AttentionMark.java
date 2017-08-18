@@ -1,7 +1,9 @@
 package com.yc.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AttentionMark implements Serializable {
 
@@ -11,7 +13,20 @@ public class AttentionMark implements Serializable {
 	private Integer u_id;
 	private Integer udi_id;
 	private long am_time;
-	private Integer am_stauts;
+	private Integer am_status;
+	
+/*	private User user;*/
+	private UserDebitIn userDebitIn;
+	
+	
+	
+
+/*	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}*/
 	public Integer getAm_id() {
 		return am_id;
 	}
@@ -36,18 +51,31 @@ public class AttentionMark implements Serializable {
 	public void setAm_time(long am_time) {
 		this.am_time = am_time;
 	}
-	public Integer getAm_stauts() {
-		return am_stauts;
+
+	public Integer getAm_status() {
+		return am_status;
 	}
-	public void setAm_stauts(Integer am_stauts) {
-		this.am_stauts = am_stauts;
+	public void setAm_status(Integer am_status) {
+		this.am_status = am_status;
+	}
+	public UserDebitIn getUserDebitIn() {
+		return userDebitIn;
+	}
+	public void setUserDebitIn(UserDebitIn userDebitIn) {
+		this.userDebitIn = userDebitIn;
 	}
 	@Override
 	public String toString() {
 		return "AttentionMark [am_id=" + am_id + ", u_id=" + u_id + ", udi_id=" + udi_id + ", am_time=" + am_time
-				+ ", am_stauts=" + am_stauts + "]";
+				+ ", am_status=" + am_status + ", userDebitIn=" + userDebitIn + "]";
 	}
+
+
+
+
+
+
 	
-	
+
 
 }

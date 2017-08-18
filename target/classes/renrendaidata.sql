@@ -100,10 +100,10 @@ insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(4,0,1000,1534284
 select * from perRefund
 -------------------------------------
 --关注投标表: 
-insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(1,1,1407855893,1,default);
-insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(2,1,1502584941 ,1,10);
-insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(3,1,1439355893,1,default);
-insert into AttentionMark(u_id,udi_id,am_time,am_status,am_weight) values(4,2,1502584941 ,0,default);
+insert into AttentionMark(u_id,udi_id,am_time,am_status) values(4,1,1407855893,1);
+insert into AttentionMark(u_id,udi_id,am_time,am_status) values(3,1,1502584941 ,1);
+insert into AttentionMark(u_id,udi_id,am_time,am_status) values(2,1,1439355893,1);
+insert into AttentionMark(u_id,udi_id,am_time,am_status) values(1,2,1502584941 ,0);
 select * from AttentionMark;
 --------------------------------------------------------------------
 --关注用户表: 
