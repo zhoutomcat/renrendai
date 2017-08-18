@@ -158,7 +158,6 @@ create table UserDebitOut(
        udo_startdate		long, 
        udo_date 		long,  
        udo_money 		double,	
-       udo_type     varchar(100),           
 	   temp1 varchar(100) default null,
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null       
