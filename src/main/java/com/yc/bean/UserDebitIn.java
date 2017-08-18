@@ -13,7 +13,7 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private Integer udi_id;
 	private String udi_title;
 	private Integer u_id;
-	private Double udi_money;
+	private Double udi_money;		//计划借的钱数
 	private Integer udi_status;
 	private long udi_date;
 	private long udi_publishdate;
@@ -24,7 +24,7 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private Integer udi_weight;	//权重
 	
 	private Integer peopleCount;//加入的人数
-	private Double totalMoney;	//计划的金额
+	private Double totalMoney;	//放贷的钱数
 	private Double makeMoney;	//累积利息收益
 	
 	

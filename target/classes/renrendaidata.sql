@@ -39,7 +39,7 @@ select * from userDebitIn
 --U计划
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',1,100000,1,
+ values('U计划',null,100000,1,
  1439355893,
 1470955893,
 1502584941,
@@ -47,50 +47,28 @@ udi_refundrealitydate,udi_use,udi_refundway,udi_type)
 
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',2,100000,1,
+ values('U计划',null,100000,1,
  1470955893,
  1439355893,
 1534184343 ,
 '平台众筹',1,2);
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',3,100000,1,
+ values('U计划',null,100000,1,
 1439355893,
 1442355893,
 1532184121,
 '平台众筹',1,3);
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',4,100000,1,
+ values('U计划',null,100000,1,
 1502584941 ,
 1512584321 ,
 1597484941,   
 '平台众筹',0,4);
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',4,100000,1,
-1502584941 ,
-1512584321 ,
-1597484941,   
-'平台众筹',0,5);
-insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
-udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',3,100000,2,
-1502584941 ,
-1512584321 ,
-1597484941,   
-'平台众筹',0,5);
-
-insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
-udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',4,100000,3,
-1502584941 ,
-1512584321 ,
-1597484941,   
-'平台众筹',0,5);
-insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
-udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',4,100000,4,
+ values('U计划',null,100000,1,
 1502584941 ,
 1512584321 ,
 1597484941,   
@@ -146,8 +124,33 @@ insert into UserDebitInType(udit_name , udit_profit , udit_month) values('资金
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('装修' , 11  , 1);
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('扩大生产/经营' , 11  , 1);
 
-
 --放贷表
+--新数据    散标
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(6 , 1 , 1502574941 , 1503020059726,1000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(7 , 2 , 1502584941 , 1503020069726,2000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(8 , 3 , 1502594941 , 1503020079726,3000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(9 , 4 , 1502604941 , 1503020089726,4000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(9 , 3 , 1502604941 , 1503020089726,6000 );
+--u计划  	
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(1 , 5 , 1502574941 , 1503020059726,10000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(2 , 6 , 1502584941 , 1503020069726,20000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(2 , 6 , 1502584941 , 1503020069726,15000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(3 , 7 , 1502594941 , 1503020079726,30000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(4 , 8 , 1502604941 , 1503020089726,40000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(5 , 6 , 1502604941 , 1503020089726,60000 );
+	
+--久数据（可以不使用）
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,1,1439355893,1439355893 ,10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,2,1439355893,1439355893 ,10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,3,1470955893,1439355893 ,10000);

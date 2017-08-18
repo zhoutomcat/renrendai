@@ -32,7 +32,7 @@ create table UserFund(
 drop table Userfund
 
 --借贷表
---借贷主题(借贷介绍)--user的外键(借贷人id)--借贷金额--借贷状态  (1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败)
+--借贷主题(借贷介绍)--user的外键(借贷人id)--借贷金额--借贷状态  (0 筹款完成待放款状态  1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败)
 --借贷利率 --发出这个标的的日期 --借款成功日期(借成功时)--标的正常还贷日期     --实际还贷日期        --影响信额度 
     --借款用途--还款方式（月还贷 1，一次性还贷 0） --借贷类型          暂定              以后用的时候再说
 udi_moneysure           number(10,2), --已借金额  		--去掉 		 修改	--把这个字段放在用户表中（可以统计每个用户每次借款的信息）
@@ -79,11 +79,12 @@ select udi_title, peopleCount,totalMoney,udit_profit,udit_month  from
 	from UserDebitInType
 )b on b.udit_id=a.udi_type
 
+--查询u计划的记录
 select
 		udi_id,udi_title,
 		peopleCount,totalMoney,udi_money,udit_profit,udit_month,udi_status
 		from
-		(select
+		( (select
 		udi_id,udi_type,udi_title,udi_status,count(u_id) as
 		peopleCount,udi_money,sum(udi_money) as
 		totalMoney
@@ -95,8 +96,30 @@ select
 		from UserDebitInType
 		)b on
 		b.udit_id=a.udi_type
-
+		) where udi_title = 'U计划'
+--查询u计划的历史记录跟放贷给每个散标的金额
+select a.*,b.totalMoney , b.peopleCount from
+		(select
+			udi_id,udi_title,
+			udi_money,udit_profit,udit_month,udi_status
+			from
+			( (select
+			udi_id,udi_type,udi_title,udi_status,udi_money
+			from UserDebitIn
+			group by udi_type
+			)a left join
+			(select
+			udit_id,udit_profit,udit_month
+			from UserDebitInType
+			)b on
+			b.udit_id=a.udi_type
+			) where udi_title = 'U计划' 
+		)a left join (
+			select udi_id,sum(udo_money) as totalMoney,count(udi_id) peopleCount from UserDebitOut group by udi_id
+		)b on a.udi_id = b.udi_id
 		
+
+--查询除u计划之外的散标记录		
 		select
 		udi_id,udi_title,totalMoney,udi_money,udit_profit,udit_month,udi_status
 		from
@@ -113,7 +136,7 @@ select
 		b.udit_id=a.udi_type
 		) where udi_title !=
 		'U计划'
-		
+		--查询除u计划之外的散标记录数
 				select
 		count(udi_id)
 		from
@@ -150,7 +173,7 @@ truncate table UserDebitInType
 
 --放贷表
 --借贷表的外键(借贷表id)  --user的外键(放贷人id)  一对多--放贷开始的时间()--放贷贷日期(放贷成功时)  
---放贷的金额  --放贷类型          暂定              以后用的时候再说 
+--放贷的金额  --放贷类型 (已删除)         暂定              以后用的时候再说 
 create table UserDebitOut(
        udo_id 			int primary key auto_increment,      
        udi_id 			int, 
@@ -158,7 +181,6 @@ create table UserDebitOut(
        udo_startdate		long, 
        udo_date 		long,  
        udo_money 		double,	
-       udo_type     varchar(100),           
 	   temp1 varchar(100) default null,
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null       
@@ -166,6 +188,37 @@ create table UserDebitOut(
 drop table UserDebitOut
 
 select * from UserDebitOut;
+
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(6 , 1 , 1502574941 , 1503020059726,1000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(7 , 2 , 1502584941 , 1503020069726,2000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(8 , 3 , 1502594941 , 1503020079726,3000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(9 , 4 , 1502604941 , 1503020089726,4000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(9 , 3 , 1502604941 , 1503020089726,6000 );
+
+	--查询散标的历史记录跟放贷给每个散标的金额
+select a.*,b.totalMoney from (select
+		udi_id,udi_title,udi_money,udit_profit,udit_month,udi_status
+		from
+		( (select
+		udi_id,udi_type,udi_title,udi_status,udi_money
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+		) where udi_title !=
+		'U计划' 
+)a left join (
+		select 	udi_id,sum(udo_money) as totalMoney from UserDebitOut group by udi_id
+	)b on a.udi_id = b.udi_id
 
 --还贷详情.  : 一个借贷计划每月实际的还款情况
 --借贷表外键--还贷状态(0 正在还款， 1 已还，2，逾期)  --影响信额度--每月还贷金额	--还贷时间	
