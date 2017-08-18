@@ -1,7 +1,9 @@
 package com.yc.web.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JsonModel<T> implements Serializable {
 	private static final long serialVersionUID = -1947607909350498604L;
@@ -10,17 +12,56 @@ public class JsonModel<T> implements Serializable {
 	private Object obj;
 
 	private Integer total; // *总记录数
-	private Integer page; // * 当前为第几页
+	private Integer pages; // * 当前为第几页
 	private Integer pagesize; // *每页xx条
 	private List<T> rows; // 记录集合
 	
 	private String sort;
 	private String order;
 	
+	private double makeMoney;
+	private double totalMoney;
+	private int peopleCount;
 	
-
+	//新增
+	Map<String ,Object> map = new HashMap<>();
 	
+	
+	public int getPeopleCount() {
+		return peopleCount;
+	}
 
+	public void setPeopleCount(int peopleCount) {
+		this.peopleCount = peopleCount;
+	}
+
+	public double getMakeMoney() {
+		return makeMoney;
+	}
+
+	public void setMakeMoney(double makeMoney) {
+		this.makeMoney = makeMoney;
+	}
+
+	public double getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(double totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
+
+	public Map<String, Object> getMap() {
+		return map;
+	}
+
+	public void makeMoney(Map<String, Object> map) {
+		this.map = map;
+	}
 
 	public String getSort() {
 		return sort;
@@ -99,21 +140,23 @@ public class JsonModel<T> implements Serializable {
 		this.rows = rows;
 	}
 
-	public Integer getPage() {
-		return page;
+	public Integer getPages() {
+		return pages;
 	}
 
-	public void setPage(Integer page) {
-		this.page = page;
+	public void setPages(Integer pages) {
+		this.pages = pages;
 	}
+
 
 	@Override
 	public String toString() {
-		return "JsonModel [code=" + code + ", msg=" + msg + ", obj=" + obj + ", total=" + total + ", page=" + page
+		return "JsonModel [code=" + code + ", msg=" + msg + ", obj=" + obj + ", total=" + total + ", pages=" + pages
 				+ ", pagesize=" + pagesize + ", rows=\n" + rows + ", sort=" + sort + ", order=" + order + "]";
 	}
 	
 	
+
 	
 	
 	

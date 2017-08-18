@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.bean.UserDebitInMapper">
+	<!--加入带日志的ehcache缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
+	<!-- 排序条件的拼接 -->
+	<sql id="orderSql">
+		<if test="orderby!=null and orderby!=''">
+			order by #{orderby}
+			<if test="orderway!=null and orderway!='' ">
+				#{orderway}
+			</if>
+		</if>
+	</sql>
+
+	<!-- 分页条件的拼接 -->
+	<sql id="pageSql">
+		<if test="start!=null">
+			limit #{start},#{pagesize}
+		</if>
+	</sql>
+
+	<resultMap id="findSanbiaoHistoryResultMap" type="UserDebitIn">
+		<id property="udi_id" column="udi_id" />
+		<result property="udi_title" column="udi_title" />
+		<result property="totalMoney" column="totalMoney" />
+		<result property="udi_money" column="udi_money" />
+		<result property="udi_status" column="udi_status" />
+		<association property="userDebitInType" javaType="UserDebitInType">
+			<result property="udit_profit" column="udit_profit" />
+			<result property="udit_month" column="udit_month" />
+		</association>
+	</resultMap>
+
+	<select id="findSanbiaoHistory" resultMap="findSanbiaoHistoryResultMap"
+		parameterType="UserDebitIn">
+		select a.*,b.totalMoney from (select
+		udi_id,udi_title,udi_money,udit_profit,udit_month,udi_status
+		from
+		(
+		(select
+		udi_id,udi_type,udi_title,udi_status,udi_money
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+		) where udi_title !=
+		'U计划'
+		)a left join (
+		select udi_id,sum(udo_money) as totalMoney from
+		UserDebitOut group by udi_id
+		)b on a.udi_id = b.udi_id
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+
+	<!-- 查询U计划的历史期数与利息收益 count -->
+	<select id="findAllSanbiaoHistoryCount" resultType="int">
+		select
+		count(udi_id)
+		from
+		( (select
+		udi_id,udi_type,udi_title,udi_status,count(u_id) as
+		peopleCount,udi_money,sum(udi_money) as
+		totalMoney
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+		) where udi_title !=
+		'U计划'
+	</select>
+
+	<resultMap id="findAllUpanHistoryResultMap" type="UserDebitIn">
+		<id property="udi_id" column="udi_id" />
+		<result property="udi_title" column="udi_title" />
+		<result property="peopleCount" column="peopleCount" />
+		<result property="totalMoney" column="totalMoney" />
+		<result property="udi_money" column="udi_money" />
+		<result property="udi_status" column="udi_status" />
+		<association property="userDebitInType" javaType="UserDebitInType">
+			<result property="udit_profit" column="udit_profit" />
+			<result property="udit_month" column="udit_month" />
+		</association>
+	</resultMap>
+
+	<!-- 查询U计划的历史期数与利息收益 -->
+	<select id="findAllUpanHistory" resultMap="findAllUpanHistoryResultMap"
+		parameterType="UserDebitIn">
+		select a.*,b.totalMoney , b.peopleCount from
+		(select
+			udi_id,udi_title,
+			udi_money,udit_profit,udit_month,udi_status
+			from
+			( (select
+			udi_id,udi_type,udi_title,udi_status,udi_money
+			from UserDebitIn
+			group by udi_type
+			)a left join
+			(select
+			udit_id,udit_profit,udit_month
+			from UserDebitInType
+			)b on
+			b.udit_id=a.udi_type
+			) where udi_title = 'U计划' 
+		)a left join (
+			select udi_id,sum(udo_money) as totalMoney,count(udi_id) peopleCount from UserDebitOut group by udi_id
+		)b on a.udi_id = b.udi_id
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 查询U计划的历史期数与利息收益 count -->
+	<select id="findAllUpanHistoryCount" resultType="int">
+		select
+		count(udi_id)
+		from
+		( (select
+		udi_id,udi_type,udi_title,udi_status,count(u_id) as
+		peopleCount,udi_money,sum(udi_money) as
+		totalMoney
+		from UserDebitIn
+		group by udi_type
+		)a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+		) where udi_title = 'U计划'
+	</select>
+
+	<select id="findAllUserDebitInMoneyByUserDebitInTypeName"
+		resultType="UserDebitIn" parameterType="java.util.Map">
+		select
+		sum(udi_money) as totalMoney from UserDebitIn , UserDebitInType
+		where udit_id =
+		udi_type and udit_name =#{udit_name}
+		<!-- 'U计划' -->
+	</select>
+
+
+	<!-- <resultMap id="userDebitInWithUserDebitInType" type="UserDebitIn"> 
+		<id property="udi_id" column="udi_id" /> <result property="udi_money" column="udi_money" 
+		/> <collection property="list" ofType="UserDebitInType"> <result property="udit_profit" 
+		column="udit_profit" /> <result property="udit_month" column="udit_month" 
+		/> </collection> </resultMap> -->
+	<resultMap id="findAllUplanDataResultMap" type="UserDebitIn">
+		<id property="udi_id" column="udi_id" />
+		<result property="udi_money" column="udi_money" />
+		<association property="userDebitInType" javaType="UserDebitInType">
+			<result property="udit_profit" column="udit_profit" />
+			<result property="udit_month" column="udit_month" />
+		</association>
+	</resultMap>
+	<!-- 查找所有U计划的数据 -->
+	<select id="findAllUplanData" resultMap="findAllUplanDataResultMap">
+		select udi_id
+		,udi_money,udit_profit,udit_month from UserDebitIn,UserDebitInType
+		where udit_id=udi_type
+	</select>
+
+</mapper>	

@@ -15,6 +15,15 @@ public class UserDebitOut implements Serializable {
 	private Double udo_money;
 	private String udo_type;
 	
+	private Double totalMoney;
+	
+	
+	public Double getTotalMoney() {
+		return totalMoney;
+	}
+	public void setTotalMoney(Double totalMoney) {
+		this.totalMoney = totalMoney;
+	}
 	public Integer getUdo_id() {
 		return udo_id;
 	}
@@ -61,7 +70,7 @@ public class UserDebitOut implements Serializable {
 	public String toString() {
 		return "UserDebitOut [udo_id=" + udo_id + ", udi_id=" + udi_id + ", u_id=" + u_id + ", udo_startdate="
 				+ udo_startdate + ", udo_date=" + udo_date + ", udo_money=" + udo_money + ", udo_type=" + udo_type
-				+ "]";
+				+ ", totalMoney=" + totalMoney + "]";
 	}
 	
 	

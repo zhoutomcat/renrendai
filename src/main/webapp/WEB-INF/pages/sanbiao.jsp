@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+
+
 <center>
 	<div class="fund-wrap regular-container debt-container">
 		<div class="caption clearfix">
@@ -7,11 +9,9 @@
 				<div>散标/债权</div>
 				<span>自主投资 期限灵活</span>
 			</div>
-
 			<a class="r-more" href="/pc/loan.html"> <span class="more-link">查看更多</span> <img
 				class="more-bg" src="images/index.png">
 			</a>
-
 		</div>
 		<div class="table">
 			<table class="t-caption">
@@ -25,76 +25,89 @@
 						<th class="action">操作</th>
 					</tr>
 				</thead>
-				<tbody class="data-list">
+				<tbody class="data-list" id="sanbiaoHistory">
 
-					<tr class="even">
-						<td class="rate">9.00<span>%</span></td>
-						<td class="name">教育培训</td>
-						<td class="time">18个月</td>
-						<td class="money"><span>20,000.00</span>元</td>
-						<td class="progress" data-percent="100">
-							<div class="percentage-text">100%</div>
-							<div class="outer">
-								<span class="inner" style="width: 120px;"></span>
-							</div>
-						</td>
-						<td class="action"><a class="disabled"
-							href="https://www.renrendai.com/pc/loan/2248017.html" target="_blank" onclick="return false">还款中</a>
-						</td>
-					</tr>
 
-					<tr class="">
-						<td class="rate">9.00<span>%</span></td>
-						<td class="name">教育培训</td>
-						<td class="time">18个月</td>
-						<td class="money"><span>6,300.00</span>元</td>
-						<td class="progress" data-percent="100">
-							<div class="percentage-text">100%</div>
-							<div class="outer">
-								<span class="inner" style="width: 120px;"></span>
-							</div>
-						</td>
-						<td class="action"><a class="disabled"
-							href="https://www.renrendai.com/pc/loan/2248016.html" target="_blank" onclick="return false">还款中</a>
-						</td>
-					</tr>
-
-					<tr class="even">
-						<td class="rate">9.00<span>%</span></td>
-						<td class="name">教育培训</td>
-						<td class="time">20个月</td>
-						<td class="money"><span>19,800.00</span>元</td>
-						<td class="progress" data-percent="100">
-							<div class="percentage-text">100%</div>
-							<div class="outer">
-								<span class="inner" style="width: 120px;"></span>
-							</div>
-						</td>
-						<td class="action"><a class="disabled"
-							href="https://www.renrendai.com/pc/loan/2248015.html" target="_blank" onclick="return false">还款中</a>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="rate">9.00<span>%</span></td>
-						<td class="name">教育培训</td>
-						<td class="time">20个月</td>
-						<td class="money"><span>18,800.00</span>元</td>
-						<td class="progress" data-percent="100">
-							<div class="percentage-text">100%</div>
-							<div class="outer">
-								<span class="inner" style="width: 120px;"></span>
-							</div>
-						</td>
-						<td class="action"><a class="disabled"
-							href="https://www.renrendai.com/pc/loan/2248014.html" target="_blank" onclick="return false">还款中</a>
-						</td>
-					</tr>
 				</tbody>
 			</table>
+			<br />
+			<center>
+				<div id="pagebeandiv"></div>
+			</center>
 		</div>
 	</div>
-
 </center>
+
+
+<script>
+	$(function() {
+		gopage(1);
+	})
+	function gopage(pages) {
+		$
+				.ajax({
+					type : "POST",
+					data : "pages=" + pages,
+					url : "findAllSanbiaoHistory.action",
+					dataType : "JSON",
+					success : function(data) {
+						if (data.code == 1) {
+							$("#sanbiaoHistory").html("");
+							$(data.rows)
+									.each(
+											function(index, item) {
+												var status = '';
+												var width = '120px';
+												var percentage = '100';
+												if (item.totalMoney >= item.udi_money) {
+													status = '还款中';
+												} else {
+													status = '正在筹备';
+													percentage = item.totalMoney
+															/ item.udi_money;
+													width = percentage * 120
+															+ 'px';
+												}
+
+												var str = '<tr ';
+												if (index % 2 == 0) {
+													str += ' class="even" ';
+												}
+												str += '>  <td class="rate">'
+														+ item.userDebitInType.udit_profit
+														+ '<span>%</span></td>'
+														+ ' <td class="name">'
+														+ item.udi_title
+														+ '</td>'
+														+ ' <td class="time">'
+														+ item.userDebitInType.udit_month
+														+ '个月</td>'
+														+ ' <td class="money"><span> '
+														+ item.udi_money
+														+ '</span>元</td>'
+														+ ' <td class="progress" data-percent="100">'
+														+ ' 	<div class="percentage-text">' + percentage * 100 +'%</div>'
+														+ ' 	<div class="outer">'
+														+ ' 		<span id="sanbiaoProcess" class="inner" style="width: ' + width + ';"></span>'
+														+ ' 	</div>'
+														+ ' </td>'
+														+ ' <td class="action"><a class="disabled"' +
+									' href="#" target="_blank" onclick="return false">'
+														+ status + '</a>'
+														+ ' </td>' + ' </tr>';
+												$("#sanbiaoHistory").html(
+														$("#sanbiaoHistory")
+																.html()
+																+ str);
+											});
+							$.createPageBar(data, "pagebeandiv");
+						} else {
+							alert("查询失败！原因" + data.msg);
+						}
+					}
+				});
+	}
+</script>
+
 
 

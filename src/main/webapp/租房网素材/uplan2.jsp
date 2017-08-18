@@ -3,9 +3,19 @@
 
 <%@ include file="header.jsp"%>
 
-<%@ include file="nav.jsp"%>
-
+<%-- <%@ include file="nav.jsp"%>
+ --%>
 <script>
+	function uplanAmountChange() {
+		var x = document.getElementById("uplanAmount").value;
+		if (x % 1000 != 0) {
+			document.getElementById("uplanAmount-error-label").innerHTML = "投资金额须为1000的整数倍且不能为空";
+			document.getElementById("uplanAmount").innerHTML = "10000";
+		} else {
+			document.getElementById("uplanAmount-error-label").innerHTML = "";
+		}
+	}
+
 	$(function() {
 		$
 				.ajax({
@@ -15,8 +25,8 @@
 					success : function(data) {
 						if (data.code == 1) {
 							/* 	var makeMoney = data.makeMoney;
-							var totalMoney = data.totalMoney;
-										var peopleCount = data.peopleCount; */
+								var totalMoney = data.totalMoney;
+								var peopleCount = data.peopleCount; */
 							var str = '<dl class="fn-left   text-center   border-right-gray">'
 									+ '	<dd>'
 									+ '<em class="number">'
@@ -45,130 +55,51 @@
 							alert("shibai ");
 						}
 					}
-				});
-	})
-
-	$(function() {
-		$
-				.ajax({
-					type : "POST",
-					url : "findAllUplanData.action",
-					dataType : "JSON",
-					success : function(data) {
-						if (data.code == 1) {
-							/* 	var makeMoney = data.makeMoney;
-							var totalMoney = data.totalMoney;
-										var peopleCount = data.peopleCount; */
-							var str = '<dl class="fn-left   text-center   border-right-gray">'
-									+ '	<dd>'
-									+ '<em class="number">'
-									+ data.totalMoney
-									+ '</em><em class="unit">亿元</em>'
-									+ '	</dd>'
-									+ '<dt class="text">加入U计划</dt>'
-									+ '</dl>'
-									+ '<dl class="fn-left  text-center   border-right-gray">'
-									+ '<dd>'
-									+ '	<em class="number">'
-									+ data.makeMoney
-									+ '</em><em class="unit">亿元</em>'
-									+ '</dd>'
-									+ '<dt class="text">为用户赚取</dt>'
-									+ '</dl>'
-									+ '<dl class="fn-left text-center ">'
-									+ '<dd>'
-									+ '	<em class="number">'
-									+ data.peopleCount
-									+ '</em><em class="unit">万次</em>'
-									+ '</dd>'
-									+ '<dt class="text">加入总人次</dt>' + '</dl>';
-							$("#uplanData").html(str);
-						} else {
-							alert("shibai ");
-						}
-					}
 				})
 	})
 
-	//校验u计划的状态
-	//1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败
-	function checkStatus(index, status) {
-		if (status == 1) {
-			document.getElementsByClassName("status").innerTML = "凑款状态";
-			/* $("#uplanStatus"+index).html("凑款状态"); */
-		}
-		if (status == 2) {
-			document.getElementsByClassName("status").innerTML = "收益中";
-			/* 	$("#uplanStatus"+index).html("收益中"); */
-		}
-		if (status == 3 || status == 4) {
-			document.getElementsByClassName("status").innerTML = "已结束";
-			/* $("#uplanStatus"+index).html("已结束"); */
-		}
-	}
+	//TODO:优化这段代码
+	$(
+			function() {
+				$("#calcbt")
+						.click(
+								function() {
+									var num = document
+											.getElementById("uplanAmount").value * 0.06 / 12;
+									num = num.toFixed(2); // 输出结果为 2.45
+									document.getElementById("incomeV1").innerHTML = num
+											+ "元";
 
-	function gopage(pages) {
-		$
-				.ajax({
-					type : "POST",
-					url : "findAllUplanHistory.action",
-					data : "pages=" + pages,
-					dataType : "JSON",
-					success : function(data) {
-						if (data.code == 1) {
-							$("#uplanHistory").html("");
-							$(data.rows)
-									.each(
-											function(index, item) {
-												var makeMoney = item.udi_money
-														/ 100
-														* item.userDebitInType.udit_profit
-														* item.userDebitInType.udit_month
-														/ 12;
-												makeMoney = makeMoney.toFixed(2);
-												var str = '<tr class="list" data-reactid=".1.1.0.1.$0"> '
-														+ ' <td class="name" data-reactid=".1.1.0.1.$0.0"><a title="' + item.udi_title + '" ' +
-					' target="_blank" href="/pc/uplan/14719.html" data-reactid=".1.1.0.1.$0.0.0">'
-														+ item.udi_title
-														+ '</a></td> '
-														+ ' <td class="join-num" data-reactid=".1.1.0.1.$0.1"><span data-reactid=".1.1.0.1.$0.1.0">'
-														+ item.peopleCount
-														+ '</span><span ' +
-					' data-reactid=".1.1.0.1.$0.1.1">人</span></td> '
-														+ ' <td class="amount" data-reactid=".1.1.0.1.$0.2"><span data-reactid=".1.1.0.1.$0.2.0">'
-														+ item.udi_money
-														+ '</span><span ' +
-					' data-reactid=".1.1.0.1.$0.2.1">元</span></td> '
-														+ ' <td class="rate" data-reactid=".1.1.0.1.$0.3"><span data-reactid=".1.1.0.1.$0.3.0">'
-														+ item.userDebitInType.udit_profit
-														+ '</span><em ' +
-					' data-reactid=".1.1.0.1.$0.3.1">%</em></td> '
-														+ ' <td class="earn" data-reactid=".1.1.0.1.$0.4"><span data-reactid=".1.1.0.1.$0.4.0">'
-														+ makeMoney
-														+ '</span><span ' +
-					' data-reactid=".1.1.0.1.$0.4.1">元</span></td> '
-														+ ' <td class="status" id="uplanStatus" data-reactid=".1.1.0.1.$0.5">'
-														/* 	+ checkStatus(item.udi_status) */
-														+ item.udi_status
-														+ '</td> ' + ' </tr>';
-												$("#uplanHistory").html(
-														$("#uplanHistory")
-																.html()
-																+ str);
-											});
-							$.createPageBar(data, "pagebeandiv");
-						} else {
-							alert("shibai ");
-						}
-					}
-				})
-	}
+									var num = document
+											.getElementById("uplanAmount").value * 0.066 / 4.0;
+									num = num.toFixed(2); // 输出结果为 2.45
+									document.getElementById("incomeV3").innerHTML = num
+											+ "元";
 
-	//vssrbfvhuj
-	$(function() {
-		gopage(1);
-	})
+									var num = document
+											.getElementById("uplanAmount").value * 0.072 / 2.0;
+									num = num.toFixed(2); // 输出结果为 2.45
+									document.getElementById("incomeV6").innerHTML = num
+											+ "元";
+
+									var num = document
+											.getElementById("uplanAmount").value * 0.088 / 1.0;
+									num = num.toFixed(2); // 输出结果为 2.45
+									document.getElementById("incomeV12").innerHTML = num
+											+ "元";
+
+									var num = document
+											.getElementById("uplanAmount").value * 0.1 * 2.0;
+									num = num.toFixed(2); // 输出结果为 2.45
+									document.getElementById("incomeV24").innerHTML = num
+											+ "元";
+								})
+			})
+	
+	
+	
 </script>
+
 
 <div class="main-content">
 	<div id="uplanIndex">
@@ -215,9 +146,34 @@
 			</div>
 		</div>
 
-		<%@ include file="uplan.jsp"%>
+<%-- 		<%@ include file="uplan.jsp"%> --%>
 
-		<%@ include file="uplanCalculator.jsp"%>
+		<div class="container_12_1080" id="uplan-index-cal">
+			<div class="ui-title fn-clear">
+				<div class="fn-left">投资计算器</div>
+				<div class="fn-right"></div>
+			</div>
+			<div class="color-white-bg ui-cal fn-clear">
+				<div class="fn-left cal-left">
+					<div class="u-input-group">
+						<input maxlength="8" name="uplanAmount" id="uplanAmount" class="ui-input success-input"
+							value="10000" type="text" onchange="uplanAmountChange()">
+						<p class="unit">元</p>
+						<!-- <label class="ui-term-error error" id="uplanAmount-error-label" style="visibility: hidden;"
+							for="uplanAmount">投资金额须为1000的整数倍且不能为空</label> -->
+						<label class="ui-term-error error" id="uplanAmount-error-label" for="uplanAmount"></label>
+					</div>
+					<div class="button-wrapper">
+						<input value="开始计算" class="ui-button-cal" id="calcbt" type="button">
+					</div>
+				</div>
+				<div class="fn-left cal-right fn-clear">
+					
+<%-- 					<%@ include file="uplanCalculator.jsp" %> --%>
+					
+				</div>
+			</div>
+		</div>
 
 		<div class="container_12_1080   " id="uplanIndexData">
 			<!--UA,UB,UC U计划投资数据-->
@@ -225,7 +181,26 @@
 				<div class="fn-left ">U计划投资数据</div>
 				<div class="fn-right">数据来源人人贷内部统计,实时更新</div>
 			</div>
-			<div id="uplanData" class="fn-clear ui-invest-dl-info color-white-bg"></div>
+			<div id="uplanData" class="fn-clear ui-invest-dl-info color-white-bg">
+				<!-- <dl class="fn-left   text-center   border-right-gray">
+					<dd>
+						<em class="number">323.6</em><em class="unit">亿元</em>
+					</dd>
+					<dt class="text">加入U计划</dt>
+				</dl>
+				<dl class="fn-left  text-center   border-right-gray">
+					<dd>
+						<em class="number">19.9</em><em class="unit">亿元</em>
+					</dd>
+					<dt class="text">为用户赚取</dt>
+				</dl>
+				<dl class="fn-left text-center ">
+					<dd>
+						<em class="number">174.8</em><em class="unit">万次</em>
+					</dd>
+					<dt class="text">加入总人次</dt>
+				</dl> -->
+			</div>
 		</div>
 		<div class="container_12_1080" id="uplanIndexList">
 			<div id="uIndexProductListBox" data-reactid=".1">
@@ -247,8 +222,8 @@
 								<th class="status" data-reactid=".1.1.0.0.0.5">状态</th>
 							</tr>
 						</thead>
-						<tbody data-reactid=".1.1.0.1" id="uplanHistory">
-							<!-- <tr class="list" data-reactid=".1.1.0.1.$0">
+						<tbody data-reactid=".1.1.0.1">
+							<tr class="list" data-reactid=".1.1.0.1.$0">
 								<td class="name" data-reactid=".1.1.0.1.$0.0"><a title="点击查看U计划-24月-20170813-1期详情"
 									target="_blank" href="/pc/uplan/14719.html" data-reactid=".1.1.0.1.$0.0.0">U计划-24月-20170813-1期</a></td>
 								<td class="join-num" data-reactid=".1.1.0.1.$0.1"><span data-reactid=".1.1.0.1.$0.1.0">0</span><span
@@ -261,15 +236,9 @@
 								<td class="earn" data-reactid=".1.1.0.1.$0.4"><span data-reactid=".1.1.0.1.$0.4.0">0</span><span
 									data-reactid=".1.1.0.1.$0.4.1">元</span></td>
 								<td class="status" data-reactid=".1.1.0.1.$0.5">等待开放加入</td>
-							</tr> -->
+							</tr>
 						</tbody>
-
 					</table>
-					<br/><br/>
-					<center>
-						<div id="pagebeandiv"></div>
-					</center>
-					<br/><br/>
 				</div>
 				<div class="ui-pagination" data-reactid=".1.2">
 					<ul class="pagination" data-reactid=".1.2.0">

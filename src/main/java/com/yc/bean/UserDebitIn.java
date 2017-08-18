@@ -1,16 +1,19 @@
 package com.yc.bean;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserDebitIn implements Serializable {
+import com.mysql.fabric.xmlrpc.base.Array;
+
+public class UserDebitIn extends CommonBean implements Serializable {
 
 	private static final long serialVersionUID = 7977228914132597585L;
 
 	private Integer udi_id;
 	private String udi_title;
 	private Integer u_id;
-	private Double udi_money;
+	private Double udi_money;		//计划借的钱数
 	private Integer udi_status;
 	private long udi_date;
 	private long udi_publishdate;
@@ -18,21 +21,56 @@ public class UserDebitIn implements Serializable {
 	private String udi_use;
 	private Integer udi_refundway;
 	private String udi_type;
+	private Integer udi_weight;	//权重
 	
-
-	private Integer udi_weight;
+	private Integer peopleCount;//加入的人数
+	private Double totalMoney;	//放贷的钱数
+	private Double makeMoney;	//累积利息收益
 	
+	
+	private List<UserDebitInType> list = new ArrayList<>();
 	
 	private UserDebitInType userDebitInType;
 	
 	
 
+	
 
+
+
+
+	public Double getTotalMoney() {
+		return totalMoney;
+	}
+	public void setTotalMoney(Double totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+	public Double getMakeMoney() {
+		return makeMoney;
+	}
+	public void setMakeMoney(Double makeMoney) {
+		this.makeMoney = makeMoney;
+	}
+	public Integer getPeopleCount() {
+		return peopleCount;
+	}
+	public void setPeopleCount(Integer peopleCount) {
+		this.peopleCount = peopleCount;
+	}
 	public UserDebitInType getUserDebitInType() {
 		return userDebitInType;
 	}
 	public void setUserDebitInType(UserDebitInType userDebitInType) {
 		this.userDebitInType = userDebitInType;
+	}
+
+	
+	
+	public List<UserDebitInType> getList() {
+		return list;
+	}
+	public void setList(List<UserDebitInType> list) {
+		this.list = list;
 	}
 	public long getUdi_date() {
 		return udi_date;
@@ -40,6 +78,8 @@ public class UserDebitIn implements Serializable {
 	public long getUdi_refundrealitydate() {
 		return udi_refundrealitydate;
 	}
+
+
 	public Integer getUdi_weight() {
 		return udi_weight;
 	}
@@ -108,18 +148,19 @@ public class UserDebitIn implements Serializable {
 	public void setUdi_type(String udi_type) {
 		this.udi_type = udi_type;
 	}
-	
-	
-	@Override
+
 	public String toString() {
-		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", u_id=" + u_id + ", udi_money="
-				+ udi_money + ", udi_status=" + udi_status + ", udi_date=" + udi_date + ", udi_publishdate="
-				+ udi_publishdate + ", udi_refundrealitydate=" + udi_refundrealitydate + ", udi_use=" + udi_use
-				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight
-				+ ",  userDebitInType\n=" + userDebitInType + "]";
+
+		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", udi_money=" + udi_money
+				+ ", udi_status=" + udi_status + ", udi_type=" + udi_type + ", peopleCount=" + peopleCount
+				+ ", totalMoney=" + totalMoney + ", makeMoney=" + makeMoney + ", list=" + list + ", userDebitInType="
+				+ userDebitInType + "]";
 	}
+	
 
 
 	
+	
+
 		
 }

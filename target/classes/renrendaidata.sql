@@ -13,6 +13,10 @@ insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('b','a',default,default,1407855893,'1','b@qq.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('c','a',2,'A',1439355893,'1','c@163.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('d','a',5,'B',1502584941 ,'1','d@163.com');
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('e','a',default,default,1407855893,'1','e@qq.com');
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('f','a',default,default,1407855893,'1','f@qq.com');
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('g','a',2,'A',1439355893,'1','g@163.com');
+insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('h','a',5,'B',1502584941 ,'1','h@163.com');
 
 select * from user;
 
@@ -32,9 +36,10 @@ commit;
 select * from userDebitIn
 
 --借贷表
+--U计划
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',1,100000,1,
+ values('U计划',null,100000,1,
  1439355893,
 1470955893,
 1502584941,
@@ -42,32 +47,68 @@ udi_refundrealitydate,udi_use,udi_refundway,udi_type)
 
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',2,100000,1,
+ values('U计划',null,100000,1,
  1470955893,
  1439355893,
 1534184343 ,
 '平台众筹',1,2);
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',3,100000,1,
+ values('U计划',null,100000,1,
 1439355893,
 1442355893,
 1532184121,
 '平台众筹',1,3);
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',4,100000,1,
+ values('U计划',null,100000,1,
 1502584941 ,
 1512584321 ,
 1597484941,   
 '平台众筹',0,4);
 insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
 udi_refundrealitydate,udi_use,udi_refundway,udi_type)
- values('U计划',4,100000,1,
+ values('U计划',null,100000,1,
 1502584941 ,
 1512584321 ,
 1597484941,   
 '平台众筹',0,5);
+
+--借贷表
+--散标
+insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
+udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+ values('教育培训',5,100000,1,
+ 1439355893,
+1470955893,
+1502584941,
+'教育培训',1,6);
+
+insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
+udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+ values('资金周转',6,100000,1,
+ 1470955893,
+ 1439355893,
+1534184343 ,
+'资金周转',1,7);
+
+insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
+udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+ values('装修',7,100000,1,
+1439355893,
+1442355893,
+1532184121,
+'装修',1,8);
+
+insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
+udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+ values('扩大生产/经营',8,100000,1,
+1439355893,
+1442355893,
+1532184121,
+'扩大生产/经营',1,9);
+
+
 --实例还贷日期不确定，到时候前段需要修改    显示正在还款
 select * from userDebitIn;     --uid唯一       只能借贷一次，除非已经还款
 -----------------------------------
@@ -77,10 +118,39 @@ insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计�
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 6.6 , 3);
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 7.2 , 6);
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 8.8 , 12);
-insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 10   , 24);
-
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('U计划' , 10  , 24);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('教育培训' , 11  , 1);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('资金周转' , 11  , 1);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('装修' , 11  , 1);
+insert into UserDebitInType(udit_name , udit_profit , udit_month) values('扩大生产/经营' , 11  , 1);
 
 --放贷表
+--新数据    散标
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(6 , 1 , 1502574941 , 1503020059726,1000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(7 , 2 , 1502584941 , 1503020069726,2000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(8 , 3 , 1502594941 , 1503020079726,3000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(9 , 4 , 1502604941 , 1503020089726,4000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(9 , 3 , 1502604941 , 1503020089726,6000 );
+--u计划  	
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(1 , 5 , 1502574941 , 1503020059726,10000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(2 , 6 , 1502584941 , 1503020069726,20000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(2 , 6 , 1502584941 , 1503020069726,15000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(3 , 7 , 1502594941 , 1503020079726,30000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(4 , 8 , 1502604941 , 1503020089726,40000 );
+insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
+	values(5 , 6 , 1502604941 , 1503020089726,60000 );
+	
+--久数据（可以不使用）
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,1,1439355893,1439355893 ,10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,2,1439355893,1439355893 ,10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,3,1470955893,1439355893 ,10000);

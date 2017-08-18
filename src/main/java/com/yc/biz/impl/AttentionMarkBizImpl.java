@@ -33,7 +33,7 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz{
 		JsonModel jsonModel=new JsonModel();
 		jsonModel.setRows(list);
 		jsonModel.setTotal(total);
-		jsonModel.setPage(map.get("page"));
+		jsonModel.setPages(map.get("page"));
 		jsonModel.setPagesize(map.get("pagesize"));
 		return jsonModel;
 	}
