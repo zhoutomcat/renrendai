@@ -1,13 +1,14 @@
 package com.yc.web.controllor;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,12 @@ public class UserController {
 	@Resource(name = "userBizImpl")
 	private UserBiz userBiz;
 
+	@RequestMapping("/user_layout.action")
+	public void layout(User user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws ServletException, IOException {
+		session.removeAttribute("user");
+		request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request, response);
+	}
+
 	@RequestMapping("/user_login.action")
 	public JsonModel login(User user, HttpServletRequest request, HttpSession session) {
 		JsonModel jm = new JsonModel();
@@ -41,7 +48,8 @@ public class UserController {
 				user = userBiz.login(user);
 				if (user != null) {
 					session.setAttribute("user", user);
-//					System.out.println("------------------"  +  session.getAttribute("user"));
+					// System.out.println("------------------" +
+					// session.getAttribute("user"));
 					jm.setCode(1);
 					user.setU_password(null); // 设为空后，密码就不会传到页面
 					jm.setObj(user);
@@ -84,7 +92,7 @@ public class UserController {
 		}
 		try {
 			user.setU_registerdate(System.currentTimeMillis());
-			userBiz.register(user);    //添加时User没有id   但更新一定有  所以可以写到一起
+			userBiz.register(user); // 添加时User没有id 但更新一定有 所以可以写到一起
 			jm.setCode(1);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,28 +102,17 @@ public class UserController {
 		return jm;
 	}
 
-	
-/*	@RequestMapping("/User_isUnameExist.action")
-	public JsonModel isUnameExist(User user){
-		JsonModel jm=new JsonModel();
-		try {
-			User vu=userBiz.isUnameExist(user);
-			if(vu==null){
-				jm.setCode(1);
-			}else{
-				jm.setCode(0);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			jm.setCode(0);
-			jm.setMsg(e.getMessage());
-		}
-		return jm;
-	}*/
-	
-	
+	/*
+	 * @RequestMapping("/User_isUnameExist.action") public JsonModel
+	 * isUnameExist(User user){ JsonModel jm=new JsonModel(); try { User
+	 * vu=userBiz.isUnameExist(user); if(vu==null){ jm.setCode(1); }else{
+	 * jm.setCode(0); } } catch (Exception e) { e.printStackTrace();
+	 * jm.setCode(0); jm.setMsg(e.getMessage()); } return jm; }
+	 */
+
 	/**
 	 * 后台查询所有的用户
+	 * 
 	 * @param user
 	 * @param request
 	 * @param resp
@@ -124,58 +121,50 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/back/findAllUser.action")
-	public JsonModel findAllUser(User user,HttpServletRequest request, HttpServletResponse resp,HttpSession session) throws Exception {
+	public JsonModel findAllUser(User user, HttpServletRequest request, HttpServletResponse resp, HttpSession session)
+			throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
-		int start=(pages-1)*pagesize;
-		Map<String,Integer> map=new HashMap<String,Integer>();
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("pagesize", pagesize);
-		JsonModel jm= userBiz.searchUser(map);
-		
-/*		Gson  gson=new Gson();
-		Type jsonType=new TypeToken<JsonModel>(){			
-		}.getType();
-		String jsonStr=gson.toJson(jm, jsonType);*/          //jsonModel型是不需要转成gson型的
+		JsonModel jm = userBiz.searchUser(map);
+
+		/*
+		 * Gson gson=new Gson(); Type jsonType=new TypeToken<JsonModel>(){
+		 * }.getType(); String jsonStr=gson.toJson(jm, jsonType);
+		 */ // jsonModel型是不需要转成gson型的
 
 		return jm;
 	}
-	
-	
+
 	@RequestMapping("/back/updateuser.action")
-	private JsonModel updateUser(User user,HttpServletRequest request, HttpServletResponse response) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		JsonModel jm=new JsonModel();
-		user=RequestUtil.getParemeter(request, User.class);
-		 boolean result=userBiz.updateUser(user);
-		 
-		 if(result){
-			 jm.setCode(1);
-		 }else{
-			 jm.setCode(0);
-		 }
-		 return jm;
+	private JsonModel updateUser(User user, HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		user = RequestUtil.getParemeter(request, User.class);
+		boolean result = userBiz.updateUser(user);
+
+		if (result) {
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
 	}
-	
-	
-	
+
 	@RequestMapping("/back/deluser.action")
-	private JsonModel delUser(User user,HttpServletRequest request, HttpServletResponse response) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		JsonModel jm=new JsonModel();
-		user=RequestUtil.getParemeter(request, User.class);
-		boolean result=userBiz.delUser(user);
-		 if(result){
-			 jm.setCode(1);
-		 }else{
-			 jm.setCode(0);
-		 }
-		 return jm;
+	private JsonModel delUser(User user, HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		user = RequestUtil.getParemeter(request, User.class);
+		boolean result = userBiz.delUser(user);
+		if (result) {
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
 	}
 }
-	
-	
-	
-
-
-	
-
-

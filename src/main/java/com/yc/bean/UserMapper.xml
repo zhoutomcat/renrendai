@@ -11,9 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where u_name=#{u_name} and u_password=#{u_password}
 	</select>
 
-	<!-- 根据id查用户 <select id="getUser" parameterType="User" resultType="User"> 
-		select * from User where uid=#{uid} </select> -->
-
 	<!-- 添加用户，要返回用户的编号 -->
 	<insert id="saveUser" parameterType="User" useGeneratedKeys="true"
 		keyProperty="u_id">
@@ -22,83 +19,91 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{u_password}, #{u_password}, now(), #{u_tel}, #{u_email})
 	</insert>
 
-
+	<!-- 根据id查用户 <select id="getUser" parameterType="User" resultType="User"> 
+		select * from User where uid=#{uid} </select> -->
 
 	<!-- 判断用户是否存在 -->
 	<select id="isUnameExists" resultType="User" parameterType="User">
 		select * from User where uname=#{uname}
 	</select>
-	
-	
-<!-- 各种查询条件的拼接 -->
- <sql id="conditionSql">
-	  from  user
-	<where>
-		<if test="u_tel  !=  null and u_tel  !=  ''">
-			u_tel=#{u_tel}
-		</if>
-		<if test="u_status !=  null and u_status  !=  ''">
-			and u_status=#{u_status}
-		</if>
-		<if test="u_name!=null and u_name!=null">
-			and u_name=#{u_name}
-		</if>
+
+
+	<!-- 各种查询条件的拼接 -->
+	<sql id="conditionSql">
+		from user
+		<where>
+			<if test="u_tel  !=  null and u_tel  !=  ''">
+				u_tel=#{u_tel}
+			</if>
+			<if test="u_status !=  null and u_status  !=  ''">
+				and u_status=#{u_status}
+			</if>
+			<if test="u_name!=null and u_name!=null">
+				and u_name=#{u_name}
+			</if>
 			<if test="u_email=null and u_email!=null">
-			and u_email=#{u_email}
+				and u_email=#{u_email}
+			</if>
+			<if test="u_creditnumber!=null and u_creditnumber!=''">
+				and u_creditnumber=#{u_creditnumber}
+			</if>
+			<if test="u_registerdate!=null and u_registerdate!=''">
+				and u_registerdate=#{u_registerdate}
+			</if>
+			<if test="u_creditdegree!=null and u_creditdegree!=''">
+				and u_creditdegree=#{u_creditdegree}
+			</if>
+			<if test="u_id!=null and u_id!=''">
+				and u_id=#{u_id}
+			</if>
+		</where>
+	</sql>
+
+	<!-- 排序条件的拼接 -->
+	<sql id="orderSql">
+		<if test="orderby!=null and orderby!=''">
+			order by #{orderby}
+			<if test="orderway!=null and orderway!=''">
+				#{orderway}
+			</if>
 		</if>
-		<if test="u_creditnumber!=null and u_creditnumber!=''">
-			and u_creditnumber=#{u_creditnumber}
+	</sql>
+
+
+	<!-- 分页条件的拼接 -->
+	<sql id="pageSql">
+		<if test="start!=null ">
+			limit #{start},#{pagesize}
 		</if>
-		<if test="u_registerdate!=null and u_registerdate!=''">
-			and u_registerdate=#{u_registerdate}
-		</if>
-		<if test="u_creditdegree!=null and u_creditdegree!=''">
-			and u_creditdegree=#{u_creditdegree}
-		</if>
-		<if test="u_id!=null and u_id!=''">
-			and u_id=#{u_id}
-		</if>
-	</where>
-</sql> 
+	</sql>
 
-<!-- 排序条件的拼接 -->
- <sql id="orderSql">
-	<if test="orderby!=null and orderby!=''">
-		order by #{orderby}
-		<if test="orderway!=null and orderway!=''">
-			#{orderway}
-		</if>
-	</if>
-</sql>
+	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findUserCondition" resultType="User">
+		select *
+		<include refid="conditionSql" />
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 带查询条件统计查询 -->
+	<select id="findUserConditionCount" parameterType="Map"
+		resultType="int">
+		select count(1)
+		<include refid="conditionSql" />
+	</select>
 
-
-<!-- 分页条件的拼接 -->
- <sql id="pageSql">
-	<if test="start!=null ">
-	    limit #{start},#{pagesize}
-	</if>
-</sql>
-
-<!-- 带查询条件，分页条件 排序条件的查询 -->
-<select id="findUserCondition"  resultType="User">
-	select * <include refid="conditionSql" /> <include refid="orderSql" /> <include refid="pageSql" />
-</select>
-<!-- 带查询条件统计查询 -->
-<select id="findUserConditionCount" parameterType="Map" resultType="int">
-	select count(1)  <include refid="conditionSql" />
-</select>
-
-<!-- 修改用户 -->
-<update id="updateuser" parameterType="User">
-update user set u_creditdegree=#{u_creditdegree},u_creditnumber=#{u_creditnumber},u_email=#{u_email},u_name=#{u_name},u_password=#{u_password},
-u_registerdate=#{u_registerdate},u_tel=#{u_tel},u_status=#{u_status} where u_id=#{u_id}
-</update>
+	<!-- 修改用户 -->
+	<update id="updateuser" parameterType="User">
+		update user set
+		u_creditdegree=#{u_creditdegree},u_creditnumber=#{u_creditnumber},u_email=#{u_email},u_name=#{u_name},u_password=#{u_password},
+		u_registerdate=#{u_registerdate},u_tel=#{u_tel},u_status=#{u_status}
+		where u_id=#{u_id}
+	</update>
 
 
-<!-- 删除用户  冻结用户 -->
-<delete id="deluser">
-delete from user where u_id=#{u_id}
-</delete>
+	<!-- 删除用户 冻结用户 -->
+	<delete id="deluser">
+		delete from user where u_id=#{u_id}
+	</delete>
 
 
 

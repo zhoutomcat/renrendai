@@ -90,23 +90,6 @@
 				})
 	})
 
-	//校验u计划的状态
-	//1 凑款状态  2 还款状态(借了未还) 3 完成还款 4，失败
-	function checkStatus(index, status) {
-		if (status == 1) {
-			document.getElementsByClassName("status").innerTML = "凑款状态";
-			/* $("#uplanStatus"+index).html("凑款状态"); */
-		}
-		if (status == 2) {
-			document.getElementsByClassName("status").innerTML = "收益中";
-			/* 	$("#uplanStatus"+index).html("收益中"); */
-		}
-		if (status == 3 || status == 4) {
-			document.getElementsByClassName("status").innerTML = "已结束";
-			/* $("#uplanStatus"+index).html("已结束"); */
-		}
-	}
-
 	function gopage(pages) {
 		$
 				.ajax({
@@ -120,12 +103,24 @@
 							$(data.rows)
 									.each(
 											function(index, item) {
+												var status = '';
+												if (item.udi_status == 1) {
+													status = '凑款状态';
+												}
+												if (item.udi_status == 2) {
+													status = '收益中';
+												}
+												if (item.udi_status == 3
+														|| item.udi_status == 4) {
+													status = '已结束';
+												}
 												var makeMoney = item.udi_money
 														/ 100
 														* item.userDebitInType.udit_profit
 														* item.userDebitInType.udit_month
 														/ 12;
-												makeMoney = makeMoney.toFixed(2);
+												makeMoney = makeMoney
+														.toFixed(2);
 												var str = '<tr class="list" data-reactid=".1.1.0.1.$0"> '
 														+ ' <td class="name" data-reactid=".1.1.0.1.$0.0"><a title="' + item.udi_title + '" ' +
 					' target="_blank" href="/pc/uplan/14719.html" data-reactid=".1.1.0.1.$0.0.0">'
@@ -149,7 +144,7 @@
 					' data-reactid=".1.1.0.1.$0.4.1">元</span></td> '
 														+ ' <td class="status" id="uplanStatus" data-reactid=".1.1.0.1.$0.5">'
 														/* 	+ checkStatus(item.udi_status) */
-														+ item.udi_status
+														+ status
 														+ '</td> ' + ' </tr>';
 												$("#uplanHistory").html(
 														$("#uplanHistory")
@@ -265,11 +260,13 @@
 						</tbody>
 
 					</table>
-					<br/><br/>
+					<br />
+					<br />
 					<center>
 						<div id="pagebeandiv"></div>
 					</center>
-					<br/><br/>
+					<br />
+					<br />
 				</div>
 				<div class="ui-pagination" data-reactid=".1.2">
 					<ul class="pagination" data-reactid=".1.2.0">
