@@ -152,6 +152,15 @@ public class JsonModel<T> implements Serializable {
 		this.pages = pages;
 	}
 
+	@Override
+	public String toString() {
+		return "JsonModel [code=" + code + ", msg=" + msg + ", obj=" + obj + ", total=" + total + ", pages=" + pages
+				+ ", pagesize=" + pagesize + ", rows=" + rows + ", sort=" + sort + ", order=" + order + ", makeMoney="
+				+ makeMoney + ", totalMoney=" + totalMoney + ", peopleCount=" + peopleCount + ", map=" + map + "]";
+	}
+
+	
+	
 
 
 	

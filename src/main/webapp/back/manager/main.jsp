@@ -24,7 +24,7 @@
 		} ];
 
 		var treeDatauserDebitOutTree = [ {
-			"text" : "新闻管理",
+			"text" : "放贷信息管理",
 			"state" : "closed",
 			"children" : [
 /* 					{
@@ -35,7 +35,7 @@
 						}
 					}, */
 					{
-						"text" : "新闻维护",
+						"text" : "放贷信息维护",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
 							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitOut/userDebitOutInfo.jsp' />"
