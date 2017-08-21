@@ -1,5 +1,4 @@
 var districts;
-
 /*$(function(){
 	$.post('/HouseRent/Type_typeList', function(data){
 		for ( var i = 0; i < data.length; i++)

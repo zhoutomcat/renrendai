@@ -2,8 +2,7 @@
 
 
 <%@ include file="header.jsp"%>
-
-<%@ include file="nav.jsp"%>
+<%@include file="nav.jsp" %>
 
 <script>
 	function uplanAmountChange() {
@@ -95,9 +94,6 @@
 											+ "元";
 								})
 			})
-	
-	
-	
 </script>
 
 
@@ -146,7 +142,7 @@
 			</div>
 		</div>
 
-		<%@ include file="uplan.jsp"%>
+		<%@ include file="uplan.jsp" %>
 
 		<div class="container_12_1080" id="uplan-index-cal">
 			<div class="ui-title fn-clear">
@@ -168,9 +164,9 @@
 					</div>
 				</div>
 				<div class="fn-left cal-right fn-clear">
-					
-					<%@ include file="uplanCalculator.jsp" %>
-					
+
+					<%@ include file="uplanCalculator.jsp"%>
+
 				</div>
 			</div>
 		</div>

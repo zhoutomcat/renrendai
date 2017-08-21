@@ -20,48 +20,6 @@
 							var str = '<dl class="fn-left   text-center   border-right-gray">'
 									+ '	<dd>'
 									+ '<em class="number">'
-									+ data.makeMoney
-									+ '</em><em class="unit">亿元</em>'
-									+ '	</dd>'
-									+ '<dt class="text">加入U计划</dt>'
-									+ '</dl>'
-									+ '<dl class="fn-left  text-center   border-right-gray">'
-									+ '<dd>'
-									+ '	<em class="number">'
-									+ data.totalMoney
-									+ '</em><em class="unit">亿元</em>'
-									+ '</dd>'
-									+ '<dt class="text">为用户赚取</dt>'
-									+ '</dl>'
-									+ '<dl class="fn-left text-center ">'
-									+ '<dd>'
-									+ '	<em class="number">'
-									+ data.peopleCount
-									+ '</em><em class="unit">万次</em>'
-									+ '</dd>'
-									+ '<dt class="text">加入总人次</dt>' + '</dl>';
-							$("#uplanData").html(str);
-						} else {
-							alert("shibai ");
-						}
-					}
-				});
-	})
-
-	$(function() {
-		$
-				.ajax({
-					type : "POST",
-					url : "findAllUplanData.action",
-					dataType : "JSON",
-					success : function(data) {
-						if (data.code == 1) {
-							/* 	var makeMoney = data.makeMoney;
-							var totalMoney = data.totalMoney;
-										var peopleCount = data.peopleCount; */
-							var str = '<dl class="fn-left   text-center   border-right-gray">'
-									+ '	<dd>'
-									+ '<em class="number">'
 									+ (data.totalMoney/10000)
 									+ '</em><em class="unit">万元</em>'
 									+ '	</dd>'

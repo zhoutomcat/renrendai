@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yc</groupId>
-	<artifactId>springtx1</artifactId>
+	<artifactId>renrendai</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springtx1 Maven Webapp</name>
@@ -16,7 +16,7 @@
 
 	<dependencies>
 
-		<dependency>
+	<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -168,9 +168,12 @@
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.7.2.RELEASE</version>
 		</dependency>
+		
+		
+		
 
 	</dependencies>
 	<build>
-		<finalName>springtx1</finalName>
+		<finalName>renrendai</finalName>
 	</build>
 </project>

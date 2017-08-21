@@ -10,11 +10,11 @@
 				url : 'back/findAllUser.action', //查询时加载的URL
 				loadMsg:'数据加载中',
 				pagination:true,  //显示分页
-				pageSize: 10,  //默认分页的条数
-				pageList:  [5,10,15,20,30,50],  //可选分页数
+				pagesize: 10,  //默认分页的条数
+				pageList:  [3,5,10,15,20,30,50],  //可选分页数
 				fitColumns: true,  //自适应列
 				fit : true,  //自动补全
-				idField : "aid",   //标识，会记录我们选中的一行的id,不一定是id,通常都是主键
+				//idField : "aid",   //标识，会记录我们选中的一行的id,不一定是id,通常都是主键
 				title: "用户管理",
 				rownumbers: "true",  //显示行号
 				nowrap: "true",//不换行显示
@@ -98,7 +98,7 @@
 		    					userEditRow=undefined;
 		    				}
 		    				var row = userobject.datagrid("getChecked")[0];
-		    				if(row==undefined){x
+		    				if(row==undefined){
 		    					$.messager.show({title:'温馨提示',msg:'请选择或编辑您要修改的数据',timeout:2000,showType:'slide'});
 		    				}else{
 		    					userEditRow = userobject.datagrid('getRowIndex',row);

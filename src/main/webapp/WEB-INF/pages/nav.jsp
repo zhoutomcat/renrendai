@@ -14,7 +14,7 @@
 				<li class="channel-item "><a href="/pc/premium.html">优选计划</a></li>
 				<li class="channel-item active-channel"><a href="/pc/autoinvest.html">薪计划</a></li>
 				<li class="channel-item "><a href="/pc/loan.html">债权</a></li>
-				<li class="channel-item "><a href="/pc/college.html" target="_blank">人人学院</a></li>
+				<li class="channel-item "><a href="toAttentionMark.action" target="_blank">关注列表</a></li>
 				<li class="channel-item" style="width: 144px;"><a href="/credit" target="_blank">我要借款/还款</a></li>
 				<li class="user-item fn-clear" num=""><c:if test="${user==null}">
 						<div class="denglu">

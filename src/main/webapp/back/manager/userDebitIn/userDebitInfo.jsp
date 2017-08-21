@@ -4,8 +4,8 @@
 
 <script type="text/javascript">
 		$(function(){     //函数是等页面一执行完就会调用的,如果不写函数，就要把js代码放在页面下面
-			$('#manTypeTable').edatagrid({
-				url : 'back/newsType.action?op=findAll', //查询时加载的URL
+			$('#userDebitTable').edatagrid({
+				url : 'back/findAllUserDrbitIn.action', //查询时加载的URL
 				pagination:true,  //显示分页
 				pageSize: 50,  //默认分页的条数
 				pageList:  [10,20,30,50],  //可选分页数
@@ -48,6 +48,6 @@
 </script>
 
 
-<table id="manTypeTable"></table>
+<table id="userDebitTable"></table>
 
 

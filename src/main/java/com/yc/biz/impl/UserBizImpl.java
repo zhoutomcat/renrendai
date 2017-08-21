@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -65,6 +67,7 @@ public class UserBizImpl implements UserBiz {
 	 * 找到所有的用户   查所有
 	 */
 	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel searchUser(Map<String, Integer> map) {
 			List<User> list=baseDao.findAll(User.class, "findUserCondition", map);
 			int total=(int) baseDao.getFunc(User.class, "findUserConditionCount",map);
@@ -72,8 +75,6 @@ public class UserBizImpl implements UserBiz {
 			JsonModel<User> jsonModel=new JsonModel<User>();
 			jsonModel.setRows(list);
 			jsonModel.setTotal(total);
-			jsonModel.setPages(Integer.parseInt(map.get("page").toString()));
-			jsonModel.setPagesize(map.get("pagesize"));
 			return jsonModel;
 		}
 

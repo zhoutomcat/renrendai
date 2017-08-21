@@ -46,13 +46,13 @@ create table UserDebitIn(
        udi_date 		long,
        udi_refundrealitydate	long,
        udi_use	                varchar(2000),
-       udi_refundway		int, 	
-       udi_type          int,     
-       udi_weight   int  default 0,    --	修改 --权重越大     越排在前面
+       udi_refundway		int, 	     
+       udi_type          int,            
+       udi_weight   int  default 0,       
 	   temp1 varchar(100) default null,
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null	   
-)
+)       --还款方式       --借贷类型              --	修改 --权重越大     越排在前面  
 
 alter table UserDebitIn set udi_status=0 where udi_id = 5
 
@@ -60,6 +60,9 @@ drop table UserDebitIn
 select * from UserDebitIn
 
 select udit_profit,udit_month from UserDebitInType;
+
+
+--借贷类型表     
 
 --查询U计划中所有的钱数
 select sum(udi_money) from UserDebitIn , UserDebitInType   
@@ -154,9 +157,10 @@ select a.*,b.totalMoney , b.peopleCount from
 		b.udit_id=a.udi_type
 		) where udi_title != 'U计划'
 		
+
 create table UserDebitInType(
 	udit_id int  primary key auto_increment,
-	udit_name varchar(50),
+	udit_name varchar(50),          --
 	udit_profit  double,  
 	udit_month double,			--借贷月数
 	udit_status int default 1,  --1代表借款状态   0代表还款状态
@@ -235,11 +239,11 @@ create table PerRefund(
 drop table  PerRefund
 
 --关注投标表: 
-  --关注人的id--借贷表id外键 --关注时间--关注状态   0代表取消关注   1代表正在关注		
+  --关注人的id--借贷表id外键 --关注时间--关注状态   0代表取消关注   1代表正在关注	     	
 create table AttentionMark(
 	am_id 			int primary key auto_increment,
 	u_id  			int, 
-	udi_id  		int, 
+	udi_id  		int,    
 	am_time 		long,  
 	am_status	int default 1, 	
 	temp1 varchar(100) default null,
@@ -381,14 +385,42 @@ drop table userlogger;
 create table Dictionary()
 
 
+  
+delete u.*,a.*,udi.*,udt.* from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
+  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id where a.am_id=1  
+ --关注投标的多表连接
+ select  u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
+udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
+  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id 
+ 
+ update User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
+  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id set 
+	u.u_name='b',u.u_creditnumber=100,
+u.u_creditdegree='A',u.u_tel=1,a.am_status=0,udt.udit_profit=6.6,udt.udit_name='U计划',
+udt.udit_month=3.0,udi.udi_money=1000,udi.udi_title='A计划',
+udi.udi_refundway=1,udi.udi_status=1,udi.udi_weight=0
+  where a.am_id=1
+  --用户个人关注投标的多表连接
+  select  a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
+udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
+  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id where u.u_id=1 
+  
+  
+  --放贷信息的多表连接
+select * from user u join UserDebitIn udi on u.u_id=udi.u_id 
+join UserDebitOut udo on udi.udi_id=udo.udi_id
 
 
 
+  
+delete from UserDebitOut where udo_id=1 
+  
+select * from AttentionMark
+select * from UserDebitIn
+select * from user
+select * from UserDebitInType
 
 
 
-
-
-
-
+  
 

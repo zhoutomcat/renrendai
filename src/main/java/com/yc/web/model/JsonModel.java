@@ -27,6 +27,10 @@ public class JsonModel<T> implements Serializable {
 	Map<String ,Object> map = new HashMap<>();
 	
 	
+	
+	
+
+
 	public int getPeopleCount() {
 		return peopleCount;
 	}
@@ -147,6 +151,11 @@ public class JsonModel<T> implements Serializable {
 	public void setPages(Integer pages) {
 		this.pages = pages;
 	}
+
+
+
+	
+	
 
 	
 	
