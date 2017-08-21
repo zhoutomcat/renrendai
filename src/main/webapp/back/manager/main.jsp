@@ -3,42 +3,42 @@
 <title>人人贷管理系统后台欢迎您</title>
 <script type="text/javascript">
 	$(function() {
-		var treeData = [ {
-			"text" : "类别管理",
+		var treeDatauserDebitInTree = [ {
+			"text" : "借贷信息管理",
 			"state" : "closed",
 			"children" : [
-					{
+/* 					{
 						"text" : "新增类别",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
 							"url" : "<iframe width='100%' height='100%'  src='back/manager/newstype/addType.jsp' />"
 						}
-					},
+					}, */
 					{
-						"text" : "类别维护",
+						"text" : "借贷信息维护",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/newstype/manType.jsp' />"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userDebitInInfo.jsp' />"
 						}
 					} ]
 		} ];
 
-		var treeDataNews = [ {
+		var treeDatauserDebitOutTree = [ {
 			"text" : "新闻管理",
 			"state" : "closed",
 			"children" : [
-					{
+/* 					{
 						"text" : "新增新闻",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/news/addNews.jsp' />"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitOut/addNews.jsp' />"
 						}
-					},
+					}, */
 					{
 						"text" : "新闻维护",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/news/manNews.jsp' />"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitOut/userDebitOutInfo.jsp' />"
 						}
 					} ]
 		} ];
@@ -76,8 +76,8 @@
 			} ] */
 		} ];
 
-		showTree("newsTypeTree", treeData);
-		showTree("newsTree", treeDataNews);
+		showTree("userDebitInTree", treeDatauserDebitInTree);
+		showTree("userDebitOutTree", treeDatauserDebitOutTree);
 		showTree("userTree", treeDataUser);
 		showTree("AttentionTypeTree", DataAttentions);
 
@@ -168,23 +168,22 @@
 				<ul id="userTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 				</ul>
 			</div>
-			<div title="新闻类别管理" style="overflow: auto; padding: 10px;">
+			<div title="借贷信息管理" style="overflow: auto; padding: 10px;">
 				<div class="easyui-panel" style="padding: 5px">
-					<ul id="newsTypeTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
+					<ul id="userDebitInTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
 				</div>
 			</div>
-			<div title="新闻管理" style="overflow: auto; padding: 10px;">
-				<div class="easyui-panel" style="padding: 5px">
-					<ul id="newsTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
+			<div title="放贷信息管理" style="overflow: auto; padding: 10px;">
+					<ul id="userDebitOutTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
-				</div>
 			</div>
-			<div title="数据字典" style="overflow: auto; padding: 10px;">数据字典</div>
 			<div title="关注管理" style="overflow: auto; padding: 10px;">
 					<ul id="AttentionTypeTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
 			</div>
+			<div title="数据字典" style="overflow: auto; padding: 10px;">数据字典</div>
+			
 		</div>
 	</div>
 	<!-- 	</div>  -->

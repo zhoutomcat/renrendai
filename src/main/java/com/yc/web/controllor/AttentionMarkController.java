@@ -1,25 +1,21 @@
 package com.yc.web.controllor;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.yc.bean.AttentionMark;
 import com.yc.bean.User;
 import com.yc.biz.AttentionMarkBiz;
-import com.yc.biz.UserBiz;
 import com.yc.utils.RequestUtil;
 import com.yc.web.model.JsonModel;
 
@@ -31,7 +27,7 @@ public class AttentionMarkController {
 	
 	
 	/**
-	 * 后台查询所有的用户
+	 * 后台查询所有的投标
 	 * @param user
 	 * @param request
 	 * @param resp
@@ -48,9 +44,39 @@ public class AttentionMarkController {
 		map.put("start", start);
 		map.put("pagesize", pagesize);
 		JsonModel jm= attentionMarkBiz.findAllAttentionMark(map);
-		//System.out.println(jm);
-		
-		
+		System.out.println(jm);
+		return jm;
+	}
+	
+	/**
+	 * 用户个人关注投标信息
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/findAllAttentionMarkByUser.action")
+	public JsonModel findAllAttentionMarkByUser(AttentionMark am,HttpServletRequest request,HttpSession session ) throws Exception {
+		JsonModel jm = new JsonModel();
+		am.setOrderway("desc");
+		am.setOrderby("u_id");
+		int start = (am.getPages() - 1) * am.getPagesize();
+		am.setStart(start);
+		jm.setPages(am.getPages());
+		jm.setPagesize(am.getPagesize());
+		User user = (User) session.getAttribute("user");
+		am.setU_id(user.getU_id());
+		try {
+			List<User> list = attentionMarkBiz.findAllAttentionMarkByUser(am);
+			jm.setRows(list);
+			jm.setCode(1);
+			int result = attentionMarkBiz.findAllAttentionMarkByUserCount();
+			jm.setTotal(result);
+//			session.setAttribute("allSanbiaoHistoryJsonModel", jm);
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+			jm.setMsg(e.getMessage());
+		}
 		return jm;
 	}
 	

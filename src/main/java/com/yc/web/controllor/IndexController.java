@@ -44,6 +44,15 @@ public class IndexController {
 		}
 		
 		/**
+		 * 跳转到关注计划页面
+		 * @return
+		 */
+		@RequestMapping(value="/toAttentionMark.action" )
+		public String toAttentionMark(){
+			return "attentionMark";
+		}
+		
+		/**
 		 * 官方文档：
 		@RestController is a stereotype annotation that combines @ResponseBody and @Controller.
 		意思是：

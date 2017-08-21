@@ -31,13 +31,6 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private List<UserDebitInType> list = new ArrayList<>();
 	
 	private UserDebitInType userDebitInType;
-	
-	
-
-	
-
-
-
 
 	public Double getTotalMoney() {
 		return totalMoney;
@@ -148,14 +141,17 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	public void setUdi_type(String udi_type) {
 		this.udi_type = udi_type;
 	}
-
+	@Override
 	public String toString() {
-
-		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", udi_money=" + udi_money
-				+ ", udi_status=" + udi_status + ", udi_type=" + udi_type + ", peopleCount=" + peopleCount
-				+ ", totalMoney=" + totalMoney + ", makeMoney=" + makeMoney + ", list=" + list + ", userDebitInType="
-				+ userDebitInType + "]";
+		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", u_id=" + u_id + ", udi_money="
+				+ udi_money + ", udi_status=" + udi_status + ", udi_date=" + udi_date + ", udi_publishdate="
+				+ udi_publishdate + ", udi_refundrealitydate=" + udi_refundrealitydate + ", udi_use=" + udi_use
+				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight
+				+ ", peopleCount=" + peopleCount + ", totalMoney=" + totalMoney + ", makeMoney=" + makeMoney + ", list="
+				+ list + ", userDebitInType=" + userDebitInType ;
 	}
+
+
 	
 
 

@@ -10,11 +10,6 @@ public class UserDebitInType implements Serializable {
 	private String udit_name;
 	private Double udit_profit;
 	private Double udit_month;
-	
-
-	
-	
-	
 
 
 	public Integer getUdit_id() {

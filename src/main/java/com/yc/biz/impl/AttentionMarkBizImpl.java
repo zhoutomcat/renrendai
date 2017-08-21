@@ -7,10 +7,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.bean.AttentionMark;
 import com.yc.bean.User;
+import com.yc.bean.UserDebitIn;
 import com.yc.biz.AttentionMarkBiz;
 import com.yc.biz.UserBiz;
 import com.yc.dao.BaseDao;
@@ -26,15 +29,14 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz{
 
 
 	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel findAllAttentionMark(Map<String, Integer> map) {
-		List list=baseDao.findAll(AttentionMark.class, "findAttentionMarkCondition", map);
-		int total=(int) baseDao.getFunc(AttentionMark.class, "findAttentionMarkConditionCount",map);
+		List list=baseDao.findAll(AttentionMark.class, "findAttentionMarkConditionResultMap", map);
+		int total=(int) baseDao.getFunc(AttentionMark.class, "findAttentionMarkConditionResultMapCount",map);
 		
 		JsonModel jsonModel=new JsonModel();
 		jsonModel.setRows(list);
 		jsonModel.setTotal(total);
-		jsonModel.setPages(map.get("page"));
-		jsonModel.setPagesize(map.get("pagesize"));
 		return jsonModel;
 	}
 
@@ -62,6 +64,25 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz{
 	@Override
 	public void saveOrUpdate(AttentionMark am) {
 		this.baseDao.save(am, "saveAttentionMark"); 
+	}
+
+
+
+
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	public List<User> findAllAttentionMarkByUser(AttentionMark am) {
+		return this.baseDao.findAll(am , "findAllAttentionMarkByUser"  );
+	}
+
+
+
+
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	public int findAllAttentionMarkByUserCount() {
+		int result = (int) this.baseDao.findOne(AttentionMark.class, "findAllAttentionMarkByUserCount");
+		return result ;
 	}
 
 

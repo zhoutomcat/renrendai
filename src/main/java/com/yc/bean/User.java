@@ -22,9 +22,6 @@ public class User extends JsonModel  implements Serializable {
 	
 	private AttentionMark attentionMark;
 
-	
-	
-	
 	public Integer getU_id() {
 		return u_id;
 	}

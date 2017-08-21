@@ -388,20 +388,11 @@ create table Dictionary()
   
 delete u.*,a.*,udi.*,udt.* from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
   on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id where a.am_id=1  
-  
-  
-  
-select  * from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
-  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id  
-  
-  
-  
+ --关注投标的多表连接
  select  u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
 udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
   on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id 
-  
  
-  
  update User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
   on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id set 
 	u.u_name='b',u.u_creditnumber=100,
@@ -409,9 +400,20 @@ u.u_creditdegree='A',u.u_tel=1,a.am_status=0,udt.udit_profit=6.6,udt.udit_name='
 udt.udit_month=3.0,udi.udi_money=1000,udi.udi_title='A计划',
 udi.udi_refundway=1,udi.udi_status=1,udi.udi_weight=0
   where a.am_id=1
+  --用户个人关注投标的多表连接
+  select  a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
+udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
+  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id where u.u_id=1 
+  
+  
+  --放贷信息的多表连接
+select * from user u join UserDebitIn udi on u.u_id=udi.u_id 
+join UserDebitOut udo on udi.udi_id=udo.udi_id
+
+
 
   
-
+delete from UserDebitOut where udo_id=1 
   
 select * from AttentionMark
 select * from UserDebitIn

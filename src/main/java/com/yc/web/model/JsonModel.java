@@ -27,6 +27,10 @@ public class JsonModel<T> implements Serializable {
 	Map<String ,Object> map = new HashMap<>();
 	
 	
+	
+	
+
+
 	public int getPeopleCount() {
 		return peopleCount;
 	}
@@ -149,11 +153,7 @@ public class JsonModel<T> implements Serializable {
 	}
 
 
-	@Override
-	public String toString() {
-		return "JsonModel [code=" + code + ", msg=" + msg + ", obj=" + obj + ", total=" + total + ", pages=" + pages
-				+ ", pagesize=" + pagesize + ", rows=\n" + rows + ", sort=" + sort + ", order=" + order + "]";
-	}
+
 	
 	
 

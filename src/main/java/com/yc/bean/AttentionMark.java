@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AttentionMark implements Serializable {
+public class AttentionMark extends CommonBean implements Serializable {
 
 	private static final long serialVersionUID = -3869040411400417467L;
 
@@ -15,18 +15,8 @@ public class AttentionMark implements Serializable {
 	private long am_time;
 	private Integer am_status;
 	
-/*	private User user;*/
 	private UserDebitIn userDebitIn;
 	
-	
-	
-
-/*	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}*/
 	public Integer getAm_id() {
 		return am_id;
 	}
