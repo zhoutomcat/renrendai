@@ -16,7 +16,7 @@
 							$(data.rows)
 									.each(
 											function(index, item) {
-												var str = '<li><a class="cover" href="toUplanDetail.action"' +item.udit_id + ' target="_blank"> '
+												var str = '<li><a class="cover" href="toUplanDetail.action?udit_id=' + item.udit_id + '" target="_blank"> '
 														+ ' <p class="time"> '
 														+ ' <span class="month"><img src="images/time.png"><em>'
 														+ item.udit_month

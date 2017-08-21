@@ -21,16 +21,16 @@
 							var str = '<dl class="fn-left   text-center   border-right-gray">'
 									+ '	<dd>'
 									+ '<em class="number">'
-									+ data.totalMoney
-									+ '</em><em class="unit">亿元</em>'
+									+ (data.totalMoney/10000)
+									+ '</em><em class="unit">万元</em>'
 									+ '	</dd>'
 									+ '<dt class="text">加入U计划</dt>'
 									+ '</dl>'
 									+ '<dl class="fn-left  text-center   border-right-gray">'
 									+ '<dd>'
 									+ '	<em class="number">'
-									+ data.makeMoney
-									+ '</em><em class="unit">亿元</em>'
+									+ (data.makeMoney/10000)
+									+ '</em><em class="unit">万元</em>'
 									+ '</dd>'
 									+ '<dt class="text">为用户赚取</dt>'
 									+ '</dl>'
@@ -38,7 +38,7 @@
 									+ '<dd>'
 									+ '	<em class="number">'
 									+ data.peopleCount
-									+ '</em><em class="unit">万次</em>'
+									+ '</em><em class="unit">次</em>'
 									+ '</dd>'
 									+ '<dt class="text">加入总人次</dt>' + '</dl>';
 							$("#uplanData").html(str);
@@ -227,7 +227,7 @@
 					<br />
 					<br />
 				</div>
-				<div class="ui-pagination" data-reactid=".1.2">
+				<!-- <div class="ui-pagination" data-reactid=".1.2">
 					<ul class="pagination" data-reactid=".1.2.0">
 						<li class="previous disabled" data-reactid=".1.2.0.0"><a data-reactid=".1.2.0.0.0">上一页</a></li>
 						<li class="active" data-reactid=".1.2.0.1:$key0/=10"><a selected=""
@@ -235,7 +235,7 @@
 						<li data-reactid=".1.2.0.1:$key1/=10"><a data-reactid=".1.2.0.1:$key1/=10.0">2</a></li>
 						<li class="next" data-reactid=".1.2.0.2"><a data-reactid=".1.2.0.2.0">下一页</a></li>
 					</ul>
-				</div>
+				</div> -->
 				<div class="list-loading hide" data-reactid=".1.3"></div>
 			</div>
 		</div>

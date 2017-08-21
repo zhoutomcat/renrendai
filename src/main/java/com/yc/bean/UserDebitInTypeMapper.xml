@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
 	
 	<select id="findAllUserDebitInType" resultType="UserDebitInType">
-		select udit_name,udit_profit,udit_month from UserDebitInType where udit_status = 1 and udit_name = 'U计划' 
+		select udit_id,udit_name,udit_profit,udit_month from UserDebitInType where udit_status = 1 and udit_name = 'U计划' 
 	</select>
 	
-</mapper>	
+</mapper>

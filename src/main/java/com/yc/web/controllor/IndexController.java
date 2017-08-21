@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 //@RestController //类注解  同时使用   @Controller  和  @ResponseBody
 public class IndexController {
+	
 		@RequestMapping(value="/index.action" )
 		public String index(){
 			return "index";

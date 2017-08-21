@@ -21,7 +21,6 @@
 				sortName: "u_id",  //排序的列  这个参数会传到后台的servlet上,所以要有后台对应的接收
 				sortOrder: "desc",  //排序方式
 				singleSelect: true,      //只允许选择一行
-	
 				//以上的四种增删改查操作,只要失败,都会回掉这个onError
 				onError: function(a,b){
 					$.message.alert("错误","操作失败");
@@ -89,43 +88,33 @@
 					align:'center',
 					editor:{type:"text",options:{required:true}},
 				}
-	
 				]],
-				
-				
 				  toolbar:[{
 		    			text:"修改",
 		    			iconCls: 'icon-edit',
 		    			handler: function(){
 		    				if(userEditRow!=undefined){
-
 		    					userobject.datagrid('rejectChanges');//结束编辑
 		    					userEditRow=undefined;
 		    				}
 		    				var row = userobject.datagrid("getChecked")[0];
 		    				if(row==undefined){
 		    					$.messager.show({title:'温馨提示',msg:'请选择或编辑您要修改的数据',timeout:2000,showType:'slide'});
-		    					
-		        				
 		    				}else{
 		    					userEditRow = userobject.datagrid('getRowIndex',row);
 		    					userobject.datagrid("beginEdit",userEditRow);//结束编辑
 		    					/* url = "back/updateuser.action"; */
 		    					userFlag = "修改";
 		    				}
-		    				
 		    			}
 				  },'-',{
 		    			text:"删除",
 		    			iconCls: 'icon-remove',
 		    			handler: function(){
 		    				var rows = userobject.datagrid("getChecked");
-		    				
 		    				if(rows.length<0){
 		    					$.messager.show({title:'温馨提示',msg:'请编辑您要删除的数据',timeout:2000,showType:'slide'});
-		    					
 		    				}else{
-		    					
 		    					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
 		    						if (r){
 		    							//获取id
@@ -136,31 +125,22 @@
 		    								u_ids += rows[i].u_id+",";    								
 		    							}
 		    							u_ids+=rows[i].u_id;
-		    							
 		    							//将数据发送到后台
 		    							$.post("back/deluser.action",{u_id:u_ids},function(data){
 		    							
 		    							/* $.post("../deptServlet",{op:"delDept",deptno:deptnos},function(data){ */
-		    								
 		    								data = parseInt( $.trim( data ) );
-		    								
 		    								if(data>0){
 		    									$.messager.alert('失败提示','用户信息删除失败','error');
-		    								
-		    									
 		    								}else{
 		    									$.messager.show({title:'温馨提示',msg:'用户信息删除成功',timeout:2000,showType:'slide'});
 		    									userobject.datagrid("reload");
 		    								}
-		    								
 		    							},"text");
 		    						}else{
 		    							return ;
 		    						}
 		    					});
-
-
-		    					
 		    				}
 		    			}
 				  },'-',{
@@ -179,22 +159,15 @@
 		    					$.post("back/updateuser.action",row,function(data){
 		    					/* row["op"] = deptOp;
 		    					$.post("../deptServlet",row,function(data){ */
-		    						
 		    						data = parseInt( $.trim( data ) );
-		    						
 		    						if(data>0){
-		    							
 		    							$.messager.alert('失败提示','用户信息'+userFlag+'失败','error');
 		    						}else{
 		    							$.messager.show({title:'温馨提示',msg:'用户信息'+userFlag+'成功',timeout:2000,showType:'slide'});
 		    							userobject.datagrid("reload");
-		    	    					
 		    						}
-		    						
 		    					},"text");
-		    					
 		    				}
-		    				
 		    			}
 		    		},'-',{
 		    			text:"撤销",
@@ -203,9 +176,6 @@
 		    				alert('help')
 		    			}
 				  }]
-			
-				
-				
 			});
 		});
 		
