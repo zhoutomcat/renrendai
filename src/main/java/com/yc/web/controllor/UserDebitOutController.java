@@ -63,4 +63,26 @@ public class UserDebitOutController {
 
 	}
 
+	/**
+	 * 查找所有的放贷信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findAlluserDebitOutInfo.action")
+	public JsonModel findAllUserDebitOut(UserDebitOut userdebitout, HttpServletRequest request, HttpSession session)
+			throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = (JsonModel) udob.findAllUserDebitOut(map);
+		return jm;
+	}
 }

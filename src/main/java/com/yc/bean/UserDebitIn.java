@@ -28,9 +28,18 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private Double makeMoney; // 累积利息收益
 
 	private List<UserDebitInType> list = new ArrayList<>();
-
+	// 用于关注用户投标
 	private UserDebitInType userDebitInType;
+	// 用于后台放贷表的显示
+	private User user;
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Integer getUdi_type() {
 		return udi_type;
@@ -174,7 +183,4 @@ public class UserDebitIn extends CommonBean implements Serializable {
 				+ udi_status + ", udi_type=" + udi_type + ", list=" + list + ", userDebitInType=" + userDebitInType
 				+ "]";
 	}
-	
-	
-
 }

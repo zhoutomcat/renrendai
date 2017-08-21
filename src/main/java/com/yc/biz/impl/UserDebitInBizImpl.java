@@ -1,16 +1,15 @@
 package com.yc.biz.impl;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-=======
 import org.springframework.transaction.annotation.Isolation;
->>>>>>> refs/remotes/origin/hlx
+
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
