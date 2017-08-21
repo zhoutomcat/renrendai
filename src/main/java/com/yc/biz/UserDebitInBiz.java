@@ -1,6 +1,7 @@
 package com.yc.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserDebitInType;
@@ -56,5 +57,6 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public int findAllSanbiaoHistoryCount();
+	
 
 }

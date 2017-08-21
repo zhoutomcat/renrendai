@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserDebitInType;
+import com.yc.bean.UserDebitOut;
 import com.yc.biz.UserDebitInBiz;
 import com.yc.dao.BaseDao;
 
@@ -63,6 +65,7 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	}
 
 	@Override
+	@Transactional( readOnly = true, propagation = Propagation.SUPPORTS )
 	public int findAllSanbiaoHistoryCount() {
 		int result = (int) this.baseDao.findOne(UserDebitIn.class, "findAllSanbiaoHistoryCount");
 		return result;

@@ -27,9 +27,13 @@ public class UserDebitInController {
 	@Resource(name = "userDebitInBizImpl")
 	private UserDebitInBiz userDebitInBiz;
 
-	
-	
-	
+	/**
+	 * 查找散标的所有历史记录
+	 * 
+	 * @param userDebitIn
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/findAllSanbiaoHistory.action")
 	public JsonModel findAllSanbiaoHistory(UserDebitIn userDebitIn, HttpSession session) {
 		JsonModel jm = new JsonModel();
@@ -45,7 +49,7 @@ public class UserDebitInController {
 			jm.setCode(1);
 			int result = userDebitInBiz.findAllSanbiaoHistoryCount();
 			jm.setTotal(result);
-//			session.setAttribute("allSanbiaoHistoryJsonModel", jm);
+			// session.setAttribute("allSanbiaoHistoryJsonModel", jm);
 		} catch (Exception e) {
 			e.printStackTrace();
 			jm.setCode(0);
@@ -74,7 +78,7 @@ public class UserDebitInController {
 			jm.setCode(1);
 			int result = userDebitInBiz.findAllUplanHistoryCount();
 			jm.setTotal(result);
-//			session.setAttribute("allUplanHistoryModel", jm);
+			// session.setAttribute("allUplanHistoryModel", jm);
 		} catch (Exception e) {
 			e.printStackTrace();
 			jm.setCode(0);

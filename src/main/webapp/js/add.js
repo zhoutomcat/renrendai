@@ -1,6 +1,6 @@
 var districts;
 
-$(function(){
+/*$(function(){
 	$.post('/HouseRent/Type_typeList', function(data){
 		for ( var i = 0; i < data.length; i++)
 		{
@@ -17,7 +17,7 @@ $(function(){
 		addStreet(0);
 		
 	}, 'json');
-});
+});*/
 
 function onchangeDistrict(obj)
 {
