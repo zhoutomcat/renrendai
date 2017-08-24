@@ -182,7 +182,7 @@ public class UserDebitInController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/user/toAddUserDebitIn.action")
+/*	@RequestMapping("/user/toAddUserDebitIn.action")
 	public JsonModel toAddUserDebitIn(HttpSession session){
 		UserDebitIn udi=new UserDebitIn();
 		UserDebitInType udit=new UserDebitInType();
@@ -202,7 +202,7 @@ public class UserDebitInController {
 		}
 		return jm;
 	}
-	
+	*/
 	
 	
 	

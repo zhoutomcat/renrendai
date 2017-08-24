@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 得到所有的借贷类型   用于添加借贷信息中的选择框按钮 -->
-	<select id="getAllUserDebitInType">
+	<select id="getAllUserDebitInType" resultType="UserDebitInType">
 		select udit_id,udit_name,udit_profit,udit_month from UserDebitInType
 	</select>
 		
