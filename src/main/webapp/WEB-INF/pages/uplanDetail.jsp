@@ -15,8 +15,8 @@
 						success : function(data) {
 							if (data.code == 1) {
 								alert("chenggong");
+								window.location.href=window.location.href;
 								window.location.href="index.jsp";
-								window.location.reload();
 							} else {
 								alert("shibai");
 							}

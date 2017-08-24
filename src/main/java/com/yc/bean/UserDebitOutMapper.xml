@@ -2,94 +2,10 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 <mapper namespace="com.yc.bean.UserDebitOutMapper">
 
 	<!--加入带日志的ehcache缓存 -->
 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
-=======
-<mapper namespace="com.yc.bean.UserDebitOutMapper">
-
-
-	<!--加入带日志的ehcache缓存 -->
-	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
-
-		
-<!-- 排序条件的拼接 -->
- <sql id="orderSql">
-	<if test="orderby!=null and orderby!=''">
-		order by #{orderby}
-		<if test="orderway!=null and orderway!=''">
-			#{orderway}
-		</if>
-	</if>
-</sql>
-
-
-<!-- 分页条件的拼接 -->
- <sql id="pageSql">
-	<if test="start!=null ">
-	    limit #{start},#{pagesize}
-	</if>
-</sql>
-
-<!-- 带查询条件，分页条件 排序条件的查询 -->
-<select id="findAllUserDebitOutResultMap"  parameterType="UserDebitOut"    resultMap="findUserDebitOutResultMap">
-select * from user u join UserDebitIn udi on u.u_id=udi.u_id 
-join UserDebitOut udo on udi.udi_id=udo.udi_id  <include refid="orderSql" /> <include refid="pageSql" /> 
-</select> 
-
-
-	<select id="findAllUserDebitOutResultMapCount" parameterType="Map"
-		resultType="int">
-  	select count(distinct(u.u_id)) from user u join UserDebitIn udi on u.u_id=udi.u_id 
-join UserDebitOut udo on udi.udi_id=udo.udi_id
-	</select>
-	
-
-		<resultMap type="UserDebitOut" id="findUserDebitOutResultMap">
-		<id property="udo_id" column="udo_id"/>
-		<result property="udo_id" column="udo_id"/>	
-        <result property="udo_money" column="udo_money"/>
-        <result property="udo_date" column="udo_date"/>
-        <result property="udo_startdate" column="udo_startdate"/>
-      <!--  property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
-      			<association property="userDebitIn" javaType="UserDebitIn">	
-     			 <result property="udi_id" column="udi_id"/>
-				<result property="udi_money" column="udi_money" />
-				<result property="udi_title" column="udi_title" />
-				<result property="udi_refundway" column="udi_refundway" />
-				<result property="udi_status" column="udi_status" />
-				<result property="udi_weight" column="udi_weight" />	
-      			<association property="user" javaType="User">	
-        		<result property="u_id" column="u_id"/>
-        		<result property="u_name" column="u_name"/>
-       			<result property="u_creditnumber" column="u_creditnumber"/>
-      			<result property="u_creditdegree" column="u_creditdegree"/>
-        		<result property="u_tel" column="u_tel"/>			
-				</association>
-			</association>
-    </resultMap>  
-	
-	
-
->>>>>>> refs/remotes/origin/hlx
-
-
-	<select id="findUserDebitInIdByUserDebitInTypeId" resultType="int"
-		parameterType="java.util.Map">
-		select udi_id from UserDebitIn,UserDebitInType where
-		udi_type = udit_id and udit_id = #{udit_id}
-	</select>
-
-	<insert id="addUplanUserDebitOut" parameterType="java.util.Map">
-		insert into
-		UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money)
-		values(
-		#{udi_id} , #{u_id} , #{udo_startdate} , #{udo_date},#{udo_money})
-	</insert>
-
-<<<<<<< HEAD
 
 	<!-- 排序条件的拼接 -->
 	<sql id="orderSql">
@@ -100,7 +16,6 @@ join UserDebitOut udo on udi.udi_id=udo.udi_id
 			</if>
 		</if>
 	</sql>
-
 
 	<!-- 分页条件的拼接 -->
 	<sql id="pageSql">
@@ -113,18 +28,20 @@ join UserDebitOut udo on udi.udi_id=udo.udi_id
 	<select id="findAllUserDebitOutResultMap" parameterType="UserDebitOut"
 		resultMap="findUserDebitOutResultMap">
 		select * from user u join UserDebitIn udi on u.u_id=udi.u_id
-		join UserDebitOut udo on udi.udi_id=udo.udi_id
+		join
+		UserDebitOut udo on udi.udi_id=udo.udi_id
 		<include refid="orderSql" />
 		<include refid="pageSql" />
 	</select>
 
-
 	<select id="findAllUserDebitOutResultMapCount" parameterType="Map"
 		resultType="int">
-		select count(distinct(u.u_id)) from user u join UserDebitIn udi on
+		select count(distinct(u.u_id)) from user u join UserDebitIn
+		udi on
 		u.u_id=udi.u_id
 		join UserDebitOut udo on udi.udi_id=udo.udi_id
 	</select>
+
 	<resultMap type="UserDebitOut" id="findUserDebitOutResultMap">
 		<id property="udo_id" column="udo_id" />
 		<result property="udo_id" column="udo_id" />
@@ -148,4 +65,18 @@ join UserDebitOut udo on udi.udi_id=udo.udi_id
 			</association>
 		</association>
 	</resultMap>
+
+	<select id="findUserDebitInIdByUserDebitInTypeId" resultType="int"
+		parameterType="java.util.Map">
+		select udi_id from UserDebitIn,UserDebitInType where
+		udi_type = udit_id and udit_id = #{udit_id}
+	</select>
+
+	<insert id="addUplanUserDebitOut" parameterType="java.util.Map">
+		insert into
+		UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money)
+		values(
+		#{udi_id} , #{u_id} , #{udo_startdate} , #{udo_date},#{udo_money})
+	</insert>
+
 </mapper>	

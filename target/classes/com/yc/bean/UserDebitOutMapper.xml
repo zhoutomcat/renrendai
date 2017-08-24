@@ -7,21 +7,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--加入带日志的ehcache缓存 -->
 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
 
-
-	<select id="findUserDebitInIdByUserDebitInTypeId" resultType="int"
-		parameterType="java.util.Map">
-		select udi_id from UserDebitIn,UserDebitInType where
-		udi_type = udit_id and udit_id = #{udit_id}
-	</select>
-
-	<insert id="addUplanUserDebitOut" parameterType="java.util.Map">
-		insert into
-		UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money)
-		values(
-		#{udi_id} , #{u_id} , #{udo_startdate} , #{udo_date},#{udo_money})
-	</insert>
-
-
 	<!-- 排序条件的拼接 -->
 	<sql id="orderSql">
 		<if test="orderby!=null and orderby!=''">
@@ -31,7 +16,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</if>
 	</sql>
-
 
 	<!-- 分页条件的拼接 -->
 	<sql id="pageSql">
@@ -44,18 +28,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findAllUserDebitOutResultMap" parameterType="UserDebitOut"
 		resultMap="findUserDebitOutResultMap">
 		select * from user u join UserDebitIn udi on u.u_id=udi.u_id
-		join UserDebitOut udo on udi.udi_id=udo.udi_id
+		join
+		UserDebitOut udo on udi.udi_id=udo.udi_id
 		<include refid="orderSql" />
 		<include refid="pageSql" />
 	</select>
 
-
 	<select id="findAllUserDebitOutResultMapCount" parameterType="Map"
 		resultType="int">
-		select count(distinct(u.u_id)) from user u join UserDebitIn udi on
+		select count(distinct(u.u_id)) from user u join UserDebitIn
+		udi on
 		u.u_id=udi.u_id
 		join UserDebitOut udo on udi.udi_id=udo.udi_id
 	</select>
+
 	<resultMap type="UserDebitOut" id="findUserDebitOutResultMap">
 		<id property="udo_id" column="udo_id" />
 		<result property="udo_id" column="udo_id" />
@@ -79,5 +65,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</association>
 		</association>
 	</resultMap>
+
+	<select id="findUserDebitInIdByUserDebitInTypeId" resultType="int"
+		parameterType="java.util.Map">
+		select udi_id from UserDebitIn,UserDebitInType where
+		udi_type = udit_id and udit_id = #{udit_id}
+	</select>
+
+	<insert id="addUplanUserDebitOut" parameterType="java.util.Map">
+		insert into
+		UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money)
+		values(
+		#{udi_id} , #{u_id} , #{udo_startdate} , #{udo_date},#{udo_money})
+	</insert>
 
 </mapper>	

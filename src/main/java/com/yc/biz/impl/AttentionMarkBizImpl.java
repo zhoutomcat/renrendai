@@ -1,6 +1,5 @@
 package com.yc.biz.impl;
 
-
 import java.util.List;
 
 import java.util.Map;
@@ -21,27 +20,21 @@ import com.yc.web.model.JsonModel;
 
 @Service
 @Transactional
-public class AttentionMarkBizImpl implements AttentionMarkBiz{
-	@Resource(name="baseDao")
+public class AttentionMarkBizImpl implements AttentionMarkBiz {
+	@Resource(name = "baseDao")
 	private BaseDao baseDao;
 
-
-
-
 	@Override
-	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public JsonModel findAllAttentionMark(Map<String, Integer> map) {
-		List list=baseDao.findAll(AttentionMark.class, "findAttentionMarkConditionResultMap", map);
-		int total=(int) baseDao.getFunc(AttentionMark.class, "findAttentionMarkConditionResultMapCount",map);
-		
-		JsonModel jsonModel=new JsonModel();
+		List list = baseDao.findAll(AttentionMark.class, "findAttentionMarkConditionResultMap", map);
+		int total = (int) baseDao.getFunc(AttentionMark.class, "findAttentionMarkConditionResultMapCount", map);
+
+		JsonModel jsonModel = new JsonModel();
 		jsonModel.setRows(list);
 		jsonModel.setTotal(total);
 		return jsonModel;
 	}
-
-
-
 
 	@Override
 	public boolean updateAttentionMark(AttentionMark am) {
@@ -49,47 +42,28 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz{
 		return true;
 	}
 
-
-
-
 	@Override
 	public boolean delAttentionMark(AttentionMark am) {
 		baseDao.del(am, "delAttentionMark");
 		return true;
 	}
 
-
-
-
 	@Override
 	public void saveOrUpdate(AttentionMark am) {
-		this.baseDao.save(am, "saveAttentionMark"); 
+		this.baseDao.save(am, "saveAttentionMark");
 	}
 
-
-
-
 	@Override
-	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public List<User> findAllAttentionMarkByUser(AttentionMark am) {
-		return this.baseDao.findAll(am , "findAllAttentionMarkByUser"  );
+		return this.baseDao.findAll(am, "findAllAttentionMarkByUser");
 	}
 
-
-
-
 	@Override
-	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
 	public int findAllAttentionMarkByUserCount() {
 		int result = (int) this.baseDao.findOne(AttentionMark.class, "findAllAttentionMarkByUserCount");
-		return result ;
+		return result;
 	}
 
-
-	
-	
-	
-	
 }
-
-

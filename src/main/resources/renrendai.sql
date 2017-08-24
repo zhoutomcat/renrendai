@@ -157,6 +157,9 @@ select a.*,b.totalMoney , b.peopleCount from
 		b.udit_id=a.udi_type
 		) where udi_title != 'U计划'
 		
+		select udi.u_id,udo_money,udit_profit,udit_month from UserDebitIn udi,UserDebitOut udo,UserDebitInType
+		where udi.udi_id = udo.udi_id and udi_type = udit_id and udit_name = 'U计划'
+		
 
 create table UserDebitInType(
 	udit_id int  primary key auto_increment,
