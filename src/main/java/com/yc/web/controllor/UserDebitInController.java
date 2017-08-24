@@ -18,6 +18,8 @@ import com.google.gson.reflect.TypeToken;
 import com.yc.bean.User;
 import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserDebitInType;
+import com.yc.bean.UserDebitOut;
+import com.yc.bean.UserMessage;
 import com.yc.biz.UserBiz;
 import com.yc.biz.UserDebitInBiz;
 import com.yc.web.model.JsonModel;
@@ -149,5 +151,60 @@ public class UserDebitInController {
 		}
 		return jm;
 	}
+	
+	
+	/**
+	 * 后台查找所有的借贷信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findAllUserDebitIn.action")
+	public JsonModel findAllUserDebitIn(UserDebitIn userDebitIn, HttpServletRequest request, HttpSession session) throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = (JsonModel) userDebitInBiz.findAllUserDebitIn(map);
+		return jm;
+
+   }
+	
+	/**
+	 * 添加借款信息的个人信息
+	 * @param um
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/user/toAddUserDebitIn.action")
+	public JsonModel toAddUserDebitIn(HttpSession session){
+		UserDebitIn udi=new UserDebitIn();
+		UserDebitInType udit=new UserDebitInType();
+		JsonModel jm=new JsonModel();
+		User user=(User) session.getAttribute("user");
+		udi.setU_id(user.getU_id());	
+		try {//给一些前台页面中没有显示值的属性设置值
+			
+			this.userDebitInBiz.AddUserDebitIn(udi);
+			//给一些前台页面中没有显示值的属性设置值
+			this.userDebitInBiz.AddUserDebitInType(udit);
+			jm.setCode(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+			jm.setMsg(e.getMessage());
+		}
+		return jm;
+	}
+	
+	
+	
+	
 
 }

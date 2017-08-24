@@ -54,11 +54,13 @@ public class AttentionMarkController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/findAllAttentionMarkByUser.action")
+	@RequestMapping("/user/findAllAttentionMarkByUser.action")
 	public JsonModel findAllAttentionMarkByUser(AttentionMark am,HttpServletRequest request,HttpSession session ) throws Exception {
 		JsonModel jm = new JsonModel();
 		am.setOrderway("desc");
 		am.setOrderby("u_id");
+		//am=RequestUtil.getParemeter(request, AttentionMark.class);
+		//request.setAttribute("am_id", am);
 		int start = (am.getPages() - 1) * am.getPagesize();
 		am.setStart(start);
 		jm.setPages(am.getPages());
@@ -71,7 +73,8 @@ public class AttentionMarkController {
 			jm.setCode(1);
 			int result = attentionMarkBiz.findAllAttentionMarkByUserCount();
 			jm.setTotal(result);
-//			session.setAttribute("allSanbiaoHistoryJsonModel", jm);
+			
+			//session.setAttribute("am_id", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			jm.setCode(0);
@@ -87,7 +90,6 @@ public class AttentionMarkController {
 		JsonModel jm=new JsonModel();
 		am=RequestUtil.getParemeter(request, AttentionMark.class);
 		 boolean result=attentionMarkBiz.updateAttentionMark(am);
-		 
 		 if(result){
 			 jm.setCode(1);
 		 }else{
@@ -100,11 +102,14 @@ public class AttentionMarkController {
 	
 	
 	
-	@RequestMapping("/back/delAttention.action")
-	private JsonModel delAttentionMark(AttentionMark am,HttpServletRequest request, HttpServletResponse response) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	@RequestMapping("/user/delAttention.action")
+	private JsonModel delAttentionMark(AttentionMark am,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		JsonModel jm=new JsonModel();
 		am=RequestUtil.getParemeter(request, AttentionMark.class);
 		boolean result=attentionMarkBiz.delAttentionMark(am);
+		Map<String, Object> parameterMap = new HashMap<>();
+		User user = (User) session.getAttribute("user");
+		parameterMap.put("am_id", request.getParameter("am_id") );
 		 if(result){
 			 jm.setCode(1);
 		 }else{
@@ -114,7 +119,7 @@ public class AttentionMarkController {
 	}
 	
 	
-	@RequestMapping("/back/addAttentionMark.action")
+	@RequestMapping("/user/addAttentionMark.action")
 	private JsonModel addAttentionMark(AttentionMark am){
 		JsonModel jm=new JsonModel();
 		try {

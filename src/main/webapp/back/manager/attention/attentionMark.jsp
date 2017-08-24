@@ -36,7 +36,6 @@
 					hidden:'true',
 					editor:{type:"text",options:{required:true}},
 					formatter: function(value,row,index){
-						//alert(row.attentionMark.am_id)
 						return row.attentionMark.am_id;
 					}			
 				},{

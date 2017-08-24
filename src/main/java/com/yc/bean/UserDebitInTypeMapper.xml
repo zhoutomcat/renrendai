@@ -10,4 +10,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select udit_id,udit_name,udit_profit,udit_month from UserDebitInType where udit_status = 1 and udit_name = 'U计划' 
 	</select>
 	
+	<!-- 得到所有的借贷类型   用于添加借贷信息中的选择框按钮 -->
+	<select id="getAllUserDebitInType">
+		select udit_id,udit_name,udit_profit,udit_month from UserDebitInType
+	</select>
+		
+	
+	    <!-- 添加借贷类型 -->
+     <insert id="addUserDebitInType" parameterType="UserDebitInType" useGeneratedKeys="true" keyProperty="udit_id">
+    	insert into UserDebitInType(udit_name,udit_profit,udit_month) values(#{udit_name},
+    	#{udit_profit},#{udit_month})
+    </insert> 
+	
+	
 </mapper>

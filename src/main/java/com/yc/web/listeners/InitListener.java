@@ -1,10 +1,13 @@
 package com.yc.web.listeners;
 
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import com.yc.bean.UserDebitInType;
+import com.yc.biz.UserDebitInTypeBiz;
 
 
 
@@ -25,7 +28,9 @@ public class InitListener implements ServletContextListener {
 		// beans.xml -> 加载整个应用程序中的bean ioc, -> di -> context -> 存到application
 		// 利用spring提代的 WebApplicationContextUtils类来获取 spring 容器
 		ac = WebApplicationContextUtils.getWebApplicationContext(application);
-
+		UserDebitInTypeBiz typeBiz=(UserDebitInTypeBiz) ac.getBean("userDebitInTypeBizImpl");
+		List<UserDebitInType> userDebitInTypeList=typeBiz.getTypeList();
+		application.setAttribute("userDebitInTypeList", userDebitInTypeList);
 		//TODO:   项目初始化操作
 	}
 

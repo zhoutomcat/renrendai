@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserDebitInType;
+import com.yc.web.model.JsonModel;
 
 public interface UserDebitInBiz {
 
@@ -57,6 +58,20 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public int findAllSanbiaoHistoryCount();
+	/**
+	 * 后台查询所有的借贷信息
+	 * @param map
+	 * @return
+	 */
+	public JsonModel findAllUserDebitIn(Map<String, Integer> map);
+
+	/**
+	 * 添加借款信息的个人信息
+	 * @param udi
+	 */
+	public boolean AddUserDebitIn(UserDebitIn udi);
+
+	public boolean AddUserDebitInType(UserDebitInType udit);
 	
 
 }
