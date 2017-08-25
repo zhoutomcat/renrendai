@@ -47,12 +47,17 @@ public class UserController {
 			try {
 				user = userBiz.login(user);
 				if (user != null) {
+					if(user.getU_status()==1){
 					session.setAttribute("user", user);
 					// System.out.println("------------------" +
 					// session.getAttribute("user"));
 					jm.setCode(1);
 					user.setU_password(null); // 设为空后，密码就不会传到页面
 					jm.setObj(user);
+					}else{
+						jm.setCode(0);
+						jm.setMsg("您因为信誉度低,已经被禁止登录！");
+					}
 				} else {
 					jm.setCode(0);
 					jm.setMsg("用户名或密码错误");
@@ -65,6 +70,25 @@ public class UserController {
 		}
 		return jm;
 	}
+	
+	@RequestMapping("/forbidlogin.action")
+	public JsonModel forbidlogin(Integer  u_id,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		User user=new User();
+		user.setU_id(u_id);
+		 user.setU_status(0);
+		 System.out.println(user);
+		 boolean result=userBiz.updatestatus(user); 
+		 JsonModel jm=new JsonModel();
+		 if(result){
+		 jm.setCode(1);
+		 jm.setMsg("修改成功");
+		 }else{
+			 jm.setCode(0);
+			 jm.setMsg("修改失败");
+		 }
+		 return jm;
+	}
+
 
 	/**
 	 * 用户注册
