@@ -87,8 +87,18 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
-				}
-				]],
+				},
+				{
+					field : '_operate',
+					title : '操作',
+					width : 30,
+					align : 'center',
+					formatter : function formatOper(val,row, index) {
+						var str = '<a href="javascript:void(0)" onclick="forbidlogin('+ index + ')">禁止登录</a>'
+						/* str += ' <a href="javascript:void(0)" onclick="deleteTable('+ index + ')">删除</a> '; */
+						return str;
+					},
+				}]],
 				  toolbar:[{
 		    			text:"修改",
 		    			iconCls: 'icon-edit',
@@ -178,6 +188,33 @@
 				  }]
 			});
 		});
+		    					
+		    					
+		//禁止用户登录操作
+		function forbidlogin(index) {
+			$('#manUserTable').datagrid('selectRow', index);//关键在这里
+			var row = $('#manUserTable').datagrid('getSelected');
+			$.ajax({
+				 url : "forbidlogin.action", 
+				type : "POST",
+				data : "u_id=" + row.u_id,
+				dataType : "JSON",
+				success : function(data) {
+					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
+					if(r){
+					if (data.code == 1) {
+						alert("禁止用户登录成功");
+						$('#manUserTable').datagrid('reload');
+					} else {
+						alert(data.msg);
+					}
+					}
+					});
+				
+				}
+					
+			});
+		}
 		
 		
 </script>
