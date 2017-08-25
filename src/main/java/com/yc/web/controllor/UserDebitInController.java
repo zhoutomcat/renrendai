@@ -1,5 +1,6 @@
 package com.yc.web.controllor;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import com.yc.bean.UserDebitOut;
 import com.yc.bean.UserMessage;
 import com.yc.biz.UserBiz;
 import com.yc.biz.UserDebitInBiz;
+import com.yc.utils.RequestUtil;
 import com.yc.web.model.JsonModel;
 
 @RestController // 类注解,同时使用@Controller 和@ResponseBody
@@ -151,8 +153,7 @@ public class UserDebitInController {
 		}
 		return jm;
 	}
-	
-	
+
 	/**
 	 * 后台查找所有的借贷信息
 	 * 
@@ -164,7 +165,8 @@ public class UserDebitInController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/back/findAllUserDebitIn.action")
-	public JsonModel findAllUserDebitIn(UserDebitIn userDebitIn, HttpServletRequest request, HttpSession session) throws Exception {
+	public JsonModel findAllUserDebitIn(UserDebitIn userDebitIn, HttpServletRequest request, HttpSession session)
+			throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
 		int start = (pages - 1) * pagesize;
@@ -174,25 +176,41 @@ public class UserDebitInController {
 		JsonModel jm = (JsonModel) userDebitInBiz.findAllUserDebitIn(map);
 		return jm;
 
-   }
-	
+	}
+
 	/**
 	 * 添加借款信息的个人信息
+	 * 
 	 * @param um
 	 * @param session
 	 * @return
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
 	 */
-/*	@RequestMapping("/user/toAddUserDebitIn.action")
-	public JsonModel toAddUserDebitIn(HttpSession session){
-		UserDebitIn udi=new UserDebitIn();
-		UserDebitInType udit=new UserDebitInType();
-		JsonModel jm=new JsonModel();
-		User user=(User) session.getAttribute("user");
-		udi.setU_id(user.getU_id());	
-		try {//给一些前台页面中没有显示值的属性设置值
-			
+	@RequestMapping("/user/AddUserDebitInAndUserDebitInType.action")
+	public JsonModel AddUserDebitIn(HttpSession session, HttpServletRequest request)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		UserDebitIn udi = new UserDebitIn();
+		UserDebitInType udit = new UserDebitInType();
+		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		udit = RequestUtil.getParemeter(request, UserDebitInType.class);
+		JsonModel jm = new JsonModel();
+		User user = (User) session.getAttribute("user");
+		udi.setU_id(user.getU_id());
+		// 给一些前台页面中没有显示值的属性设置值
+		
+		udi.setUdi_status(1);
+		udi.setUdi_publishdate(1470955893);
+		udi.setUdi_date(1502584941);
+		udi.setUdi_refundrealitydate(System.currentTimeMillis());
+		udi.setUdi_type(1);
+		// 给一些前台页面中没有显示值的属性设置值
+		
+		udit.setUdit_name("散标");
+		try {
 			this.userDebitInBiz.AddUserDebitIn(udi);
-			//给一些前台页面中没有显示值的属性设置值
 			this.userDebitInBiz.AddUserDebitInType(udit);
 			jm.setCode(1);
 		} catch (Exception e) {
@@ -202,9 +220,18 @@ public class UserDebitInController {
 		}
 		return jm;
 	}
-	*/
-	
-	
-	
+
+	/*
+	 * @RequestMapping("/user/AddUserDebitInAndUserDebitInType.action") public
+	 * JsonModel AddUserDebitIn(HttpSession session){ UserDebitIn udi=new
+	 * UserDebitIn(); JsonModel jm=new JsonModel(); User user=(User)
+	 * session.getAttribute("user"); udi.setU_id(user.getU_id()); try
+	 * {//给一些前台页面中没有显示值的属性设置值 udi.setUdi_status(1);
+	 * udi.setUdi_publishdate(1470955893); udi.setUdi_date(1502584941);
+	 * udi.setUdi_refundrealitydate(System.currentTimeMillis());
+	 * udi.setUdi_type(1); this.userDebitInBiz.AddUserDebitIn(udi);
+	 * jm.setCode(1); } catch (Exception e) { e.printStackTrace();
+	 * jm.setCode(0); jm.setMsg(e.getMessage()); } return jm; }
+	 */
 
 }

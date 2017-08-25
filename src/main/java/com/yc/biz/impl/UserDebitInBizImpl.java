@@ -95,9 +95,10 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 
 	@Override
 	public boolean AddUserDebitIn(UserDebitIn udi) {
-		baseDao.save(udi, "addDebitMoney");
-		return true;
-		
+		System.out.println(udi);
+		baseDao.save(udi, "addUserDebitIn");
+		//System.out.println(udi);
+		return true;	
 	}
 
 	@Override

@@ -215,13 +215,11 @@ join  UserDebitInType udt on udi.udi_type=udt.udit_id
     
     <!-- 添加借贷信息 -->
     <insert id="addUserDebitIn" parameterType="UserDebitIn" useGeneratedKeys="true" keyProperty="udi_id">
-         insert into UserDebitIn(udi_title,u_id,udi_money,udi_status,udi_publishdate,
-          udi_date, udi_refundrealitydate,udi_use,udi_refundway,udi_type)  
-    	values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},
-    	#{udi_use},#{udi_refundway},#{udi_type})
+         insert into UserDebitIn(udi_title,u_id,udi_money,udi_status,udi_publishdate,udi_date,udi_refundrealitydate,udi_use,udi_refundway,udi_type)  
+    	values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_use},#{udi_refundway},#{udi_type})
     </insert>
 
-    
+
     
     		
 

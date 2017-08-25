@@ -70,7 +70,11 @@ public interface UserDebitInBiz {
 	 * @param udi
 	 */
 	public boolean AddUserDebitIn(UserDebitIn udi);
-
+	/**
+	 * 添加借款信息类型的个人信息
+	 * @param udit
+	 * @return
+	 */
 	public boolean AddUserDebitInType(UserDebitInType udit);
 	
 
