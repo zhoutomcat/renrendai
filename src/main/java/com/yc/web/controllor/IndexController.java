@@ -48,10 +48,32 @@ public class IndexController {
 		 * 跳转到关注计划页面
 		 * @return
 		 */
-		@RequestMapping(value="/toAttentionMark.action" )
+		@RequestMapping(value="/user/toAttentionMark.action" )
 		public String toAttentionMark(){
-			return "attentionMark";
+			return "userAttentionMark";
 		}
+		
+		
+		/**
+		 * 跳转到借款个人信息详情页面
+		 * @return
+		 */
+		@RequestMapping(value="/user/toDebitMoney.action" )
+		public String toDebitMoney(){
+			return "userDebitMoney";
+		}
+		
+		
+		
+		/**
+		 * 跳转到借款填写借贷表信息页面
+		 * @return
+		 */
+		@RequestMapping(value="/user/toAddUserDebitIn.action" )
+		public String toAddUserDebitIn(){
+			return "addUserDebitIn";
+		}
+		
 		
 		/**
 		 * 官方文档：

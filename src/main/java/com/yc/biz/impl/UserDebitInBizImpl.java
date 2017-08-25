@@ -18,13 +18,13 @@ import com.yc.bean.UserDebitInType;
 import com.yc.bean.UserDebitOut;
 import com.yc.biz.UserDebitInBiz;
 import com.yc.dao.BaseDao;
+import com.yc.web.model.JsonModel;
 
 @Service
 @Transactional
 public class UserDebitInBizImpl implements UserDebitInBiz {
 
 	@Resource(name = "baseDao")
-	// private BaseDao<VoteUser> baseDao;
 	private BaseDao baseDao;
 
 	@Override
@@ -78,6 +78,32 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	public int findAllSanbiaoHistoryCount() {
 		int result = (int) this.baseDao.findOne(UserDebitIn.class, "findAllSanbiaoHistoryCount");
 		return result;
+	}
+
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	public JsonModel findAllUserDebitIn(Map<String, Integer> map) {
+		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUserDebitInResultMap", map);
+		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUserDebitInResultMapCount",map);
+		
+		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
+		jsonModel.setRows(list);
+		jsonModel.setTotal(total);
+		return jsonModel;
+	}
+
+	@Override
+	public boolean AddUserDebitIn(UserDebitIn udi) {
+		System.out.println(udi);
+		baseDao.save(udi, "addUserDebitIn");
+		//System.out.println(udi);
+		return true;	
+	}
+
+	@Override
+	public boolean AddUserDebitInType(UserDebitInType udit) {
+		baseDao.save(udit, "addUserDebitInType");
+		return true;
 	}
 
 }

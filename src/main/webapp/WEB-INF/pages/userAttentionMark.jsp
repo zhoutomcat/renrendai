@@ -7,18 +7,17 @@
 <%@ include file="nav.jsp"%>
 <script>
 $(function() {
+	
 	function gopage(pages) {
-		$
-				.ajax({
+		$.ajax({
 					type : "POST",
-					url : "findAllAttentionMarkByUser.action",
+					url : "user/findAllAttentionMarkByUser.action",
 					data : "pages=" + pages,
 					dataType : "JSON",
 					success : function(data) {
 						if (data.code == 1) {
 							$("#attentionMarkHistory").html("");
-							$(data.rows)
-									.each(
+							$(data.rows).each(
 											function(index, item) {
 												var status = '';
 												if (item.attentionMark.am_status==0) {
@@ -39,8 +38,7 @@ $(function() {
 														* item.attentionMark.userDebitIn.userDebitInType.udit_profit
 														* item.attentionMark.userDebitIn.userDebitInType.udit_month
 														/ 12;
-												makeMoney = makeMoney
-														.toFixed(2); 
+												makeMoney = makeMoney.toFixed(2); 
 												var str = '<tr class="list" data-reactid=".1.1.0.1.$0"> '
 														+ ' <td class="name" data-reactid=".1.1.0.1.$0.0"><a title="' + item.attentionMark.userDebitIn.udi_title + '" ' +
 					' target="_blank" href="/pc/uplan/14719.html" data-reactid=".1.1.0.1.$0.0.0">'
@@ -73,28 +71,47 @@ $(function() {
 														+ refundway
 														+ '</span><span ' +
 					' data-reactid=".1.1.0.1.$0.7.1"></span></td> '
+ 														+ ' <td id="delAttentionMarkTd" data-reactid=".1.1.0.1.$0.8"><span data-reactid=".1.1.0.1.$0.8.0"  onclick="delAttention('+item.attentionMark.am_id+')">取消关注'
+														+ '</span><span ' +
+					' data-reactid=".1.1.0.1.$0.8.1"></span></td> ' 
+														+ ' </tr>'
 
-														
-														+ ' </tr>';
-												$("#attentionMarkHistory").html(
-														$("#attentionMarkHistory")
-																.html()
-																+ str);
+												$("#attentionMarkHistory").html($("#attentionMarkHistory").html()+ str);
+												 
 											});
 							$.createPageBar(data, "pagebeandiv");
 						} else {
-							alert("shibai ");
+							alert("失败");
 						}
 					}
-				})
+				});
 	}
 
 	//vssrbfvhuj
 	$(function() {
 		gopage(1);
-	})
+	});
+	
+ 	
 	
 });
+//alert(item.attentionMark.am_id);
+function delAttention(item){
+		$.ajax({
+		url : "user/delAttention.action?am_id="+item,
+		type : "POST",
+		data :  $("#delAttentionMarkTd").serialize(),
+		dataType : "JSON",
+		success : function(data) {
+			if (data.code == 1) {
+				alert("删除成功");
+				window.location.reload();
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+} 
 	
 	</script>
 
@@ -126,7 +143,9 @@ $(function() {
 								<th class="status" data-reactid=".1.1.0.0.0.5">关注状态</th>
 								<th data-reactid=".1.1.0.0.0.6">借贷期限</th>
 								<th data-reactid=".1.1.0.0.0.7">还贷方式</th>
-								<!-- <th data-reactid=".1.1.0.0.0.8">操作</th> -->
+								<%-- <input id="am_id" name="am_id" type="hidden"  value="<%=request.getParameter("am_id")%>" />  --%>
+								<th data-reactid=".1.1.0.0.0.8">操作</th>
+								
 							</tr>
 						</thead>
 						<tbody data-reactid=".1.1.0.1" id="attentionMarkHistory">

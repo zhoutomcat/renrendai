@@ -33,6 +33,7 @@ isELIgnored="false"%>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/add.js"></script>
 <script type="text/javascript" src="js/ycPageBar.js"></script>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 
 </head>
 <body>

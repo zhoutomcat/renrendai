@@ -197,7 +197,7 @@ insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status) values(4
 select * from AdminToUserMessage ;
 -------------------------------------------------------------------
 --个人资料表        --通过身份证或者 sex，age，birthday,居住地
-insert into UserMessage(u_id,um_reallyName,um_idCard,um_nowPlace,um_workinfo,um_incomeinfo,um_image) values(1,'黄凌翔',439004199611206214,'湖南省岳阳市汨罗市','yc带头人','8000',default);  
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_nowPlace,um_workinfo,um_incomeinfo,um_description) values(1,'黄凌翔',439004199611206214,'男','21','湖南省岳阳市汨罗市','yc带头人','8000','12112');  
 select * from UserMessage ;
 commit;
 --------------------------------------------------------------------
