@@ -27,13 +27,13 @@ public class UserController {
 	@Resource(name = "userBizImpl")
 	private UserBiz userBiz;
 
-	@RequestMapping("/user_layout.action")
+	@RequestMapping("/user/user_layout.action")
 	public void layout(User user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws ServletException, IOException {
 		session.removeAttribute("user");
 		request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request, response);
 	}
 
-	@RequestMapping("/user_login.action")
+	@RequestMapping("/user/user_login.action")
 	public JsonModel login(User user, HttpServletRequest request, HttpSession session) {
 		JsonModel jm = new JsonModel();
 		// 为什么有三个参数? 因为name，password是user对象中有的，且zccode是在类中没有的，所以要在request中取
@@ -74,7 +74,7 @@ public class UserController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/user_register.action")
+	@RequestMapping("/user/user_register.action")
 	public JsonModel register(User user, HttpServletRequest request, HttpSession session) {
 		JsonModel jm = new JsonModel();
 		String repwd = request.getParameter("reu_password");

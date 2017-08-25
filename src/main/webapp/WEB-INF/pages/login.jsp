@@ -27,7 +27,7 @@
 	<div class="dialog">
 		<div class="box">
 			<h4>用户登录</h4>
-			<form id="User_login_action" name="User_login_action">
+			<form id="user/User_login_action" name="User_login_action">
 				<div class="infos">
 					<table class="field">
 						<tr>

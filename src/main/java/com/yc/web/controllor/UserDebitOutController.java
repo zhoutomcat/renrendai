@@ -23,7 +23,7 @@ public class UserDebitOutController {
 	@Resource(name = "userDebitOutBizImpl")
 	private UserDebitOutBiz udob;
 
-	@RequestMapping("/addUplanUserDebitOut.action")
+	@RequestMapping("/userDebit/addUplanUserDebitOut.action")
 	public JsonModel addUplanUserDebitOut(UserDebitIn userDebitIn, HttpSession session, HttpServletRequest request) {
 		JsonModel jm = new JsonModel();
 		Map<String, Object> parameterMap = new HashMap<>();
