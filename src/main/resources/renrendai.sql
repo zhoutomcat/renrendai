@@ -61,8 +61,26 @@ select * from UserDebitIn
 
 select udit_profit,udit_month from UserDebitInType;
 
+insert into UserDebitIn,UserDebitInType
+select * from UserDebitIn udi join  UserDebitInType udit on udi.udi_type=udit.udit_id
 
 --借贷类型表     
+create table UserDebitInType(
+	udit_id int  primary key auto_increment,
+	udit_name varchar(50),          --
+	udit_profit  double,  
+	udit_month double,			--借贷月数
+	udit_status int default 1,  --1代表借款状态   0代表还款状态
+	temp1 varchar(100) default null,
+	temp2 varchar(100) default null,
+	temp3 varchar(100) default null
+)
+select * from UserDebitInType
+
+drop table UserDebitInType
+
+truncate table UserDebitInType
+
 
 --查询U计划中所有的钱数
 select sum(udi_money) from UserDebitIn , UserDebitInType   
@@ -161,21 +179,7 @@ select a.*,b.totalMoney , b.peopleCount from
 		where udi.udi_id = udo.udi_id and udi_type = udit_id and udit_name = 'U计划'
 		
 
-create table UserDebitInType(
-	udit_id int  primary key auto_increment,
-	udit_name varchar(50),          --
-	udit_profit  double,  
-	udit_month double,			--借贷月数
-	udit_status int default 1,  --1代表借款状态   0代表还款状态
-	temp1 varchar(100) default null,
-	temp2 varchar(100) default null,
-	temp3 varchar(100) default null
-)
-select * from UserDebitInType
 
-drop table UserDebitInType
-
-truncate table UserDebitInType
 
 
 --放贷表
@@ -300,10 +304,10 @@ create table AdminToUserMessage(
 )
 drop table  AdminToUserMessage
 --个人资料
-       um_sex       	 int,	         --性别    年龄     出生日期    居住地    都通过身份证获取
-       um_age         int,
-       um_birthday  date,                  --出生日期 
+   
        --用户表id--真实姓名 --身份证    只能为18位数字--工作信息--收入信息 --图像
+       --性别    年龄     出生日期    居住地    都通过身份证获取
+         --出生日期 
        --资料就先写这么多，像人人贷一样,到时候可以接一些接口,个人征信报告，微粒贷记录
 create table UserMessage(
        um_id   		int primary key auto_increment,	   
@@ -312,8 +316,11 @@ create table UserMessage(
        um_idCard     	varchar(18),	  
        um_nowPlace varchar(200),  
 	   um_workinfo    varchar(1000),     
-	   um_incomeinfo  varchar(1000),     
-       um_image     varchar(2000)  default null,    
+	   um_incomeinfo  varchar(1000),  
+	   um_sex       	 varchar(4),	         
+       um_age         int,               
+   	   um_description  text, 
+   	   bi_idCard varchar(20) unique,
 	   temp1 varchar(100) default null,
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null,
@@ -322,7 +329,9 @@ create table UserMessage(
 );
 drop table UserMessage
 
-
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_nowPlace,um_workinfo,um_incomeinfo,um_description, bi_idCard) values(1,'黄凌翔',439004199611206214,'男','21','湖南省岳阳市汨罗市','yc带头人','8000','12112',13232342442535);  
+select * from UserMessage
+delete from UserMessage where um_id=2 
 
 --银行卡信息表
 		--银行卡持有人姓名	--银行卡号--用户id    外键约束--银行卡状态（是否在用）   0表示不可用  1表示可用
@@ -339,11 +348,6 @@ create table bankInfo(
 
 
 drop table bankinfo
-
-
-
-
-
 
 
 
@@ -412,7 +416,9 @@ udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from
   --放贷信息的多表连接
 select * from user u join UserDebitIn udi on u.u_id=udi.u_id 
 join UserDebitOut udo on udi.udi_id=udo.udi_id
-
+--借贷信息的多表连接
+select * from user u join UserDebitIn udi on u.u_id=udi.u_id  
+join  UserDebitInType udt on udi.udi_type=udt.udit_id  
 
 
   
@@ -423,7 +429,7 @@ select * from UserDebitIn
 select * from user
 select * from UserDebitInType
 
-
+select * from userMessage
 
   
 

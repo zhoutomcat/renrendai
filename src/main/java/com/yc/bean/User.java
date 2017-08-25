@@ -19,9 +19,19 @@ public class User extends JsonModel  implements Serializable {
 	private String u_email;
 	private Integer u_status;
 	private String reu_password;
-	
+	//用于用户投标关注
 	private AttentionMark attentionMark;
+	//用户查询借贷用户的信息
+	private UserDebitIn userDebitIn; 
+	
+	
 
+	public UserDebitIn getUserDebitIn() {
+		return userDebitIn;
+	}
+	public void setUserDebitIn(UserDebitIn userDebitIn) {
+		this.userDebitIn = userDebitIn;
+	}
 	public Integer getU_id() {
 		return u_id;
 	}
@@ -93,8 +103,9 @@ public class User extends JsonModel  implements Serializable {
 		return "User [u_id=" + u_id + ", u_name=" + u_name + ", u_password=" + u_password + ", u_creditnumber="
 				+ u_creditnumber + ", u_creditdegree=" + u_creditdegree + ", u_registerdate=" + u_registerdate
 				+ ", u_tel=" + u_tel + ", u_email=" + u_email + ", u_status=" + u_status + ", reu_password="
-				+ reu_password + ", attentionMark\n=" + attentionMark + "]";
+				+ reu_password + ", attentionMark=" + attentionMark + ", userDebitIn=" + userDebitIn + "]";
 	}
+
 
 
 	

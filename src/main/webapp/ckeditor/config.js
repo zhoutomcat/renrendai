@@ -36,5 +36,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
-	config.filebrowserUploadUrl="back/uploadSinglePicFile.action";
+	//上传图片的服务器端地址
+	config.filebrowserImageUploadUrl= "user/uploadSinglePic.jsp"; 
 };

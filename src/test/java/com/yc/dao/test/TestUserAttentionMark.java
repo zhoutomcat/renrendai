@@ -13,7 +13,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.bean.AttentionMark;
 import com.yc.bean.User;
+import com.yc.bean.UserDebitIn;
 import com.yc.biz.AttentionMarkBiz;
+import com.yc.biz.UserDebitInBiz;
+import com.yc.web.model.JsonModel;
 
 //以后有spring来管理所有的bean
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +35,19 @@ public class TestUserAttentionMark {
 		for(User m: list){
 			System.out.println(m);
 		}
-		
 	}
+		/**
+		 * 显示借贷表中所有的数据
+		 * @throws Exception
+		 */
+		@Test
+		public void testb() throws Exception {
+			UserDebitInBiz udib = (UserDebitInBiz) ac.getBean("userDebitInBizImpl");
+			//UserDebitIn udi = new UserDebitIn();
+			Map<String,Integer> map=new HashMap<String,Integer>();
+			JsonModel  jm = udib.findAllUserDebitIn(map);
+			System.out.println(jm);
+		}
+	
 
 }

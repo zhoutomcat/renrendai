@@ -29,6 +29,7 @@ public class UserDebitIn extends CommonBean implements Serializable {
 
 	private List<UserDebitInType> list = new ArrayList<>();
 	// 用于关注用户投标
+	//用于关注用户投标     查找借贷用户的信息
 	private UserDebitInType userDebitInType;
 	// 用于后台放贷表的显示
 	private User user;

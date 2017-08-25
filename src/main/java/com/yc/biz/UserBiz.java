@@ -21,16 +21,32 @@ public interface UserBiz {
 	 * @throws Exception
 	 */
 	public boolean register(User user) throws Exception;
-
+	/**
+	 * 判断用户是否存在
+	 * @param user
+	 * @return
+	 */
 	public User isUnameExist(User user);
 
 	public void saveOrUpdate(User user);
 
-
+	/**
+	 * 查找所有的用户
+	 * @param map
+	 * @return
+	 */
 	public JsonModel searchUser(Map<String, Integer> map);
-
+	/**
+	 * 修改用户
+	 * @param user
+	 * @return
+	 */
 	public boolean updateUser(User user);
-
+	/**
+	 * 删除用户
+	 * @param user
+	 * @return
+	 */
 	public boolean delUser(User user);
 
 }
