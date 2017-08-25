@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.bean.UserMessageMapper">
+	<!--加入带日志的ehcache缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
+		
+
+
+
+<!-- 删除关注    冻结关注 -->
+<delete id="delAttentionMark">
+delete from AttentionMark where am_id=#{am_id}
+</delete>
+
+
+<!-- 添加借款详细信息 -->
+<insert id="addDebitMoney" parameterType="UserMessage" useGeneratedKeys="true" keyProperty="um_id">
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_nowPlace,um_workinfo,um_incomeinfo,um_sex,um_age,um_description,bi_idCard) 
+values(#{u_id},#{um_reallyName},#{um_idCard},#{um_nowPlace},#{um_workinfo},#{um_incomeinfo},#{um_sex},#{um_age},#{um_description},#{bi_idCard}) 
+</insert>
+
+
+
+
+
+
+
+</mapper>
