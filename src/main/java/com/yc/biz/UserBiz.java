@@ -49,4 +49,6 @@ public interface UserBiz {
 	 */
 	public boolean delUser(User user);
 
+	public boolean updatestatus(User user);
+
 }
