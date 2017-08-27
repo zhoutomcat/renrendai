@@ -53,6 +53,7 @@ public class UserController {
 					// session.getAttribute("user"));
 					jm.setCode(1);
 					user.setU_password(null); // 设为空后，密码就不会传到页面
+					user.setReu_password(null);
 					jm.setObj(user);
 					}else{
 						jm.setCode(0);
@@ -71,7 +72,7 @@ public class UserController {
 		return jm;
 	}
 	
-	@RequestMapping("/forbidlogin.action")
+	@RequestMapping("/back/forbidlogin.action")
 	public JsonModel forbidlogin(Integer  u_id,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		User user=new User();
 		user.setU_id(u_id);

@@ -7,8 +7,8 @@
 			$('#userDebitTable').edatagrid({
 				url : 'back/findAllUserDebitIn.action', //查询时加载的URL
 				pagination:true,  //显示分页
-				pageSize: 3,  //默认分页的条数
-				pageList:  [3,5,10,20,30,50],  //可选分页数
+				pageSize: 10,  //默认分页的条数
+				pageList:  [3,5,10,20,20,50],  //可选分页数
 				fitColumns: true,  //自适应列
 				fit : true,  //自动补全
 				idField : "u_id",   //标识，会记录我们选中的一行的id,不一定是id,通常都是主键
@@ -26,7 +26,7 @@
 				columns:[[{
 					field:'udi_id',
 					title:'借贷表编号',
-					width:30,
+					width:20,
 					align:'center',
 					hidden:'true',
 					formatter: function(value,row,index){
@@ -36,22 +36,22 @@
 				},{
 					field:'u_name',
 					title:'借贷人姓名',
-					width:30,
+					width:20,
 					align:'center',
 				},{
 					field:'u_creditdegree',
 					title:'借贷人信誉等级',
-					width:30,
+					width:20,
 					align:'center',
 				},{
 					field:'u_tel',
 					title:'借贷人电话',
-					width:30,
+					width:20,
 					align:'center',
 				},{
 					field:'udi_money',
 					title:'借贷金额',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -60,44 +60,36 @@
 				},{
 					field:'udi_publishdate',
 					title:'借贷开始时间',
-					width:30,
+					width:50,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
-						return row.userDebitIn.udi_publishdate;
+						 var tt= new Date(parseInt(row.userDebitIn.udi_publishdate) * 1000).toLocaleString().substr(0,17);
+						return tt;
 					},
-				/* 	formatter:function(subscribe_time){
-					 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
-					    return  tt;  
-					} 	 */
+				  
 				},{
 					field:'udi_date',
 					title:'借贷成功时间',
-					width:30,
+					width:50,
 					align:'center',
 					formatter: function(value,row,index){
-						return row.userDebitIn.udi_date;
+						 var tt= new Date(parseInt(row.userDebitIn.udi_date) * 1000).toLocaleString().substr(0,17);
+						return tt;
 					},
-				/* 	formatter:function(subscribe_time){
-						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
-						    return  tt;  
-						}	 */
 				},{
 					field:'udi_refundrealitydate',
 					title:'实际还贷时间',
-					width:30,
+					width:50,
 					align:'center',
 					formatter: function(value,row,index){
-						return row.userDebitIn.udi_refundrealitydate;
-					},
-					 formatter:function(subscribe_time){
-						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
-						    return  tt;  
-						}	 
+						 var tt= new Date(parseInt(row.userDebitIn.udi_refundrealitydate) * 1000).toLocaleString().substr(0,17);
+						return tt;
+					},	 
 				},{
 					field:'udi_title',
 					title:'借贷标题',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -106,7 +98,7 @@
 				},{
 					field:'udi_refundway',
 					title:'还贷方式',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -124,7 +116,7 @@
 				},{
 					field:'udi_status',
 					title:'借贷状态',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -133,7 +125,7 @@
 				},{
 					field:'udi_weight',
 					title:'借贷权重',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -142,7 +134,7 @@
 				},{
 					field:'udit_month',
 					title:'还贷期限',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -151,7 +143,7 @@
 				},{
 					field:'udit_name',
 					title:'借贷归属名字',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
@@ -160,19 +152,86 @@
 				},{
 					field:'udit_profit',
 					title:'借贷利率',
-					width:30,
+					width:20,
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
 						return row.userDebitIn.userDebitInType.udit_profit;
 					}
+				},{
+					field:'udi_checkstatus',
+					title:'审核状态',
+					width:20,
+					align:'center',
+					formatter: function(value,row,index){
+						//alert(row.attentionMark.am_id)
+						return row.userDebitIn.udi_checkstatus;
+					}
+				},{
+					field : '_operate',
+					title : '操作',
+					width : 50,
+					align : 'center',
+					formatter : function formatOper(val,row, index) {
+						var str = '<a href="javascript:void(0)" onclick="checkapprove('+ index + ')">审核通过</a>'
+						 str += ' <a href="javascript:void(0)" onclick="checkunapprove('+ index + ')">审核不通过</a> '; 
+						return str;
+					},
 				}
-				
-
 				]],
 			
 			});
 		});
+		
+		
+		//审核通过操作
+		function checkapprove(index) {
+			$('#userDebitTable').datagrid('selectRow', index);//关键在这里
+			var row = $('#userDebitTable').datagrid('getSelected');
+			$.ajax({
+				 url : "back/checkapprove.action", 
+				type : "POST",
+				data : "udi_id=" + row.userDebitIn.udi_id,
+				dataType : "JSON",
+				success : function(data) {
+					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
+					if(r){
+					if (data.code == 1) {
+						alert("审核借贷信息通过成功");
+						$('#userDebitTable').datagrid('reload');
+					} else {
+						alert(data.msg);
+					}
+					}
+					});
+				}					
+			});
+		}
+		
+		//审核不通过操作
+		function checkunapprove(index) {
+			$('#userDebitTable').datagrid('selectRow', index);//关键在这里
+			var row = $('#userDebitTable').datagrid('getSelected');
+			$.ajax({
+				 url : "back/checkunapprove.action", 
+				type : "POST",
+				data : "udi_id=" + row.userDebitIn.udi_id,
+				dataType : "JSON",
+				success : function(data) {
+					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
+					if(r){
+					if (data.code == 1) {
+						alert("审核借贷信息不允许通过");
+						$('#userDebitTable').datagrid('reload');
+					} else {
+						alert(data.msg);
+					}
+					}
+					});
+				}					
+			});
+		}
+		
 		
 		
 </script>

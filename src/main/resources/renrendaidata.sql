@@ -18,6 +18,7 @@ insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('g','a',2,'A',1439355893,'1','g@163.com');
 insert into user(u_name,u_password,u_creditnumber,u_creditdegree,u_registerdate,u_tel,u_email) values('h','a',5,'B',1502584941 ,'1','h@163.com');
 update user set u_password='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2'
+update user set u_password='a'; 
 select * from user;
 
 

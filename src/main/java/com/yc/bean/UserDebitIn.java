@@ -19,13 +19,14 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private long udi_publishdate;
 	private long udi_refundrealitydate;
 	private String udi_use;
-	private Integer udi_refundway;
+	private Integer udi_refundway;     //还贷方式
 	private Integer udi_type;
 	private Integer udi_weight; // 权重
 
 	private Integer peopleCount;// 加入的人数
 	private Double totalMoney; // 放贷的钱数
 	private Double makeMoney; // 累积利息收益
+	private Integer udi_checkstatus;   //审核用户信息       判断用户信息真实性       默认为0      审核通过修改为1    在前台显示
 
 	private List<UserDebitInType> list = new ArrayList<>();
 	//用于关注用户投标     查找借贷用户的信息
@@ -182,6 +183,16 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	public void setUdi_refundway(Integer udi_refundway) {
 		this.udi_refundway = udi_refundway;
 	}
+	
+	
+
+	public Integer getUdi_checkstatus() {
+		return udi_checkstatus;
+	}
+
+	public void setUdi_checkstatus(Integer udi_checkstatus) {
+		this.udi_checkstatus = udi_checkstatus;
+	}
 
 	@Override
 	public String toString() {
@@ -189,9 +200,12 @@ public class UserDebitIn extends CommonBean implements Serializable {
 				+ udi_money + ", udi_status=" + udi_status + ", udi_date=" + udi_date + ", udi_publishdate="
 				+ udi_publishdate + ", udi_refundrealitydate=" + udi_refundrealitydate + ", udi_use=" + udi_use
 				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight
-				+ ", peopleCount=" + peopleCount + ", totalMoney=" + totalMoney + ", makeMoney=" + makeMoney + ", list="
-				+ list + ", userDebitInType=" + userDebitInType + ", user=" + user + "]";
+				+ ", peopleCount=" + peopleCount + ", totalMoney=" + totalMoney + ", makeMoney=" + makeMoney
+				+ ", udi_checkstatus=" + udi_checkstatus + ", list=" + list + ", userDebitInType=" + userDebitInType
+				+ ", user=" + user + "]";
 	}
+
+	
 
 
 

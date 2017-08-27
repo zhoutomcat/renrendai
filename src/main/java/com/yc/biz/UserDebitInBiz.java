@@ -76,6 +76,12 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public boolean AddUserDebitInType(UserDebitInType udit);
+	/**
+	 * 修改借贷表的审核状态信息为可用
+	 * @param udi
+	 * @return
+	 */
+	public boolean updateUserDebitInCheckStatus(UserDebitIn udi);
 	
 
 }

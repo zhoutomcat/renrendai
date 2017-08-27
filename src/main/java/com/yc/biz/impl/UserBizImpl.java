@@ -44,14 +44,9 @@ public class UserBizImpl implements UserBiz {
 
 	@Override
 	public User login(User user) throws Exception {
-		try {
 			user.setU_password(Encrypt.md5AndSha(user.getU_password()));
-			user = (User) this.baseDao.findOne(user, "getUserByLogin");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		return user;
+			User u=(User) baseDao.findOne(user, "getUserByLogin");
+			return u;
 	}
 
 

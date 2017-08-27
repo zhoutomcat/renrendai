@@ -48,7 +48,11 @@ public interface UserBiz {
 	 * @return
 	 */
 	public boolean delUser(User user);
-
+	/**
+	 * 修改用户状态  禁止用户登录
+	 * @param user
+	 * @return
+	 */
 	public boolean updatestatus(User user);
 
 }

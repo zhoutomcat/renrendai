@@ -87,6 +87,18 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
+				 	/*formatter:function(row){
+						var status="";
+						if(row.u_status==1){
+							status="账号可以使用";
+						}
+						if(row.u_status==0){
+							status="账号被禁用";
+						}else{
+							status="账号可以使用";
+						}	
+						return status;
+						}  */		
 				},
 				{
 					field : '_operate',
@@ -195,7 +207,7 @@
 			$('#manUserTable').datagrid('selectRow', index);//关键在这里
 			var row = $('#manUserTable').datagrid('getSelected');
 			$.ajax({
-				 url : "forbidlogin.action", 
+				 url : "back/forbidlogin.action", 
 				type : "POST",
 				data : "u_id=" + row.u_id,
 				dataType : "JSON",

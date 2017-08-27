@@ -233,5 +233,63 @@ public class UserDebitInController {
 	 * jm.setCode(1); } catch (Exception e) { e.printStackTrace();
 	 * jm.setCode(0); jm.setMsg(e.getMessage()); } return jm; }
 	 */
+	/**
+	 * 审核通过借贷信息
+	 * @param u_id
+	 * @param request
+	 * @param session
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/checkapprove.action")
+	public JsonModel checkapprove(Integer  udi_id,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		UserDebitIn udi=new UserDebitIn();
+		udi.setUdi_id(udi_id);
+		udi.setUdi_checkstatus(1);
+		 System.out.println(udi);
+		 boolean result=userDebitInBiz.updateUserDebitInCheckStatus(udi);
+		 JsonModel jm=new JsonModel();
+		 if(result){
+		 jm.setCode(1);
+		 jm.setMsg("修改成功");
+		 }else{
+			 jm.setCode(0);
+			 jm.setMsg("修改失败");
+		 }
+		 return jm;
+	}
+	
+	
+	/**
+	 * 审核不通过借贷信息
+	 * @param u_id
+	 * @param request
+	 * @param session
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/checkunapprove.action")
+	public JsonModel checkunapprove(Integer  udi_id,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		UserDebitIn udi=new UserDebitIn();
+		udi.setUdi_id(udi_id);
+		udi.setUdi_checkstatus(0);
+		 System.out.println(udi);
+		 boolean result=userDebitInBiz.updateUserDebitInCheckStatus(udi);
+		 JsonModel jm=new JsonModel();
+		 if(result){
+		 jm.setCode(1);
+		 jm.setMsg("修改成功");
+		 }else{
+			 jm.setCode(0);
+			 jm.setMsg("修改失败");
+		 }
+		 return jm;
+	}
 
 }
