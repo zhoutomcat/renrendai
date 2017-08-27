@@ -8,7 +8,7 @@
 				url : 'back/findAllUserDebitIn.action', //查询时加载的URL
 				pagination:true,  //显示分页
 				pageSize: 10,  //默认分页的条数
-				pageList:  [3,5,10,20,20,50],  //可选分页数
+				pageList:  [5,10,20,20,50],  //可选分页数
 				fitColumns: true,  //自适应列
 				fit : true,  //自动补全
 				idField : "u_id",   //标识，会记录我们选中的一行的id,不一定是id,通常都是主键

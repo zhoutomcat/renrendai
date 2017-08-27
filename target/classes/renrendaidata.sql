@@ -109,7 +109,7 @@ udi_refundrealitydate,udi_use,udi_refundway,udi_type)
 1532184121,
 '扩大生产/经营',1,9);
 
-
+select * from userDebitIn
 --实例还贷日期不确定，到时候前段需要修改    显示正在还款
 select * from userDebitIn;     --uid唯一       只能借贷一次，除非已经还款
 -----------------------------------
@@ -124,7 +124,7 @@ insert into UserDebitInType(udit_name , udit_profit , udit_month) values('教育
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('资金周转' , 11  , 1);
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('装修' , 11  , 1);
 insert into UserDebitInType(udit_name , udit_profit , udit_month) values('扩大生产/经营' , 11  , 1);
-
+select * from  UserDebitInType
 --放贷表
 --新数据    散标
 insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
@@ -150,7 +150,7 @@ insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money)
 	values(4 , 8 , 1502604941 , 1503020089726,40000 );
 insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
 	values(5 , 6 , 1502604941 , 1503020089726,60000 );
-	
+select * from userdebitout
 --久数据（可以不使用）
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,1,1439355893,1439355893 ,10000);
 insert into userDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) values(1,2,1439355893,1439355893 ,10000);

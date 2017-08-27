@@ -15,11 +15,11 @@
 
 <base href="<%=basepath %>">
 
-<link rel="stylesheet" type="text/css" href="back/manager/easyui15/themes/default/easyui.css">
+<link id="easyuiTheme" rel="stylesheet" type="text/css" href="back/manager/easyui15/themes/default/easyui.css">
 <link rel="stylesheet"  type="text/css" href="back/manager/easyui15/themes/icon.css">
 <script type="text/javascript" src="back/manager/easyui15/jquery.min.js"></script>
 <script type="text/javascript" src="back/manager/easyui15/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="back/manager/easyui15/jquery.edatagrid.js"></script>
-<script type="text/javascript" src="back/js/easyuihelp.js"></script>
+<script type="text/javascript" src="back/manager/easyui15/jeasyui.common.js"></script>
 
 

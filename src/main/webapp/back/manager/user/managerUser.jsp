@@ -11,7 +11,7 @@
 				loadMsg:'数据加载中',
 				pagination:true,  //显示分页
 				pagesize: 10,  //默认分页的条数
-				pageList:  [3,5,10,15,20,30,50],  //可选分页数
+				pageList:  [5,10,15,20,30,50],  //可选分页数
 				fitColumns: true,  //自适应列
 				fit : true,  //自动补全
 				//idField : "aid",   //标识，会记录我们选中的一行的id,不一定是id,通常都是主键
