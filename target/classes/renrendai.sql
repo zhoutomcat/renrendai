@@ -16,6 +16,9 @@ create table User(
 	  temp3 varchar(100) default null
 );
 
+--6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2
+update User set u_password='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2'
+
 drop table user;
 --用户的账户表--user的外键   一对一    --账户余额(可用余额+冻结余额) --可用余额--冻结余额
 create table UserFund(
@@ -272,6 +275,7 @@ create table AttentionUser(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
+select * from AttentionUser
 drop table  AttentionUser
 --管理员表
  --0表示普通管理员  1 表示超级管理员

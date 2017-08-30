@@ -53,7 +53,7 @@ public interface AttentionMarkBiz {
 	 * 统计一个用户的投标
 	 * @return
 	 */
-	public int findAllAttentionMarkByUserCount();
+	public int findAllAttentionMarkByUserCount( AttentionMark am);
 
 
 

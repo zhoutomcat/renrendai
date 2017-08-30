@@ -48,7 +48,7 @@ public class IndexController {
 		 * 跳转到关注计划页面
 		 * @return
 		 */
-		@RequestMapping(value="/user/toAttentionMark.action" )
+		@RequestMapping(value="/toAttentionMark.action" )
 		public String toAttentionMark(){
 			return "userAttentionMark";
 		}

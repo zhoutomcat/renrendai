@@ -27,7 +27,7 @@
 	<div class="dialog">
 		<div class="box">
 			<h4>用户登录</h4>
-			<form id="user/User_login_action" name="User_login_action">
+			<form id="User_login_action" name="User_login_action">
 				<div class="infos">
 					<table class="field">
 						<tr>
@@ -45,7 +45,8 @@
 						</tr>
 						<tr>
 							<td class="field">验 证 码：</td>
-							<td><input type="text" id="zccode" name="zccode" style="font-size: 14px; width: 100px;" />
+							<td><!-- <input type="text" id="zccode" name="zccode" style="font-size: 14px; width: 100px;" /> -->
+								<input type="text" id="yanzhengma" name="yanzhengma" />
 								&nbsp;&nbsp;&nbsp;&nbsp; <img src="image.jsp" onclick="changeVilidateCode(this)" border="0"
 								title="点击图片刷新验证码" size="10" /></td>
 						</tr>

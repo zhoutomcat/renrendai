@@ -61,8 +61,8 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz {
 
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.DEFAULT)
-	public int findAllAttentionMarkByUserCount() {
-		int result = (int) this.baseDao.findOne(AttentionMark.class, "findAllAttentionMarkByUserCount");
+	public int findAllAttentionMarkByUserCount( AttentionMark am ) {
+		int result = (int) this.baseDao.findOne(am, "findAllAttentionMarkByUserCount");
 		return result;
 	}
 

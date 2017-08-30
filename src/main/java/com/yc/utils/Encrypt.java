@@ -17,8 +17,8 @@ public class Encrypt {
 	public static void main(String[] args) {
 		// md5加密测试
 		String md5_1 = sha(md5("a"));
-		String md5_2 = md5("a");
-		System.out.println(md5_1 + "\n" + md5_2);
+		String md5_2 = md5AndSha("a");
+		System.out.println(md5_1 + "\n" + "md5Andsha:" + md5_2);
 		// sha加密测试
 		String sha_1 = sha("123456");
 		String sha_2 = sha("abc");

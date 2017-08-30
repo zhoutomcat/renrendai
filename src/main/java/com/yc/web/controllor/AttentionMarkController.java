@@ -71,9 +71,9 @@ public class AttentionMarkController {
 			List<User> list = attentionMarkBiz.findAllAttentionMarkByUser(am);
 			jm.setRows(list);
 			jm.setCode(1);
-			int result = attentionMarkBiz.findAllAttentionMarkByUserCount();
+			//获取关注投标数有错误
+			int result = attentionMarkBiz.findAllAttentionMarkByUserCount(am);
 			jm.setTotal(result);
-			
 			//session.setAttribute("am_id", list);
 		} catch (Exception e) {
 			e.printStackTrace();

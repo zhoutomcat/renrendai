@@ -5,137 +5,145 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yc.bean.AttentionMarkMapper">
 	<!--加入带日志的ehcache缓存 -->
 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
-		
-<!-- 排序条件的拼接 -->
- <sql id="orderSql">
-	<if test="orderby!=null and orderby!=''">
-		order by #{orderby}
-		<if test="orderway!=null and orderway!=''">
-			#{orderway}
+
+	<!-- 排序条件的拼接 -->
+	<sql id="orderSql">
+		<if test="orderby!=null and orderby!=''">
+			order by #{orderby}
+			<if test="orderway!=null and orderway!=''">
+				#{orderway}
+			</if>
 		</if>
-	</if>
-</sql>
+	</sql>
 
 
-<!-- 分页条件的拼接 -->
- <sql id="pageSql">
-	<if test="start!=null ">
-	    limit #{start},#{pagesize}
-	</if>
-</sql>
+	<!-- 分页条件的拼接 -->
+	<sql id="pageSql">
+		<if test="start!=null ">
+			limit #{start},#{pagesize}
+		</if>
+	</sql>
 
-<!-- 带查询条件，分页条件 排序条件的查询 -->
-<select id="findAttentionMarkConditionResultMap" parameterType="AttentionMark"   
-resultMap="findAllAttentionMarkWithUserDebitInResultMap">
-select  a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
-udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
-  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id  <include refid="orderSql" /> <include refid="pageSql" /> 
-</select> 	
-	
-		<resultMap type="User" id="findAllAttentionMarkWithUserDebitInResultMap">
-        <id property="u_id" column="u_id"/>
-        <result property="u_id" column="u_id"/>
-        <result property="u_name" column="u_name"/>
-       	<result property="u_creditnumber" column="u_creditnumber"/>
-        <result property="u_creditdegree" column="u_creditdegree"/>
-        <result property="u_tel" column="u_tel"/>
-        
-      <!--  property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
-     		<association property="attentionMark" javaType="AttentionMark">
-     		 <result property="am_id" column="am_id"/>
+	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findAttentionMarkConditionResultMap" parameterType="AttentionMark"
+		resultMap="findAllAttentionMarkWithUserDebitInResultMap">
+		select
+		a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
+		udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight
+		from User u join AttentionMark a on u.u_id=a.u_id join UserDebitIn udi
+		on udi.udi_id=a.udi_id join UserDebitInType udt on
+		udi.udi_type=udt.udit_id
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+
+	<resultMap type="User"
+		id="findAllAttentionMarkWithUserDebitInResultMap">
+		<id property="u_id" column="u_id" />
+		<result property="u_id" column="u_id" />
+		<result property="u_name" column="u_name" />
+		<result property="u_creditnumber" column="u_creditnumber" />
+		<result property="u_creditdegree" column="u_creditdegree" />
+		<result property="u_tel" column="u_tel" />
+
+		<!-- property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
+		<association property="attentionMark" javaType="AttentionMark">
+			<result property="am_id" column="am_id" />
 			<result property="am_status" column="am_status" />
-				<association property="userDebitIn" javaType="UserDebitIn">
-				<result property="udi_id" column="udi_id"/>
+			<association property="userDebitIn" javaType="UserDebitIn">
+				<result property="udi_id" column="udi_id" />
 				<result property="udi_money" column="udi_money" />
 				<result property="udi_title" column="udi_title" />
 				<result property="udi_refundway" column="udi_refundway" />
 				<result property="udi_status" column="udi_status" />
 				<result property="udi_weight" column="udi_weight" />
-				<association property="userDebitInType" javaType="UserDebitInType">	
-				<result property="udt_id" column="udt_id"/>	
-				<result property="udit_profit" column="udit_profit" />
-				<result property="udit_name" column="udit_name" />
-				<result property="udit_month" column="udit_month" />
+				<association property="userDebitInType" javaType="UserDebitInType">
+					<result property="udt_id" column="udt_id" />
+					<result property="udit_profit" column="udit_profit" />
+					<result property="udit_name" column="udit_name" />
+					<result property="udit_month" column="udit_month" />
 				</association>
 			</association>
 		</association>
-    </resultMap>  
-    
-
-<!-- 带查询条件统计查询 -->
-<select id="findAttentionMarkConditionResultMapCount" parameterType="Map" resultType="int">
-	select  count(1) from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
-  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id
-</select>
-
-<!-- 修改关注 -->
-<update id="updateAttentionMark"  parameterType="AttentionMark">
- update User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
-   on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id set 
-   u.u_name=#{u_name},u.u_creditnumber=#{u_creditnumber},u.u_creditdegree=#{u_creditdegree},u.u_tel=#{u_tel},
-    a.am_status=#{am_status},udt.udit_profit=#{udit_profit},udt.udit_name=#{udit_name},
-udt.udit_month=#{udit_month},udi.udi_money=#{udi_money},udi.udi_title=#{udi_title},
-udi.udi_refundway=#{udi_refundway},udi.udi_status=#{udi_status},udi.udi_weight=#{udi_weight}
- where a.am_id=#{am_id}
-</update> 
+	</resultMap>
 
 
-<!-- 删除关注    冻结关注 -->
-<delete id="delAttentionMark">
-delete from AttentionMark where am_id=#{am_id}
-</delete>
+	<!-- 带查询条件统计查询 -->
+	<select id="findAttentionMarkConditionResultMapCount"
+		parameterType="Map" resultType="int">
+		select count(1) from User u join AttentionMark a on u.u_id=a.u_id join
+		UserDebitIn udi
+		on udi.udi_id=a.udi_id join UserDebitInType udt on
+		udi.udi_type=udt.udit_id
+	</select>
+
+	<!-- 修改关注 -->
+	<update id="updateAttentionMark" parameterType="AttentionMark">
+		update User u join AttentionMark a on u.u_id=a.u_id join UserDebitIn udi
+		on udi.udi_id=a.udi_id join UserDebitInType udt on
+		udi.udi_type=udt.udit_id set
+		u.u_name=#{u_name},u.u_creditnumber=#{u_creditnumber},u.u_creditdegree=#{u_creditdegree},u.u_tel=#{u_tel},
+		a.am_status=#{am_status},udt.udit_profit=#{udit_profit},udt.udit_name=#{udit_name},
+		udt.udit_month=#{udit_month},udi.udi_money=#{udi_money},udi.udi_title=#{udi_title},
+		udi.udi_refundway=#{udi_refundway},udi.udi_status=#{udi_status},udi.udi_weight=#{udi_weight}
+		where a.am_id=#{am_id}
+	</update>
 
 
-<!-- 添加关注 -->
-<insert id="saveAttentionMark" parameterType="AttentionMark" useGeneratedKeys="true" keyProperty="vsid">
-insert into AttentionMark(am_status,u_id,udi_id) values(#{am_status},#{u_id},#{udi_id}) 
-</insert>
+	<!-- 删除关注 冻结关注 -->
+	<update id="delAttentionMark" parameterType="AttentionMark">
+		update AttentionMark set am_status=0 where am_id=#{am_id}
+		<!-- delete from AttentionMark where am_id=#{am_id} -->
+	</update>
 
-<!-- 用户个人显示自己的关注投标 -->
-<select id="findAllAttentionMarkByUser" parameterType="AttentionMark"   
-resultMap="findAllAttentionMarkWithUserDebitInResultMap">
-select  a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
-udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
-  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id where a.u_id = #{u_id}  <include refid="orderSql" /> <include refid="pageSql" /> 
-</select> 	
-	
-<!-- 		<resultMap type="User" id="findAttentionMarkWithUserDebitInByUserResultMap">
-        <id property="u_id" column="u_id"/>
-        <result property="u_id" column="u_id"/>
-        <result property="u_name" column="u_name"/>
-       	<result property="u_creditnumber" column="u_creditnumber"/>
-        <result property="u_creditdegree" column="u_creditdegree"/>
-        <result property="u_tel" column="u_tel"/>
-        
-       property表示集合类型属性名称，ofType表示集合中的对象是什么类型
-     		<association property="attentionMark"  javaType="AttentionMark">
-     		 <result property="am_id" column="am_id"/>
-			<result property="am_status" column="am_status" />
-				<association property="userDebitIn" javaType="UserDebitIn">
-				<result property="udi_id" column="udi_id"/>
-				<result property="udi_money" column="udi_money" />
-				<result property="udi_title" column="udi_title" />
-				<result property="udi_refundway" column="udi_refundway" />
-				<result property="udi_status" column="udi_status" />
-				<result property="udi_weight" column="udi_weight" />
-				<association property="userDebitInType" javaType="UserDebitInType">	
-				<result property="udt_id" column="udt_id"/>	
-				<result property="udit_profit" column="udit_profit" />
-				<result property="udit_name" column="udit_name" />
-				<result property="udit_month" column="udit_month" />
-				</association>
-			</association>
-		</association>
-    </resultMap>   -->
+	<!-- 添加关注 -->
+	<insert id="saveAttentionMark" parameterType="AttentionMark"
+		useGeneratedKeys="true" keyProperty="vsid">
+		insert into AttentionMark(am_status,u_id,udi_id)
+		values(#{am_status},#{u_id},#{udi_id})
+	</insert>
 
-<!-- 用户显示自己的关注投标的统计数 -->
-<select id="findAllAttentionMarkByUserCount" parameterType="Map" resultType="int">
-	select  count(1) from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
-  on  udi.udi_id=a.udi_id  join UserDebitInType udt on udi.udi_type=udt.udit_id where a.u_id=#{u_id}
-</select>
+	<!-- 用户个人显示自己的关注投标 -->
+	<select id="findAllAttentionMarkByUser" parameterType="AttentionMark"
+		resultMap="findAllAttentionMarkWithUserDebitInResultMap">
+		select
+		a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
+		udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight
+		from User u join AttentionMark a on u.u_id=a.u_id join UserDebitIn udi
+		on udi.udi_id=a.udi_id join UserDebitInType udt on
+		udi.udi_type=udt.udit_id where a.u_id = #{u_id} and am_status = 1
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+
+	<!-- <resultMap type="User" id="findAttentionMarkWithUserDebitInByUserResultMap"> 
+		<id property="u_id" column="u_id"/> <result property="u_id" column="u_id"/> 
+		<result property="u_name" column="u_name"/> <result property="u_creditnumber" 
+		column="u_creditnumber"/> <result property="u_creditdegree" column="u_creditdegree"/> 
+		<result property="u_tel" column="u_tel"/> property表示集合类型属性名称，ofType表示集合中的对象是什么类型 
+		<association property="attentionMark" javaType="AttentionMark"> <result property="am_id" 
+		column="am_id"/> <result property="am_status" column="am_status" /> <association 
+		property="userDebitIn" javaType="UserDebitIn"> <result property="udi_id" 
+		column="udi_id"/> <result property="udi_money" column="udi_money" /> <result 
+		property="udi_title" column="udi_title" /> <result property="udi_refundway" 
+		column="udi_refundway" /> <result property="udi_status" column="udi_status" 
+		/> <result property="udi_weight" column="udi_weight" /> <association property="userDebitInType" 
+		javaType="UserDebitInType"> <result property="udt_id" column="udt_id"/> <result 
+		property="udit_profit" column="udit_profit" /> <result property="udit_name" 
+		column="udit_name" /> <result property="udit_month" column="udit_month" /> 
+		</association> </association> </association> </resultMap> -->
+
+	<!-- 用户显示自己的关注投标的统计数 -->
+	<select id="findAllAttentionMarkByUserCount" parameterType="AttentionMark"
+		resultType="int">
+		select count(1) from User u join AttentionMark a on u.u_id=a.u_id join
+		UserDebitIn udi
+		on udi.udi_id=a.udi_id join UserDebitInType udt on
+		udi.udi_type=udt.udit_id where a.u_id=#{u_id}
+	</select>
 
 
-	
+
 
 
 

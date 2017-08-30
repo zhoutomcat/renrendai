@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -28,17 +29,19 @@ public class UserController {
 	private UserBiz userBiz;
 
 	@RequestMapping("/user/user_layout.action")
-	public void layout(User user, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws ServletException, IOException {
+	public void layout(User user, HttpServletRequest request, HttpSession session, HttpServletResponse response)
+			throws ServletException, IOException {
 		session.removeAttribute("user");
-		request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request, response);
+		request.getRequestDispatcher("../WEB-INF/pages/index.jsp").forward(request, response);
 	}
 
-	@RequestMapping("/user/user_login.action")
-	public JsonModel login(User user, HttpServletRequest request, HttpSession session) {
+	@RequestMapping("/user_login.action")
+	public JsonModel login(User user, HttpServletRequest request, HttpSession session, Map map) {
 		JsonModel jm = new JsonModel();
 		// 为什么有三个参数? 因为name，password是user对象中有的，且zccode是在类中没有的，所以要在request中取
 		// 另外rand是存在session中，所以还要Httpsession
-		String zccode = request.getParameter("zccode");
+		// String zccode = request.getParameter("zccode");
+		String zccode = request.getParameter("yanzhengma");
 		String rand = session.getAttribute("rand").toString();
 		if (!rand.equals(zccode)) {
 			jm.setCode(0);
@@ -47,14 +50,14 @@ public class UserController {
 			try {
 				user = userBiz.login(user);
 				if (user != null) {
-					if(user.getU_status()==1){
-					session.setAttribute("user", user);
-					// System.out.println("------------------" +
-					// session.getAttribute("user"));
-					jm.setCode(1);
-					user.setU_password(null); // 设为空后，密码就不会传到页面
-					jm.setObj(user);
-					}else{
+					if (user.getU_status() == 1) {
+						session.setAttribute("user", user);
+						// System.out.println("------------------" +
+						// session.getAttribute("user"));
+						jm.setCode(1);
+						user.setU_password(null); // 设为空后，密码就不会传到页面
+						jm.setObj(user);
+					} else {
 						jm.setCode(0);
 						jm.setMsg("您因为信誉度低,已经被禁止登录！");
 					}
@@ -70,25 +73,25 @@ public class UserController {
 		}
 		return jm;
 	}
-	
-	@RequestMapping("/forbidlogin.action")
-	public JsonModel forbidlogin(Integer  u_id,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		User user=new User();
-		user.setU_id(u_id);
-		 user.setU_status(0);
-		 System.out.println(user);
-		 boolean result=userBiz.updatestatus(user); 
-		 JsonModel jm=new JsonModel();
-		 if(result){
-		 jm.setCode(1);
-		 jm.setMsg("修改成功");
-		 }else{
-			 jm.setCode(0);
-			 jm.setMsg("修改失败");
-		 }
-		 return jm;
-	}
 
+	@RequestMapping("/forbidlogin.action")
+	public JsonModel forbidlogin(Integer u_id, HttpServletRequest request, HttpSession session)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		User user = new User();
+		user.setU_id(u_id);
+		user.setU_status(0);
+		System.out.println(user);
+		boolean result = userBiz.updatestatus(user);
+		JsonModel jm = new JsonModel();
+		if (result) {
+			jm.setCode(1);
+			jm.setMsg("修改成功");
+		} else {
+			jm.setCode(0);
+			jm.setMsg("修改失败");
+		}
+		return jm;
+	}
 
 	/**
 	 * 用户注册

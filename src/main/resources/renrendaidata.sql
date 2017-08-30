@@ -170,11 +170,18 @@ insert into perRefund(udi_id,pr_status,pr_money,pr_date) values(4,0,1000,1534284
 select * from perRefund
 -------------------------------------
 --关注投标表: 
+update AttentionMark set am_status=1 where am_id=9
 insert into AttentionMark(u_id,udi_id,am_time,am_status) values(4,1,1407855893,1);
 insert into AttentionMark(u_id,udi_id,am_time,am_status) values(3,1,1502584941 ,1);
 insert into AttentionMark(u_id,udi_id,am_time,am_status) values(2,1,1439355893,1);
 insert into AttentionMark(u_id,udi_id,am_time,am_status) values(1,2,1502584941 ,0);
+insert into AttentionMark(u_id,udi_id,am_time,am_status) values(1,3,1502584941 ,1);
 select * from AttentionMark;
+
+select count(1) from User u join AttentionMark a on u.u_id=a.u_id join
+		UserDebitIn udi
+		on udi.udi_id=a.udi_id join UserDebitInType udt on
+		udi.udi_type=udt.udit_id where a.u_id= 1 and a.am_status = 1
 --------------------------------------------------------------------
 --关注用户表: 
 insert into AttentionUser(u_id,u_idbyAttention,au_time,au_status) values(1,4,1407855893,1);
