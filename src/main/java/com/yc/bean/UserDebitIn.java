@@ -189,8 +189,14 @@ public class UserDebitIn extends CommonBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", u_id=" + u_id + ", udi_status="
-				+ udi_status + ", udi_type=" + udi_type + ", list=" + list + ", userDebitInType=" + userDebitInType
-				+ "]";
+		return "UserDebitIn [udi_id=" + udi_id + ", udi_title=" + udi_title + ", u_id=" + u_id + ", udi_money="
+				+ udi_money + ", udi_status=" + udi_status + ", udi_date=" + udi_date + ", udi_publishdate="
+				+ udi_publishdate + ", udi_refundrealitydate=" + udi_refundrealitydate + ", udi_use=" + udi_use
+				+ ", udi_refundway=" + udi_refundway + ", udi_type=" + udi_type + ", udi_weight=" + udi_weight
+				+ ", peopleCount=" + peopleCount + ", totalMoney=" + totalMoney + ", makeMoney=" + makeMoney
+				+ ", udi_checkstatus=" + udi_checkstatus + ", list=" + list + ", userDebitInType=" + userDebitInType
+				+ ", user=" + user + "]";
 	}
+
+
 }

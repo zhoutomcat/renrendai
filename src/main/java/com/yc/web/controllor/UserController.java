@@ -143,13 +143,55 @@ public class UserController {
 		}
 		return jm;
 	}
-
+	
+	/**
+	 * 禁止用户登录
+	 * @param u_id
+	 * @param request
+	 * @param session
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
 	@RequestMapping("/back/forbidlogin.action")
 	public JsonModel forbidlogin(Integer u_id, HttpServletRequest request, HttpSession session)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		User user = new User();
 		user.setU_id(u_id);
 		user.setU_status(0);
+		System.out.println(user);
+		boolean result = userBiz.updatestatus(user);
+		JsonModel jm = new JsonModel();
+		if (result) {
+			jm.setCode(1);
+			jm.setMsg("修改成功");
+		} else {
+			jm.setCode(0);
+			jm.setMsg("修改失败");
+		}
+		return jm;
+	}
+	
+	
+	/**
+	 * 允许用户登录
+	 * @param u_id
+	 * @param request
+	 * @param session
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/allowlogin.action")
+	public JsonModel allowlogin(Integer u_id, HttpServletRequest request, HttpSession session)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		User user = new User();
+		user.setU_id(u_id);
+		user.setU_status(1);
 		System.out.println(user);
 		boolean result = userBiz.updatestatus(user);
 		JsonModel jm = new JsonModel();
@@ -208,7 +250,7 @@ public class UserController {
 	 */
 
 	/**
-	 * 后台查询所有的用户
+	 * 后台查询所有的可用的用户
 	 * 
 	 * @param user
 	 * @param request
@@ -217,8 +259,8 @@ public class UserController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/back/findAllUser.action")
-	public JsonModel findAllUser(User user, HttpServletRequest request, HttpServletResponse resp, HttpSession session)
+	@RequestMapping("/back/findAllAllowUser.action")
+	public JsonModel findAllAllowUser(User user, HttpServletRequest request, HttpServletResponse resp, HttpSession session)
 			throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
@@ -226,13 +268,39 @@ public class UserController {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("pagesize", pagesize);
-		JsonModel jm = userBiz.searchUser(map);
-
+		JsonModel jm = userBiz.searchallowUser(map);
 		/*
 		 * Gson gson=new Gson(); Type jsonType=new TypeToken<JsonModel>(){
 		 * }.getType(); String jsonStr=gson.toJson(jm, jsonType);
 		 */ // jsonModel型是不需要转成gson型的
-
+		return jm;
+	}
+	
+	
+	/**
+	 * 后台查询所有的不可用的用户
+	 * 
+	 * @param user
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findAllForbidUser.action")
+	public JsonModel findAllForbidUser(User user, HttpServletRequest request, HttpServletResponse resp, HttpSession session)
+			throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = userBiz.searchforbidUser(map);
+		/*
+		 * Gson gson=new Gson(); Type jsonType=new TypeToken<JsonModel>(){
+		 * }.getType(); String jsonStr=gson.toJson(jm, jsonType);
+		 */ // jsonModel型是不需要转成gson型的
 		return jm;
 	}
 

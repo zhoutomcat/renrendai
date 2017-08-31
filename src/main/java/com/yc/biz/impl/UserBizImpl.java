@@ -63,16 +63,27 @@ public class UserBizImpl implements UserBiz {
 	}
 
 	/**
-	 * 找到所有的用户   查所有
+	 * 找到所有的可用的用户   查所有
 	 */
 	@Override
 	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
-	public JsonModel searchUser(Map<String, Integer> map) {
-/*			User user=new User();
-			user.setU_password(Encrypt.md5AndSha(user.getU_password()));*/
-			List<User> list=baseDao.findAll(User.class, "findUserCondition", map);
-			int total=(int) baseDao.getFunc(User.class, "findUserConditionCount",map);
-			
+	public JsonModel searchallowUser(Map<String, Integer> map) {
+			List<User> list=baseDao.findAll(User.class, "findUserallowloginCondition", map);
+			int total=(int) baseDao.getFunc(User.class, "findUserallowloginConditionCount",map);
+			JsonModel<User> jsonModel=new JsonModel<User>();
+			jsonModel.setRows(list);
+			jsonModel.setTotal(total);
+			return jsonModel;
+		}
+	
+	/**
+	 * 找到所有的不可用的用户   查所有
+	 */
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	public JsonModel searchforbidUser(Map<String, Integer> map) {
+			List<User> list=baseDao.findAll(User.class, "findUserforbidloginCondition", map);
+			int total=(int) baseDao.getFunc(User.class, "findUserforbidloginConditionCount",map);
 			JsonModel<User> jsonModel=new JsonModel<User>();
 			jsonModel.setRows(list);
 			jsonModel.setTotal(total);

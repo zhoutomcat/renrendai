@@ -7,7 +7,7 @@
 		var userFlag;
 		$(function(){     //函数是等页面一执行完就会调用的,如果不写函数，就要把js代码放在页面下面
 			var userobject=$('#manUserTable').edatagrid({
-				url : 'back/findAllUser.action', //查询时加载的URL
+				url : 'back/findAllAllowUser.action', //查询时加载的URL
 				loadMsg:'数据加载中',
 				pagination:true,  //显示分页
 				pagesize: 10,  //默认分页的条数
@@ -107,9 +107,11 @@
 					width : 30,
 					align : 'center',
 					formatter : function formatOper(val,row, index) {
+						if(row.u_status==1){
 						var str = '<a href="javascript:void(0)" onclick="forbidlogin('+ index + ')">禁止登录</a>'
 						/* str += ' <a href="javascript:void(0)" onclick="deleteTable('+ index + ')">删除</a> '; */
 						return str;
+						}
 					},
 				}]],
 				  toolbar:[{
