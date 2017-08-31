@@ -99,15 +99,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where u_id=#{u_id}
 	</update>
 
-
 	<!-- 删除用户 冻结用户 -->
-	<delete id="deluser">
-		delete from user where u_id=#{u_id}
+	<delete id="deluser" parameterType="User">
+		delete from user where
+		u_id=#{u_id}
 	</delete>
 
 	<!-- 禁止用户登录 -->
 	<update id="updateUstatus" parameterType="User">
-	update  user set u_status=#{u_status} where u_id=#{u_id}
+		update user set
+		u_status=#{u_status} where u_id=#{u_id}
+	</update>
+
+	<!-- 查询用户的账户余额 -->
+	<select id="findUserFundInfoByUser" resultType="UserFund"
+		parameterType="User">
+		select * from UserFund where u_id = #{u_id}
+	</select>
+
+	<!-- 为用户账户充值 -->
+	<update id="chongzhiUserFund" parameterType="java.util.Map">
+		update userFund set
+		uf_balance = uf_balance + #{balance} ,uf_available = uf_available +
+		#{balance} where u_id = #{u_id}
+	</update>
+
+	<!-- 从用户账户提现 -->
+	<update id="withdrawUserFund" parameterType="java.util.Map">
+		update userFund set
+		uf_balance = uf_balance - #{balance} ,uf_available = uf_available -
+		#{balance} where u_id = #{u_id}
 	</update>
 
 

@@ -7,13 +7,6 @@
 			"text" : "借贷信息管理",
 			"state" : "closed",
 			"children" : [
-/* 					{
-						"text" : "新增类别",
-						"attributes" : {
-							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/newstype/addType.jsp' />"
-						}
-					}, */
 					{
 						"text" : "借贷信息维护",
 						"attributes" : {
@@ -27,13 +20,6 @@
 			"text" : "放贷信息管理",
 			"state" : "closed",
 			"children" : [
-/* 					{
-						"text" : "新增新闻",
-						"attributes" : {
-							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitOut/addNews.jsp' />"
-						}
-					}, */
 					{
 						"text" : "放贷信息维护",
 						"attributes" : {
@@ -75,34 +61,10 @@
 				}
 			} ] */
 		} ];
-
 		showTree("userDebitInTree", treeDatauserDebitInTree);
 		showTree("userDebitOutTree", treeDatauserDebitOutTree);
 		showTree("userTree", treeDataUser);
 		showTree("AttentionTypeTree", DataAttentions);
-
-		/* $("#newsTypeTree").tree({
-			data:treeData,   //将这里改成:   url: right.action    这个地址会得到一个上面  treeDate这样的字符串
-			onClick: function(node){
-				//alert(node.text);
-				 if( node.attributes){
-					//alert(node.attribute.url);
-					openTab( node); 
-				}
-			}
-		});
-
-		
-		$("#newsTree").tree({
-		data:treeDataNews,   //将这里改成:   url: right.action    这个地址会得到一个上面  treeDate这样的字符串
-		onClick: function(node){
-			//alert(node.text);
-			 if( node.attributes){
-				//alert(node.attribute.url);
-				openTab( node); 
-			}
-		}
-		}); */
 	});
 
 	//显示树

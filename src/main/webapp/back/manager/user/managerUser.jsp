@@ -78,7 +78,8 @@
 					align:'center',
 					/* sortable:true,editor:{type:"text",options:{required:true}}, */
 					formatter:function(subscribe_time){
-						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
+						// substr(0,17)修改成substr(0,20)  精确到秒
+						var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,20)
 						    return  tt;  
 						} 
 				},{

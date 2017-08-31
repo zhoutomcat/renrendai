@@ -1,18 +1,19 @@
 package com.yc.biz.impl;
 
 
+import java.util.HashMap;
 import java.util.List;
-
 import java.util.Map;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.yc.bean.User;
+import com.yc.bean.UserFund;
 import com.yc.biz.UserBiz;
 import com.yc.dao.BaseDao;
 import com.yc.utils.Encrypt;
@@ -103,6 +104,25 @@ public class UserBizImpl implements UserBiz {
 	public boolean updatestatus(User user) {
 		baseDao.update(user, "updateUstatus");
 		return true;
+	}
+
+	//查询用户的账户
+	@Override
+	public UserFund findUserFundInfoByUser(User user) {
+		UserFund userFund = (UserFund) baseDao.findOne(user, "findUserFundInfoByUser");
+		return userFund;
+	}
+
+
+	@Override
+	public void chongzhiUserFund(Map<String, Integer> map) {
+		baseDao.update(User.class, "chongzhiUserFund", map);
+	}
+
+
+	@Override
+	public void withdrawUserFund(Map<String, Integer> map) {
+		baseDao.update(User.class, "withdrawUserFund", map);
 	}
 	
 	

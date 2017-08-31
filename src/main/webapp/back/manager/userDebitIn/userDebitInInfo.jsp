@@ -167,8 +167,6 @@
 						return row.userDebitIn.userDebitInType.udit_profit;
 					}
 				}
-				
-
 				]],
 			
 			});

@@ -31,7 +31,7 @@ create table UserFund(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null
 )
-
+select * from UserFund
 drop table Userfund
 
 --借贷表
@@ -246,6 +246,7 @@ create table PerRefund(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
+select * from PerRefund
 drop table  PerRefund
 
 --关注投标表: 
@@ -332,6 +333,8 @@ create table UserMessage(
 	   temp5 varchar(100) default null	   
 );
 drop table UserMessage
+
+select * from UserMessage
 
 insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_nowPlace,um_workinfo,um_incomeinfo,um_description, bi_idCard) values(1,'黄凌翔',439004199611206214,'男','21','湖南省岳阳市汨罗市','yc带头人','8000','12112',13232342442535);  
 select * from UserMessage

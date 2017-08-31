@@ -20,7 +20,7 @@
 							var str = '<dl class="fn-left   text-center   border-right-gray">'
 									+ '	<dd>'
 									+ '<em class="number">'
-									+ (data.totalMoney/10000)
+									+ (data.totalMoney / 10000)
 									+ '</em><em class="unit">万元</em>'
 									+ '	</dd>'
 									+ '<dt class="text">加入U计划</dt>'
@@ -28,7 +28,7 @@
 									+ '<dl class="fn-left  text-center   border-right-gray">'
 									+ '<dd>'
 									+ '	<em class="number">'
-									+ (data.makeMoney/10000)
+									+ (data.makeMoney / 10000)
 									+ '</em><em class="unit">万元</em>'
 									+ '</dd>'
 									+ '<dt class="text">为用户赚取</dt>'
@@ -103,7 +103,8 @@
 														+ ' <td class="status" id="uplanStatus" data-reactid=".1.1.0.1.$0.5">'
 														/* 	+ checkStatus(item.udi_status) */
 														+ status
-														+ '</td> ' + ' </tr>';
+														+ '</td> '
+														+ ' </tr>';
 												$("#uplanHistory").html(
 														$("#uplanHistory")
 																.html()
@@ -216,25 +217,13 @@
 								<td class="status" data-reactid=".1.1.0.1.$0.5">等待开放加入</td>
 							</tr> -->
 						</tbody>
-
 					</table>
-					<br />
-					<br />
+					<br /> <br />
 					<center>
 						<div id="pagebeandiv"></div>
 					</center>
-					<br />
-					<br />
+					<br /> <br />
 				</div>
-				<!-- <div class="ui-pagination" data-reactid=".1.2">
-					<ul class="pagination" data-reactid=".1.2.0">
-						<li class="previous disabled" data-reactid=".1.2.0.0"><a data-reactid=".1.2.0.0.0">上一页</a></li>
-						<li class="active" data-reactid=".1.2.0.1:$key0/=10"><a selected=""
-							data-reactid=".1.2.0.1:$key0/=10.0">1</a></li>
-						<li data-reactid=".1.2.0.1:$key1/=10"><a data-reactid=".1.2.0.1:$key1/=10.0">2</a></li>
-						<li class="next" data-reactid=".1.2.0.2"><a data-reactid=".1.2.0.2.0">下一页</a></li>
-					</ul>
-				</div> -->
 				<div class="list-loading hide" data-reactid=".1.3"></div>
 			</div>
 		</div>

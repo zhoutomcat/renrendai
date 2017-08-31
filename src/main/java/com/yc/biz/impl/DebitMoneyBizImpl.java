@@ -35,8 +35,4 @@ public class DebitMoneyBizImpl implements DebitMoneyBiz {
 		baseDao.save(um, "addDebitMoney");
 		return true;
 	}
-
-
-
-	
 }

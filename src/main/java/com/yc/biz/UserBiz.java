@@ -3,6 +3,7 @@ package com.yc.biz;
 import java.util.Map;
 
 import com.yc.bean.User;
+import com.yc.bean.UserFund;
 import com.yc.web.model.JsonModel;
 
 public interface UserBiz {
@@ -49,6 +50,17 @@ public interface UserBiz {
 	 */
 	public boolean delUser(User user);
 
+	//	<!-- 禁止用户登录 -->
 	public boolean updatestatus(User user);
+	
+	//查询用户的账户
+	public UserFund findUserFundInfoByUser(User user);
+	
+	//充值用户账户
+	public void chongzhiUserFund(Map<String, Integer> map);
+	
+	//从用户账户提现
+	public void withdrawUserFund(Map<String, Integer> map);
+	
 
 }
