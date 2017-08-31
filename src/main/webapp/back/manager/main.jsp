@@ -4,9 +4,16 @@
 <script type="text/javascript">
 	$(function() {
 		var treeDatauserDebitInTree = [ {
-			"text" : "借贷信息管理",
+			"text" : "用户借贷信息管理",
 			"state" : "closed",
 			"children" : [
+ 					{
+						"text" : "用户上传资料维护",
+						"attributes" : {
+							//"url":"back/manager/newstype/addType.jsp"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userMessageInfo.jsp' />"
+						}
+					}, 
 					{
 						"text" : "借贷信息维护",
 						"attributes" : {
@@ -109,6 +116,22 @@
 <body class="easyui-layout  layout panel-noscroll">
 	<div data-options="region:'north' " style="height: 80px;">
 		<img width="337px" height="70px" src="images/yclogo.png" />
+		<div style="position: absolute; right: 0px; bottom: 5px;">
+			<a href="javascript:void(0);" class="easyui-menubutton"
+				data-options="menu:'#layout_north_pfMenu',iconCls:'icon-ok'">更换皮肤</a>
+				</div>
+			<div id="layout_north_pfMenu" style="width: 120px; display: none;">
+<!-- 			<div onclick="changeTheme('default');">默认皮肤</div>
+			<div onclick="changeTheme('gray');">灰色惬意</div>
+			<div onclick="changeTheme('metro-green');">现代绿色</div>
+			<div onclick="changeTheme('metro-orange');">现代橙色</div>
+			<div onclick="changeTheme('metro-red');">深红沐浴</div> -->
+			<div>默认皮肤</div>
+			<div>灰色惬意</div>
+			<div>现代绿色</div>
+			<div>现代橙色</div>
+			<div>深红沐浴</div>
+		</div>
 	</div>
 	<div data-options="region:'south',split:true" style="height: 50px;">
 		<center>衡阳源辰信息科技有限公司</center>

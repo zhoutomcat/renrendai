@@ -19,17 +19,18 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private long udi_publishdate;
 	private long udi_refundrealitydate;
 	private String udi_use;
-	private Integer udi_refundway;
+	private Integer udi_refundway; // 还贷方式
 	private Integer udi_type;
 	private Integer udi_weight; // 权重
 
 	private Integer peopleCount;// 加入的人数
 	private Double totalMoney; // 放贷的钱数
 	private Double makeMoney; // 累积利息收益
+	private Integer udi_checkstatus; // 审核用户信息 判断用户信息真实性 默认为0 审核通过修改为1 在前台显示
 
 	private List<UserDebitInType> list = new ArrayList<>();
 	// 用于关注用户投标
-	//用于关注用户投标     查找借贷用户的信息
+	// 用于关注用户投标 查找借贷用户的信息
 	private UserDebitInType userDebitInType;
 	// 用于后台放贷表的显示
 	private User user;
@@ -176,6 +177,14 @@ public class UserDebitIn extends CommonBean implements Serializable {
 
 	public void setUdi_refundway(Integer udi_refundway) {
 		this.udi_refundway = udi_refundway;
+	}
+
+	public Integer getUdi_checkstatus() {
+		return udi_checkstatus;
+	}
+
+	public void setUdi_checkstatus(Integer udi_checkstatus) {
+		this.udi_checkstatus = udi_checkstatus;
 	}
 
 	@Override

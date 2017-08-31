@@ -118,8 +118,18 @@ public class UserController {
 						user.setU_password(null); // 设为空后，密码就不会传到页面
 						jm.setObj(user);
 					} else {
-						jm.setCode(0);
-						jm.setMsg("您因为信誉度低,已经被禁止登录！");
+						if (user.getU_status() == 1) {
+							session.setAttribute("user", user);
+							// System.out.println("------------------" +
+							// session.getAttribute("user"));
+							jm.setCode(1);
+							user.setU_password(null); // 设为空后，密码就不会传到页面
+							user.setReu_password(null);
+							jm.setObj(user);
+						} else {
+							jm.setCode(0);
+							jm.setMsg("您因为信誉度低,已经被禁止登录！");
+						}
 					}
 				} else {
 					jm.setCode(0);
@@ -134,7 +144,7 @@ public class UserController {
 		return jm;
 	}
 
-	@RequestMapping("/forbidlogin.action")
+	@RequestMapping("/back/forbidlogin.action")
 	public JsonModel forbidlogin(Integer u_id, HttpServletRequest request, HttpSession session)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		User user = new User();

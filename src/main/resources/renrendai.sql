@@ -52,15 +52,22 @@ create table UserDebitIn(
        udi_refundway		int, 	     
        udi_type          int,            
        udi_weight   int  default 0,       
-	   temp1 varchar(100) default null,
+	   udi_checkstatus int default 0,    --审核状态     默认为0   审核通过以后修改为1   只有通过审核才能显示在前台
 	   temp2 varchar(100) default null,
-	   temp3 varchar(100) default null	   
-)       --还款方式       --借贷类型              --	修改 --权重越大     越排在前面  
+	   temp3 varchar(100) default null		   
+) --修改字段名称和属性：
+-- 将test字段改为test1
+-- ALTER TABLE 表名 CHANGE 原字段名 新字段名 字段类型 约束条件
+ALTER TABLE user10 CHANGE test test1 CHAR(32) NOT NULL DEFAULT '123';
+
+alter table UserDebitIn change temp1 udi_checkstatus int  default 0; 
+--还款方式       --借贷类型              --	修改 --权重越大     越排在前面  
 
 alter table UserDebitIn set udi_status=0 where udi_id = 5
-
 drop table UserDebitIn 
 select * from UserDebitIn
+delete from UserDebitIn where udi_id=5 
+update userdebitIn set udi_checkstatus=0 where udi_status=1
 
 select udit_profit,udit_month from UserDebitInType;
 
@@ -339,6 +346,7 @@ select * from UserMessage
 insert into UserMessage(u_id,um_reallyName,um_idCard,um_sex,um_age,um_nowPlace,um_workinfo,um_incomeinfo,um_description, bi_idCard) values(1,'黄凌翔',439004199611206214,'男','21','湖南省岳阳市汨罗市','yc带头人','8000','12112',13232342442535);  
 select * from UserMessage
 delete from UserMessage where um_id=2 
+update userMessage set um_nowPlace='湖南省岳阳市' where um_reallyName='张三'
 
 --银行卡信息表
 		--银行卡持有人姓名	--银行卡号--用户id    外键约束--银行卡状态（是否在用）   0表示不可用  1表示可用
@@ -437,6 +445,7 @@ select * from user
 select * from UserDebitInType
 
 select * from userMessage
+delete from usermessage where um_id=5
 
   
 

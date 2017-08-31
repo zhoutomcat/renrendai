@@ -106,4 +106,10 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 		return true;
 	}
 
+	@Override
+	public boolean updateUserDebitInCheckStatus(UserDebitIn udi) {
+		baseDao.update(udi, "updateUserDebitInCheckStatus");
+		return true;
+	}
+
 }

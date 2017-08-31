@@ -62,7 +62,7 @@ $(function(){
 										<option value="${userDebitInType.id }" >${userDebitInType.udi_refundway}</option>				
 								</c:forEach>
 								</select>  --%>
-								<input type="text" name=" udi_refundway" value="月还贷"  id="House_add_action_floorage" class="text" />
+								<input type="text" name=" udi_refundway" value="1"  id="House_add_action_floorage" class="text" />
 							</td>
 						</tr>
  						<tr>

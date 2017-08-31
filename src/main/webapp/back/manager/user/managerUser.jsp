@@ -11,7 +11,7 @@
 				loadMsg:'数据加载中',
 				pagination:true,  //显示分页
 				pagesize: 10,  //默认分页的条数
-				pageList:  [3,5,10,15,20,30,50],  //可选分页数
+				pageList:  [5,10,15,20,30,50],  //可选分页数
 				fitColumns: true,  //自适应列
 				fit : true,  //自动补全
 				//idField : "aid",   //标识，会记录我们选中的一行的id,不一定是id,通常都是主键
@@ -88,6 +88,18 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
+				 	/*formatter:function(row){
+						var status="";
+						if(row.u_status==1){
+							status="账号可以使用";
+						}
+						if(row.u_status==0){
+							status="账号被禁用";
+						}else{
+							status="账号可以使用";
+						}	
+						return status;
+						}  */		
 				},
 				{
 					field : '_operate',
@@ -196,7 +208,7 @@
 			$('#manUserTable').datagrid('selectRow', index);//关键在这里
 			var row = $('#manUserTable').datagrid('getSelected');
 			$.ajax({
-				 url : "forbidlogin.action", 
+				 url : "back/forbidlogin.action", 
 				type : "POST",
 				data : "u_id=" + row.u_id,
 				dataType : "JSON",

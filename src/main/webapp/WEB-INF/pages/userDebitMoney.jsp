@@ -54,7 +54,7 @@ $(function(){
 						<tr>
 							<td class="field">居住地地址：</td>
 							<td>
-								<input type="text" name="um_nowPlace" value="居住地地址"  id="House_add_action_floorage" class="text" />
+								<input type="text" name="um_nowPlace" value="湖南省岳阳市"  id="House_add_action_floorage" class="text" />
 							</td>
 						</tr>
 						<tr>
@@ -113,12 +113,6 @@ $(function(){
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
 
 <%@ include file="bottom.jsp"%>
 

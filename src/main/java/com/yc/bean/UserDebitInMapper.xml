@@ -178,7 +178,7 @@ select * from user u join UserDebitIn udi on u.u_id=udi.u_id
 join  UserDebitInType udt on udi.udi_type=udt.udit_id   <include refid="orderSql" /> <include refid="pageSql" /> 
 </select> 
 
-
+	<!-- 查找所有的借贷信息统计 -->
 	<select id="findAllUserDebitInResultMapCount" parameterType="Map"
 		resultType="int">
 select count(distinct(u.u_id)) from user u join UserDebitIn udi on u.u_id=udi.u_id  
@@ -204,6 +204,7 @@ join  UserDebitInType udt on udi.udi_type=udt.udit_id
 				<result property="udi_publishdate" column="udi_publishdate" />
 				<result property="udi_date" column="udi_date" />
 				<result property="udi_refundrealitydate" column="udi_refundrealitydate" />
+				<result property="udi_checkstatus" column="udi_checkstatus" />
       			<association property="userDebitInType" javaType="UserDebitInType">	
         		<result property="udit_id" column="udit_id"/>	
         		<result property="udit_month" column="udit_month"/>
@@ -218,6 +219,12 @@ join  UserDebitInType udt on udi.udi_type=udt.udit_id
          insert into UserDebitIn(udi_title,u_id,udi_money,udi_status,udi_publishdate,udi_date,udi_refundrealitydate,udi_use,udi_refundway,udi_type)  
     	values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_use},#{udi_refundway},#{udi_type})
     </insert>
+    
+    
+    <!-- 修改借贷用户审核状态信息 -->
+    <update id="updateUserDebitInCheckStatus" parameterType="UserDebitIn">
+    	update UserDebitIn set udi_checkstatus=#{udi_checkstatus} where udi_id=#{udi_id}
+    </update>
 
 
     

@@ -50,7 +50,11 @@ public interface UserBiz {
 	 */
 	public boolean delUser(User user);
 
-	//	<!-- 禁止用户登录 -->
+	/**
+	 * 修改用户状态  禁止用户登录
+	 * @param user
+	 * @return
+	 */
 	public boolean updatestatus(User user);
 	
 	//查询用户的账户
