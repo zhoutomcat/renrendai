@@ -28,6 +28,7 @@ insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(2,0.00,0.00,
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(3,0.00,0.00,0.00);
 insert into userFund(u_id,uf_balance,uf_available,uf_freeze) values(4,0.00,0.00,0.00);
 select * from userFund;
+update userFund set uf_balance = uf_balance + 1000 ,uf_available = uf_available + 1000
 commit;
 
 ------------------------------------------

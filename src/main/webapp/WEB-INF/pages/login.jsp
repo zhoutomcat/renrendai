@@ -35,12 +35,12 @@
 						</tr>
 						<tr>
 							<td class="field">用 户 名：</td>
-							<td><input type="text" name="u_name" value="" id="User_login_action_username"
+							<td><input type="text" name="u_name" value="a" id="User_login_action_username"
 									class="text" required="true" /></td>
 						</tr>
 						<tr>
 							<td class="field">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
-							<td><input type="password" name="u_password" id="User_login_action_password" class="text"
+							<td><input type="password" value="a" name="u_password" id="User_login_action_password" class="text"
 									required="true" /></td>
 						</tr>
 						<tr>

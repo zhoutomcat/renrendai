@@ -139,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(1) from User u join AttentionMark a on u.u_id=a.u_id join
 		UserDebitIn udi
 		on udi.udi_id=a.udi_id join UserDebitInType udt on
-		udi.udi_type=udt.udit_id where a.u_id=#{u_id}
+		udi.udi_type=udt.udit_id where a.u_id=#{u_id} and a.am_status = 1
 	</select>
 
 

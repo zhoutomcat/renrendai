@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yc.bean.User;
+import com.yc.bean.UserFund;
 import com.yc.biz.UserBiz;
 import com.yc.utils.RequestUtil;
 import com.yc.web.model.JsonModel;
@@ -28,6 +29,64 @@ public class UserController {
 	@Resource(name = "userBizImpl")
 	private UserBiz userBiz;
 
+	// 充值用户账户
+	@RequestMapping("/user/withdrawUserFund.action")
+	public JsonModel withdrawUserFund(HttpServletRequest request, HttpSession session, HttpServletResponse response)
+			throws ServletException, IOException {
+		JsonModel jm = new JsonModel();
+		User user = (User) session.getAttribute("user");
+		int money = Integer.parseInt(request.getParameter("money").toString());
+		try {
+			Map<String, Integer> map = new HashMap<>();
+			map.put("balance", money);
+			map.put("u_id", user.getU_id());
+			userBiz.withdrawUserFund(map);
+			jm.setCode(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+		}
+		return jm;
+	}
+
+	// 充值用户账户
+	@RequestMapping("/user/chongzhiUserFund.action")
+	public JsonModel chongzhiUserFund(HttpServletRequest request, HttpSession session, HttpServletResponse response)
+			throws ServletException, IOException {
+		JsonModel jm = new JsonModel();
+		User user = (User) session.getAttribute("user");
+		int money = Integer.parseInt(request.getParameter("money").toString());
+		try {
+			Map<String, Integer> map = new HashMap<>();
+			map.put("balance", money);
+			map.put("u_id", user.getU_id());
+			userBiz.chongzhiUserFund(map);
+			jm.setCode(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+		}
+		return jm;
+	}
+
+	// 查询用户账户余额
+	@RequestMapping("/user/findUserFundInfoByUser.action")
+	public JsonModel findUserFundInfoByUser(HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) throws ServletException, IOException {
+		JsonModel jm = new JsonModel();
+		User user = (User) session.getAttribute("user");
+		UserFund userFund = null;
+		try {
+			userFund = userBiz.findUserFundInfoByUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		jm.setObj(userFund);
+		jm.setCode(1);
+		return jm;
+	}
+
+	// 用户退出
 	@RequestMapping("/user/user_layout.action")
 	public void layout(User user, HttpServletRequest request, HttpSession session, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -35,6 +94,7 @@ public class UserController {
 		request.getRequestDispatcher("../WEB-INF/pages/index.jsp").forward(request, response);
 	}
 
+	// 用户登录
 	@RequestMapping("/user_login.action")
 	public JsonModel login(User user, HttpServletRequest request, HttpSession session, Map map) {
 		JsonModel jm = new JsonModel();

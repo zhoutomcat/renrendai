@@ -11,7 +11,7 @@
 			<ul class="site-nav">
 				<li class="channel-item "><a href="index.action">首页</a></li>
 				<li class="channel-item "><a href="toUplan.action">U计划</a></li>
-				<li class="channel-item "><a href="#">优选计划</a></li>
+				<li class="channel-item "><a href="toUserFund.action">我的账户</a></li>
 				<li class="channel-item active-channel"><a href="#">薪计划</a></li>
 				<li class="channel-item "><a href="#">债权</a></li>
 				<li class="channel-item "><a href="toAttentionMark.action">关注列表</a></li>
