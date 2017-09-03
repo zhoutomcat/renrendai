@@ -14,7 +14,6 @@ public class IndexController {
 		return "index";
 	}
 	
-	
 	/**
 	 * 跳转到提现页面
 	 * 

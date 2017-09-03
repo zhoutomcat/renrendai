@@ -19,8 +19,16 @@ public class UserDebitOut implements Serializable {
 	private UserDebitIn userDebitIn;
 	
 	
+	private Double udi_money;
 	
 	
+	
+	public Double getUdi_money() {
+		return udi_money;
+	}
+	public void setUdi_money(Double udi_money) {
+		this.udi_money = udi_money;
+	}
 	public UserDebitIn getUserDebitIn() {
 		return userDebitIn;
 	}
@@ -79,7 +87,7 @@ public class UserDebitOut implements Serializable {
 	public String toString() {
 		return "UserDebitOut [udo_id=" + udo_id + ", udi_id=" + udi_id + ", u_id=" + u_id + ", udo_startdate="
 				+ udo_startdate + ", udo_date=" + udo_date + ", udo_money=" + udo_money + ", udo_type=" + udo_type
-				+ ", totalMoney=" + totalMoney + ", userDebitIn=" + userDebitIn + "]";
+				+ ", totalMoney=" + totalMoney + ", userDebitIn=" + userDebitIn + ", udi_money=" + udi_money + "]";
 	}
 
 	

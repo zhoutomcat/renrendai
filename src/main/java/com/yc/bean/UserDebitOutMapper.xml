@@ -71,12 +71,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select udi_id from UserDebitIn,UserDebitInType where
 		udi_type = udit_id and udit_id = #{udit_id}
 	</select>
-
+	<!-- 添加放贷信息 -->
 	<insert id="addUplanUserDebitOut" parameterType="java.util.Map">
 		insert into
 		UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money)
 		values(
 		#{udi_id} , #{u_id} , #{udo_startdate} , #{udo_date},#{udo_money})
 	</insert>
+
+	<!-- 查询还可以放多少贷(例如查询u计划还可以放多少款) 查询放贷的金额 -->
+	<select id="findDebitOutBalance" resultType="UserDebitOut"
+		parameterType="java.util.Map">
+		select sum(udo_money) as totalMoney,udi_money from
+		UserDebitOut udo
+		left join UserDebitIn udi on udo.udi_id = udi.udi_id
+		where udi.udi_type
+		= #{udit_id}
+	</select>
+
+	<!-- 筹款达到数目之后修改标的状态   由状态1 -》》2 -->
+	<update id="updateDebitOutStatus" parameterType="java.util.Map">
+		update UserDebitIn set udi_status = 2 where udi_type = #{udit_id}
+	</update>
+
 
 </mapper>	

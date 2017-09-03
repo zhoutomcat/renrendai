@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="findSanbiaoHistoryResultMap" type="UserDebitIn">
 		<id property="udi_id" column="udi_id" />
 		<result property="udi_title" column="udi_title" />
+		<result property="udi_type" column="udi_type" />
 		<result property="totalMoney" column="totalMoney" />
 		<result property="udi_money" column="udi_money" />
 		<result property="udi_status" column="udi_status" />
@@ -37,12 +38,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findSanbiaoHistory" resultMap="findSanbiaoHistoryResultMap"
 		parameterType="UserDebitIn">
 		select a.*,b.totalMoney from (select
-		udi_id,udi_title,udi_money,udit_profit,udit_month,udi_status
+		udi_id,udi_type,udi_title,udi_money,udit_profit,udit_month,udi_status
 		from
 		(
 		(select
 		udi_id,udi_type,udi_title,udi_status,udi_money
-		from UserDebitIn
+		from
+		UserDebitIn
 		group by udi_type
 		)a left join
 		(select
@@ -53,7 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) where udi_title !=
 		'U计划'
 		)a left join (
-		select udi_id,sum(udo_money) as totalMoney from
+		select
+		udi_id,sum(udo_money) as totalMoney from
 		UserDebitOut group by udi_id
 		)b on a.udi_id = b.udi_id
 		<include refid="orderSql" />
@@ -105,16 +108,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		( (select
 		udi_id,udi_type,udi_title,udi_status,udi_money
 		from UserDebitIn
-		group by udi_type
+		group by
+		udi_type
 		)a left join
 		(select
 		udit_id,udit_profit,udit_month
-		from UserDebitInType
+		from
+		UserDebitInType
 		)b on
 		b.udit_id=a.udi_type
 		) where udi_title = 'U计划'
-		)a left join (
-		select udi_id,sum(udo_money) as totalMoney,count(udi_id) peopleCount from
+		)a
+		left join (
+		select udi_id,sum(udo_money) as totalMoney,count(udi_id)
+		peopleCount from
 		UserDebitOut group by udi_id
 		)b on a.udi_id = b.udi_id
 		<include refid="orderSql" />
@@ -169,61 +176,85 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,udi_money,udit_profit,udit_month from UserDebitIn,UserDebitInType
 		where udit_id=udi_type
 	</select>
-	
-	
-	
-	<!-- 带查询条件，分页条件 排序条件的查询 -->
-<select id="findAllUserDebitInunCheckResultMap"  parameterType="UserDebitIn"    resultMap="findUserDebitInResultMap">
-select * from user u join UserDebitIn udi on u.u_id=udi.u_id  
-join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=0  <include refid="orderSql" /> <include refid="pageSql" /> 
-</select> 
 
-	<!-- 查找所有的未审核借贷信息统计 -->
-	<select id="findAllUserDebitInunCheckResultMapCount" parameterType="Map"
-		resultType="int">
-select count(distinct(u.u_id)) from user u join UserDebitIn udi on u.u_id=udi.u_id  
-join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=0 
+
+
+	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findAllUserDebitInResultMap" parameterType="UserDebitIn"
+		resultMap="findUserDebitInResultMap">
+		select * from user u join UserDebitIn udi on u.u_id=udi.u_id
+		join
+		UserDebitInType udt on udi.udi_type=udt.udit_id
+		<include refid="orderSql" />
+		<include refid="pageSql" />
 	</select>
-	
-		<!-- 带查询条件，分页条件 排序条件的查询 -->
-<select id="findAllUserDebitInCheckResultMap"  parameterType="UserDebitIn"    resultMap="findUserDebitInResultMap">
-select * from user u join UserDebitIn udi on u.u_id=udi.u_id  
-join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=1  <include refid="orderSql" /> <include refid="pageSql" /> 
-</select> 
+	<select id="findAllUserDebitInunCheckResultMap" parameterType="UserDebitIn"
+		resultMap="findUserDebitInResultMap">
+		select * from user u join UserDebitIn udi on u.u_id=udi.u_id
+		join
+		UserDebitInType udt on udi.udi_type=udt.udit_id where
+		udi.udi_checkstatus=0
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 查找所有的未审核借贷信息统计 -->
+	<select id="findAllUserDebitInunCheckResultMapCount"
+		parameterType="Map" resultType="int">
+		select count(distinct(u.u_id)) from
+		user u join UserDebitIn udi on
+		u.u_id=udi.u_id
+		join UserDebitInType udt
+		on udi.udi_type=udt.udit_id where
+		udi.udi_checkstatus=0
+	</select>
+
+	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findAllUserDebitInCheckResultMap" parameterType="UserDebitIn"
+		resultMap="findUserDebitInResultMap">
+		select * from user u join UserDebitIn udi on u.u_id=udi.u_id
+		join
+		UserDebitInType udt on udi.udi_type=udt.udit_id where
+		udi.udi_checkstatus=1
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
 
 	<!-- 查找所有的已审核借贷信息统计 -->
-	<select id="findAllUserDebitInCheckResultMapCount" parameterType="Map"
-		resultType="int">
-select count(distinct(u.u_id)) from user u join UserDebitIn udi on u.u_id=udi.u_id  
-join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=1 
+	<select id="findAllUserDebitInCheckResultMapCount"
+		parameterType="Map" resultType="int">
+		select count(distinct(u.u_id)) from
+		user u join UserDebitIn udi on
+		u.u_id=udi.u_id
+		join UserDebitInType udt
+		on udi.udi_type=udt.udit_id where
+		udi.udi_checkstatus=1
 	</select>
-	
 
-		<resultMap type="User" id="findUserDebitInResultMap">
-		<id property="u_id" column="u_id"/>
-				<result property="u_id" column="u_id"/>
-        		<result property="u_name" column="u_name"/>
-       			<result property="u_creditnumber" column="u_creditnumber"/>
-      			<result property="u_creditdegree" column="u_creditdegree"/>
-        		<result property="u_tel" column="u_tel"/>	
-      <!--  property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
-      			<association property="userDebitIn" javaType="UserDebitIn">	
-     			 <result property="udi_id" column="udi_id"/>
-				<result property="udi_money" column="udi_money" />
-				<result property="udi_title" column="udi_title" />
-				<result property="udi_refundway" column="udi_refundway" />
-				<result property="udi_status" column="udi_status" />
-				<result property="udi_weight" column="udi_weight" />
-				<result property="udi_publishdate" column="udi_publishdate" />
-				<result property="udi_date" column="udi_date" />
-				<result property="udi_checkstatus" column="udi_checkstatus" />
-				<result property="udi_refundrealitydate" column="udi_refundrealitydate" />
-      			<association property="userDebitInType" javaType="UserDebitInType">	
-        		<result property="udit_id" column="udit_id"/>	
-        		<result property="udit_month" column="udit_month"/>
-        		<result property="udit_name" column="udit_name"/>
-        		<result property="udit_profit" column="udit_profit"/>
-				</association>
+	<resultMap type="User" id="findUserDebitInResultMap">
+		<id property="u_id" column="u_id" />
+		<result property="u_id" column="u_id" />
+		<result property="u_name" column="u_name" />
+		<result property="u_creditnumber" column="u_creditnumber" />
+		<result property="u_creditdegree" column="u_creditdegree" />
+		<result property="u_tel" column="u_tel" />
+		<!-- property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
+		<association property="userDebitIn" javaType="UserDebitIn">
+			<result property="udi_id" column="udi_id" />
+			<result property="udi_money" column="udi_money" />
+			<result property="udi_title" column="udi_title" />
+			<result property="udi_refundway" column="udi_refundway" />
+			<result property="udi_status" column="udi_status" />
+			<result property="udi_weight" column="udi_weight" />
+			<result property="udi_publishdate" column="udi_publishdate" />
+			<result property="udi_date" column="udi_date" />
+			<result property="udi_refundrealitydate" column="udi_refundrealitydate" />
+			<result property="udi_checkstatus" column="udi_checkstatus" />
+			<association property="userDebitInType" javaType="UserDebitInType">
+				<result property="udit_id" column="udit_id" />
+				<result property="udit_month" column="udit_month" />
+				<result property="udit_name" column="udit_name" />
+				<result property="udit_profit" column="udit_profit" />
+			</association>
 			</association>
     </resultMap>  
     
@@ -245,6 +276,14 @@ join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=
     </update>
 
 
+	<!-- 添加借贷信息 -->
+	<insert id="addUserDebitIn" parameterType="UserDebitIn"
+		useGeneratedKeys="true" keyProperty="udi_id">
+		insert into
+		UserDebitIn(udi_title,u_id,udi_money,udi_status,udi_publishdate,udi_date,udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+		values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_use},#{udi_refundway},#{udi_type})
+	</insert>
+	
 	<!-- 后台修改借贷用户权重   权重越大   排在前台借贷信息的位置越靠前 -->    
     <update id="updateUserDebitInWeight" parameterType="UserDebitIn">
     	update UserDebitIn set udi_weight=#{udi_weight} where udi_id=#{udi_id}
@@ -270,6 +309,16 @@ join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=
 	</update>
 
     
-    		
+	<!-- 修改借贷用户审核状态信息 -->
+	<update id="updateUserDebitInCheckStatus" parameterType="UserDebitIn">
+		update
+		UserDebitIn set udi_checkstatus=#{udi_checkstatus} where
+		udi_id=#{udi_id}
+	</update>
+
+
+
+
+
 
 </mapper>	

@@ -56,7 +56,9 @@ create table UserDebitIn(
 	   udi_checkstatus int default 0,    --审核状态     默认为0   审核通过以后修改为1   只有通过审核才能显示在前台
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null		   
-) --修改字段名称和属性：
+) 
+
+--修改字段名称和属性：
 -- 将test字段改为test1
 -- ALTER TABLE 表名 CHANGE 原字段名 新字段名 字段类型 约束条件
 ALTER TABLE user10 CHANGE test test1 CHAR(32) NOT NULL DEFAULT '123';
@@ -189,9 +191,6 @@ select a.*,b.totalMoney , b.peopleCount from
 		where udi.udi_id = udo.udi_id and udi_type = udit_id and udit_name = 'U计划'
 		
 
-
-
-
 --放贷表
 --借贷表的外键(借贷表id)  --user的外键(放贷人id)  一对多--放贷开始的时间()--放贷贷日期(放贷成功时)  
 --放贷的金额  --放贷类型 (已删除)         暂定              以后用的时候再说 
@@ -208,8 +207,11 @@ create table UserDebitOut(
 )
 drop table UserDebitOut
 
-select * from UserDebitOut;
-
+select * from UserDebitOut;		udi_money
+--	<!-- 查询还可以放多少贷(例如查询u计划还可以放多少款) 查询放贷的金额 -->
+select sum(udo_money) as totalMoney,udi_money from UserDebitOut udo
+		left join UserDebitIn udi on udo.udi_id = udi.udi_id where udi.udi_type
+		= 3
 insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 
 	values(6 , 1 , 1502574941 , 1503020059726,1000 );
 insert into UserDebitOut(udi_id,u_id,udo_startdate,udo_date,udo_money) 

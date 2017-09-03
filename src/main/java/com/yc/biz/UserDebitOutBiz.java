@@ -28,5 +28,15 @@ public interface UserDebitOutBiz {
 	 * 添加放贷数据
 	 */
 	public void addUplanUserDebitOut(Map<String , Object> parameterMap);
+	
+	/**
+	 * 查询还可以放多少贷(例如查询u计划还可以放多少款)  查询放贷的金额
+	 */
+	public UserDebitOut findDebitOutBalance(Map<String, Object> parameterMap);
+	
+	/**
+	 * 筹款达到数目之后修改标的状态   由状态1-->> 2 
+	 */
+	public void updateDebitOutStatus( Map<String, Object> parameterMap );
 
 }
