@@ -303,7 +303,17 @@ public class UserController {
 		 */ // jsonModel型是不需要转成gson型的
 		return jm;
 	}
-
+	/**
+	 * 修改用户个人信息
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
 	@RequestMapping("/back/updateuser.action")
 	private JsonModel updateUser(User user, HttpServletRequest request, HttpServletResponse response)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {

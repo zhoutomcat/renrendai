@@ -27,7 +27,14 @@
 							//"url":"back/manager/newstype/addType.jsp"
 							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userDebitInCheckInfo.jsp' />"
 						}
-					}   ]
+					
+					} ,	{
+						"text" : "用户借贷权重管理",
+						"attributes" : {
+							//"url":"back/manager/newstype/addType.jsp"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userDebitInWeightManager.jsp' />"
+						}
+					} ]
 		} ];
 
 		var treeDatauserDebitOutTree = [ {
@@ -162,7 +169,7 @@
 			</div>
 		</div>
 	</div>
-	<div data-options="region:'west',split:true " title="主功能栏" style="width: 150px;">
+	<div data-options="region:'west',split:true " title="主功能栏" style="width: 150px; overflow: auto;">
 		<div class="easyui-accordion" style="overflow: auto; width: 140px; height: 500px;">
 			<div title="权限管理" style="overflow: auto; padding: 10px;">
 				<ul id="userTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">

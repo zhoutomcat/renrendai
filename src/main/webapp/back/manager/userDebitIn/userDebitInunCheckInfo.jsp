@@ -174,7 +174,7 @@
 					align : 'center',
 					formatter : function formatOper(val,row, index) {
 						var str = '<a href="javascript:void(0)" onclick="checkapprove('+ index + ')">审核通过</a>'
-						 str += ' <a href="javascript:void(0)" onclick="checkunapprove('+ index + ')">审核不通过</a> '; 
+						// str += ' <a href="javascript:void(0)" onclick="checkunapprove('+ index + ')">审核不通过</a> '; 
 						return str;
 					},
 				}
@@ -208,29 +208,7 @@
 			});
 		}
 		
-		//审核不通过操作
-		function checkunapprove(index) {
-			$('#userDebitTable').datagrid('selectRow', index);//关键在这里
-			var row = $('#userDebitTable').datagrid('getSelected');
-			$.ajax({
-				 url : "back/checkunapprove.action", 
-				type : "POST",
-				data : "udi_id=" + row.userDebitIn.udi_id,
-				dataType : "JSON",
-				success : function(data) {
-					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
-					if(r){
-					if (data.code == 1) {
-						alert("审核借贷信息不允许通过");
-						$('#userDebitTable').datagrid('reload');
-					} else {
-						alert(data.msg);
-					}
-					}
-					});
-				}					
-			});
-		}
+	
 		
 		
 		

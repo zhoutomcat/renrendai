@@ -14,7 +14,7 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private String udi_title;
 	private Integer u_id;
 	private Double udi_money; // 计划借的钱数
-	private Integer udi_status;
+	private Integer udi_status;   //      0  未审核状态   1  审核完成 凑款状态   2 筹款完成待放款状态   3 还款状态(借了未还)   4  完成还款 （失败 ）   
 	private long udi_date;
 	private long udi_publishdate;
 	private long udi_refundrealitydate;

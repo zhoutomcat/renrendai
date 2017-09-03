@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yc.bean.User;
 import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserDebitInType;
 import com.yc.bean.UserDebitOut;
@@ -131,6 +132,35 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 		jsonModel.setRows(list);
 		jsonModel.setTotal(total);
 		return jsonModel;
+	}
+
+	@Override
+	public boolean updateUserDebitInStatus(UserDebitIn udi) {
+		baseDao.update(udi, "updateUserDebitInStatus");
+		return true;
+	}
+
+	
+	@Override
+	public boolean updateUserDebitInWeight(UserDebitIn udi) {
+		baseDao.update(udi, "updateUserDebitInWeight");
+		return false;
+	}
+
+	@Override
+	public JsonModel findAllSingerUserDebitIn(Map<String, Integer> map) {
+		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllSingerUserDebitInCondition", map);
+		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllSingerUserDebitInConditionCount",map);
+		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
+		jsonModel.setRows(list);
+		jsonModel.setTotal(total);
+		return jsonModel;
+	}
+
+	@Override
+	public boolean updateSingerUserDebitIn(UserDebitIn udi) {
+		baseDao.update(udi, "updateSingerUserDebitIn");
+		return true;
 	}
 
 }

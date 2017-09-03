@@ -238,7 +238,36 @@ join  UserDebitInType udt on udi.udi_type=udt.udit_id where udi.udi_checkstatus=
     <update id="updateUserDebitInCheckStatus" parameterType="UserDebitIn">
     	update UserDebitIn set udi_checkstatus=#{udi_checkstatus} where udi_id=#{udi_id}
     </update>
+    
+     <!-- 修改借贷用户状态信息   0  未审核状态   1  审核完成 凑款状态   2 筹款完成待放款状态   3 还款状态(借了未还)   4  完成还款 （失败 ） -->    
+    <update id="updateUserDebitInStatus" parameterType="UserDebitIn">
+    	update UserDebitIn set udi_status=#{udi_status} where udi_id=#{udi_id}
+    </update>
 
+
+	<!-- 后台修改借贷用户权重   权重越大   排在前台借贷信息的位置越靠前 -->    
+    <update id="updateUserDebitInWeight" parameterType="UserDebitIn">
+    	update UserDebitIn set udi_weight=#{udi_weight} where udi_id=#{udi_id}
+    </update>
+    
+    	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findAllSingerUserDebitInCondition" resultType="UserDebitIn">
+		select * from UserDebitIn where 1=1 	<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 带查询条件统计查询 -->
+	<select id="findAllSingerUserDebitInConditionCount" parameterType="Map"
+		resultType="int">
+		select count(1) from UserDebitIn where 1=1 	<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+<!-- 后台单表修改借贷用户的个人信息 -->
+	<update id="updateSingerUserDebitIn" parameterType="UserDebitIn">
+		update UserDebitIn set
+		udi_title=#{udi_title},udi_money=#{udi_money},udi_status=#{udi_status},udi_use=#{udi_use},udi_refundway=#{udi_refundway},
+		udi_type=#{udi_type},udi_weight=#{udi_weight},udi_checkstatus=#{udi_checkstatus}
+		where udi_id=#{udi_id}
+	</update>
 
     
     		

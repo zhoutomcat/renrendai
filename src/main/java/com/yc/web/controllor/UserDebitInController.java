@@ -316,5 +316,114 @@ public class UserDebitInController {
 		 }
 		 return jm;
 	}
+	
+	
+	/**
+	 * 修改用户借贷信息状态
+	 * @param u_id
+	 * @param request
+	 * @param session
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/updateuserdebitinstatus.action")
+	public JsonModel updateuserdebitinstatus(Integer  udi_id,Integer udi_status,HttpServletRequest request, HttpSession session) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		UserDebitIn udi=new UserDebitIn();
+		udi.setUdi_id(udi_id);
+		udi.setUdi_status(udi_status);
+		//udi.setUdi_status(2);
+		//System.out.println(udi.getUdi_status());
+		if(udi.getUdi_status()==0){
+			udi.setUdi_status(1);        //1  审核完成 凑款状态
+		}else if(udi.getUdi_status()==1){
+			udi.setUdi_status(2);        //2筹款完成待放款状态
+		}else if(udi.getUdi_status()==2){ 
+			udi.setUdi_status(3);      //3 还款状态(借了未还)    影响信誉
+		}else if(udi.getUdi_status()==3){
+			udi.setUdi_status(4);     //4  完成还款 （失败 ）     根据完成还款  或者失败来给用户信誉度加扣积分
+		}else{
+			udi.setUdi_status(4);    //4  完成还款 （失败 ）     根据完成还款  或者失败来给用户信誉度加扣积分
+		}
+		 boolean result=userDebitInBiz.updateUserDebitInStatus(udi);   //修改用户借贷状态
+		 JsonModel jm=new JsonModel();
+		 if(result){
+		 jm.setCode(1);
+		 jm.setMsg("修改成功");
+		 }else{
+			 jm.setCode(0);
+			 jm.setMsg("修改失败");
+		 }
+		 return jm;
+	}
+	
+	/**
+	 * 修改用户借贷信息的权重     权重越大排名越靠前
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/updateUserDebitInWeight.action")
+	private JsonModel updateUserDebitInWeight(UserDebitIn udi, HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		udi= RequestUtil.getParemeter(request, UserDebitIn.class);
+		boolean result = userDebitInBiz.updateUserDebitInWeight(udi);
+
+		if (result) {
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
+	}
+	
+	
+	
+	@RequestMapping("/back/findAllSingerUserDebitIn.action")
+	public JsonModel findAllSingerUserDebitIn(UserDebitIn udi, HttpServletRequest request, HttpServletResponse resp,
+			HttpSession session) throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = userDebitInBiz.findAllSingerUserDebitIn(map);
+		return jm;
+	}
+	
+	/**
+	 * 单表修改用户借贷个人信息
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/updateSingerUserDebitIn.action")
+	private JsonModel updateSingerUserDebitIn(UserDebitIn udi, HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		boolean result = userDebitInBiz.updateSingerUserDebitIn(udi);
+
+		if (result) {
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
+	}
 
 }

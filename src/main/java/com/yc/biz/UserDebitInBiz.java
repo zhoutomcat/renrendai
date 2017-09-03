@@ -89,6 +89,30 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public boolean updateUserDebitInCheckStatus(UserDebitIn udi);
+	/**
+	 * 修改用户借贷状态   0  未审核状态   1  审核完成 凑款状态   2 筹款完成待放款状态   3 还款状态(借了未还)   4  完成还款 （失败 ）   
+	 * @param udi
+	 * @return
+	 */
+	public boolean updateUserDebitInStatus(UserDebitIn udi);
+	/**
+	 * 后台修改用户权重    权重越大     借贷信息的位置越靠前
+	 * @param udi
+	 * @return
+	 */
+	public boolean updateUserDebitInWeight(UserDebitIn udi);
+	/**
+	 * 后台单表查询查找所有的借贷用户    修改权重
+	 * @param map
+	 * @return
+	 */
+	public JsonModel findAllSingerUserDebitIn(Map<String, Integer> map);
+	/**
+	 * 后台单表修改借贷用户的信息   
+	 * @param udi
+	 * @return
+	 */
+	public boolean updateSingerUserDebitIn(UserDebitIn udi);
 
 
 

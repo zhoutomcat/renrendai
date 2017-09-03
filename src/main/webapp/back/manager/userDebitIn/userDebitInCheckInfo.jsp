@@ -2,10 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../head.jsp" %>
 
+
 <script type="text/javascript">
+		var userDebitInEditRow = undefined;
+		var userDebitInFlag;
 		$(function(){     //函数是等页面一执行完就会调用的,如果不写函数，就要把js代码放在页面下面
-			$('#userDebitTable').edatagrid({
+			var userDebitInobject=$('#userDebitTable').edatagrid({
 				url : 'back/findAllUserDebitInCheck.action', //查询时加载的URL
+				loadMsg:'数据加载中',
 				pagination:true,  //显示分页
 				pageSize: 10,  //默认分页的条数
 				pageList:  [5,10,20,20,50],  //可选分页数
@@ -23,7 +27,11 @@
 				onError: function(a,b){
 					$.message.alert("错误","操作失败");
 				},
-				columns:[[{
+				columns:[[
+				          {
+					field:"udi_ids",
+					checkbox:true
+					},{
 					field:'udi_id',
 					title:'借贷表编号',
 					width:20,
@@ -130,7 +138,18 @@
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
 						return row.userDebitIn.udi_weight;
-					}
+					},
+						editor:{type:"combobox",
+						options:{required:true,
+							//date:updateweight,
+							data:[{"text":"1"},{"text":"2"}], /* "text":"3","text":"4","text":"5","text":"6","text":"7","text":"8","text":"9","text":"10"*/
+							//data:[{label: '先收费',value: '1',selected:true},{label: '后收费',value: '2'},],
+							valueField:'text',  
+							textField:'text',
+							//value:1
+							}
+					},
+					
 				},{
 					field:'udit_month',
 					title:'还贷期限',
@@ -170,32 +189,88 @@
 				},{
 					field : '_operate',
 					title : '操作',
-					width : 50,
+					width : 70,
 					align : 'center',
 					formatter : function formatOper(val,row, index) {
-						/* var str = '<a href="javascript:void(0)" onclick="checkapprove('+ index + ')">审核通过</a>'
-						 str += ' <a href="javascript:void(0)" onclick="checkunapprove('+ index + ')">审核不通过</a> '; */
-						 var str = '<a href="javascript:void(0)" onclick="checkapprove('+ index + ')">修改用户借贷状态</a>';
-						return str;
+						/* var str = '<a href="javascript:void(0)" onclick="checkapprove('+ index + ')">审核通过</a>' */
+						 var str = '<a href="javascript:void(0)" onclick="updateuserdebitinstatus('+ index + ')">修改用户借贷状态</a>';
+						 str += ' <a href="javascript:void(0)" onclick="checkunapprove('+ index + ')">审核不通过</a> ';
+						 //str += ' <a href="javascript:void(0)" onclick="checkunapprove('+ index + ')">保存</a> ';
+						 return str;
 					},
 				}
 				]],
-			
-			});
+			 	  toolbar:[{
+			 		 	text:"修改",
+	    			iconCls: 'icon-edit',
+	    			handler: function(){
+	    				if(userDebitInEditRow!=undefined){
+	    					userDebitInobject.datagrid('rejectChanges');//结束编辑
+	    					userDebitInEditRow=undefined;
+	    				}
+	    				var row = userDebitInobject.datagrid("getChecked")[0];
+	    				//var row=userDebitInobject.row.userDebitIn.udi_weight;
+	    				if(row==undefined){
+	    					$.messager.show({title:'温馨提示',msg:'请选择或编辑您要修改的数据',timeout:2000,showType:'slide'});
+	    				}else{
+	    					userDebitInEditRow = userDebitInobject.datagrid('getRowIndex',row);
+	    					 var ed = $('#userDebitTable').datagrid('getEditor', {index:3,field:'userDebitInobject.row.userDebitIn.udi_weight'});
+	    				 /* 	$(ed.target).text('setValue',row.userDebitIn.udi_weight); 
+	    					userDebitInobject.datagrid("beginEdit",userDebitInEditRow);//结束编辑  */
+	    			 		 //url = "back/updateuser.action";  
+	    					userDebitInFlag = "修改";
+	    				}
+	    			}
+			  },'-', 
+			  {
+	    			text:"保存",
+	    			iconCls: 'icon-save',
+	    			handler: function(){
+	    				if(userDebitInEditRow!=undefined){
+	    					userDebitInobject.datagrid("endEdit",userDebitInEditRow);//结束编辑
+	    					userDebitInEditRow=undefined;
+	    				}
+	    				var row = userDebitInobject.datagrid("getChanges")[0];
+	    				if(row==undefined){//没有修改数据 提示
+	    					$.messager.show({title:'温馨提示',msg:'请编辑您要'+userDebitInFlag+'的数据',timeout:2000,showType:'slide'});
+	    					
+	    				}else{
+	    					$.post("back/updateUserDebitInWeight.action",row,function(data){
+	    					// row["op"] = deptOp;
+	    					//$.post("../deptServlet",row,function(data){ 
+	    						data = parseInt( $.trim( data ) );
+	    						if(data>0){
+	    							$.messager.alert('失败提示','用户信息'+userDebitInFlag+'失败','error');
+	    						}else{
+	    							$.messager.show({title:'温馨提示',msg:'用户信息'+userDebitInFlag+'成功',timeout:2000,showType:'slide'});
+	    							userDebitInobject.datagrid("reload");
+	    						}
+	    					},"text");
+	    				}
+	    			}
+	    		},'-',{
+	    			text:"撤销",
+	    			iconCls: 'icon-undo',
+	    			handler: function(){
+	    				alert('help')
+	    			}
+			  }]   
 		});
+	});
 		
 		
-		//审核通过操作
-		function checkapprove(index) {
+		//修改用户借贷状态操作
+		function updateuserdebitinstatus(index) {
 			$('#userDebitTable').datagrid('selectRow', index);//关键在这里
 			var row = $('#userDebitTable').datagrid('getSelected');
 			$.ajax({
-				 url : "back/checkapprove.action", 
+				 url : "back/updateuserdebitinstatus.action", 
 				type : "POST",
-				data : "udi_id=" + row.userDebitIn.udi_id,
+				data : "udi_id=" + row.userDebitIn.udi_id+"&udi_status="+row.userDebitIn.udi_status,
+				//data : "udi_id=" + row.userDebitIn.udi_id,
 				dataType : "JSON",
 				success : function(data) {
-					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
+					$.messager.confirm('确认提示', '一旦修改数据将不能恢复，您确定要修改嘛？', function(r){
 					if(r){
 					if (data.code == 1) {
 						alert("审核借贷信息通过成功");
@@ -209,6 +284,7 @@
 			});
 		}
 		
+		
 		//审核不通过操作
 		function checkunapprove(index) {
 			$('#userDebitTable').datagrid('selectRow', index);//关键在这里
@@ -219,7 +295,7 @@
 				data : "udi_id=" + row.userDebitIn.udi_id,
 				dataType : "JSON",
 				success : function(data) {
-					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
+					$.messager.confirm('确认提示', '一旦修改数据将不能恢复，您确定要修改嘛？', function(r){
 					if(r){
 					if (data.code == 1) {
 						alert("审核借贷信息不允许通过");
@@ -233,8 +309,47 @@
 			});
 		}
 		
+		//保存操作
+		function checkunapprove(index) {
+			$('#userDebitTable').datagrid('selectRow', index);//关键在这里
+			var row = $('#userDebitTable').datagrid('getSelected');
+			$.ajax({
+				 url : "back/updateUserDebitInWeight.action", 
+				type : "POST",
+				data : "udi_id=" + row.userDebitIn.udi_id,
+				dataType : "JSON",
+				success : function(data) {
+				/* 	$.messager.confirm('确认提示', '一旦修改保存将不能恢复，您确定要修改嘛？', function(r){
+					if(r){ */
+					if (data.code == 1) {
+						alert("保存成功");
+						$('#userDebitTable').datagrid('reload');
+					} else {
+						alert(data.msg);
+					}
+					}
+					//});
+				//}					
+			});
+		}
 		
 		
+		
+/* 		 for(updateweight;updateweight<13;updateweight++){
+		data.push({"text":updateweight});
+		}  */
+		
+		
+/* 		$('#userDebitTable').datagrid({    
+				data: 'back/updateUserDebitInWeight.action',
+			}).datagrid('enableCellEditing').datagrid('gotoCell', {    
+				index: 10,    
+				field: 'udi_weight'
+				});
+			 */
+		
+		
+			
 </script>
 
 

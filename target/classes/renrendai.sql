@@ -32,6 +32,7 @@ create table UserFund(
 	   temp3 varchar(100) default null
 )
 select * from UserFund
+select * from userdebitin
 drop table Userfund
 
 --借贷表
@@ -59,15 +60,14 @@ create table UserDebitIn(
 -- 将test字段改为test1
 -- ALTER TABLE 表名 CHANGE 原字段名 新字段名 字段类型 约束条件
 ALTER TABLE user10 CHANGE test test1 CHAR(32) NOT NULL DEFAULT '123';
-
 alter table UserDebitIn change temp1 udi_checkstatus int  default 0; 
 --还款方式       --借贷类型              --	修改 --权重越大     越排在前面  
 
-alter table UserDebitIn set udi_status=0 where udi_id = 5
+alter table UserDebitIn set udi_weight=0 where udi_id=10
 drop table UserDebitIn 
 select * from UserDebitIn
 delete from UserDebitIn where udi_id=5 
-update userdebitIn set udi_checkstatus=0 where udi_status=1
+update userdebitIn set udi_weight=0 where udi_id=10
 
 select udit_profit,udit_month from UserDebitInType;
 
@@ -421,7 +421,7 @@ udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from
 u.u_creditdegree='A',u.u_tel=1,a.am_status=0,udt.udit_profit=6.6,udt.udit_name='U计划',
 udt.udit_month=3.0,udi.udi_money=1000,udi.udi_title='A计划',
 udi.udi_refundway=1,udi.udi_status=1,udi.udi_weight=0
-  where a.am_id=1
+  where a.am_id=2
   --用户个人关注投标的多表连接
   select  a.am_id,u.u_name,u.u_creditnumber,u.u_creditdegree,u.u_tel,a.am_status,udt.udit_profit,udt.udit_name,udt.udit_month,
 udi.udi_money,udi.udi_title,udi.udi_refundway,udi.udi_status,udi.udi_weight from  User u  join AttentionMark a  on  u.u_id=a.u_id  join UserDebitIn udi  
