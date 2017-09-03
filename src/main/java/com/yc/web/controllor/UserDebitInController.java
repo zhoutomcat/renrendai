@@ -386,7 +386,15 @@ public class UserDebitInController {
 	}
 	
 	
-	
+	/**
+	 * 单表查询所有的借贷信息
+	 * @param udi
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/back/findAllSingerUserDebitIn.action")
 	public JsonModel findAllSingerUserDebitIn(UserDebitIn udi, HttpServletRequest request, HttpServletResponse resp,
 			HttpSession session) throws Exception {

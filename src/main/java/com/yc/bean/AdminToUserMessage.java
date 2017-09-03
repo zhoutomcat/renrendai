@@ -12,6 +12,14 @@ public class AdminToUserMessage implements Serializable {
 	private long atum_time;
 	private String atum_content;
 	private Integer atum_status;
+	private String atum_title;
+	
+	public String getAtum_title() {
+		return atum_title;
+	}
+	public void setAtum_title(String atum_title) {
+		this.atum_title = atum_title;
+	}
 	public Integer getAtum_id() {
 		return atum_id;
 	}
@@ -45,8 +53,10 @@ public class AdminToUserMessage implements Serializable {
 	@Override
 	public String toString() {
 		return "AdminToUserMessage [atum_id=" + atum_id + ", u_id=" + u_id + ", atum_time=" + atum_time
-				+ ", atum_content=" + atum_content + ", atum_status=" + atum_status + "]";
+				+ ", atum_content=" + atum_content + ", atum_status=" + atum_status + ", atum_title=" + atum_title
+				+ "]";
 	}
+
 	
 	
 

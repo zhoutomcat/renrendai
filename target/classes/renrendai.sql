@@ -312,13 +312,16 @@ create table AdminToUserMessage(
 	u_id 			int ,          --用户id          
 	atum_time 			long,      --发送消息的时间             
 	atum_content 		varchar(2000),     --消息内容
-	
 	atum_status 		int default 1,      --0 表示已读  1  表示未读
-	temp1 varchar(100) default null,
+	atum_title varchar(200),
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
+alter table UserDebitIn change temp1 udi_checkstatus int  default 0; 
+alter table AdminToUserMessage change temp1 atum_title varchar(200); 
 drop table  AdminToUserMessage
+select * from AdminToUserMessage
+update AdminToUserMessage set atum_status=1;
 --个人资料
    
        --用户表id--真实姓名 --身份证    只能为18位数字--工作信息--收入信息 --图像

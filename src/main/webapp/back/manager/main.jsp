@@ -90,6 +90,25 @@
 				}
 			} ] */
 		} ];
+		
+		
+		var treeDataMessageTypeTree = [ {
+			"text" : "消息管理",
+			"state" : "closed",
+			"children" : [ {
+				"text" : "推送消息",
+				"attributes" : {
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/message/addMessageToUser.jsp' />"
+				}
+			},
+			{
+				"text" : "消息管理信息",
+				"attributes" : {
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/message/MessageUserInfo.jsp' />"
+				}
+			}]
+		} ];
+		showTree("MessageTypeTree", treeDataMessageTypeTree);
 		showTree("userDebitInTree", treeDatauserDebitInTree);
 		showTree("userDebitOutTree", treeDatauserDebitOutTree);
 		showTree("userTree", treeDataUser);
@@ -188,7 +207,10 @@
 					<ul id="AttentionTypeTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
 			</div>
-			<div title="数据字典" style="overflow: auto; padding: 10px;">数据字典</div>
+			<div title="消息管理" style="overflow: auto; padding: 10px;">
+			<ul id="MessageTypeTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
+					</ul>
+			</div>
 			
 		</div>
 	</div>
