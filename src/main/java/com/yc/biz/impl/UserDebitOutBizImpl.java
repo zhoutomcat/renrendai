@@ -46,4 +46,15 @@ public class UserDebitOutBizImpl implements UserDebitOutBiz {
 				.findOne(UserDebitOut.class, "findUserDebitInIdByUserDebitInTypeId", parameterMap).toString()));
 		return result;
 	}
+
+	@Override
+	public UserDebitOut findDebitOutBalance(Map<String, Object> parameterMap) {
+		UserDebitOut udo = (UserDebitOut) this.baseDao.findOne(UserDebitOut.class, "findDebitOutBalance", parameterMap);
+		return udo;
+	}
+
+	@Override
+	public void updateDebitOutStatus(Map<String, Object> parameterMap) {
+		this.baseDao.save(UserDebitOut.class, "updateDebitOutStatus", parameterMap);
+	}
 }

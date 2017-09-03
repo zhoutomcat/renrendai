@@ -40,6 +40,18 @@
 
 
 <script>
+	function voteSanbiao() {
+		$.ajax({
+			type : "POST",
+			url : "",
+			data : "pages=" + pages,
+			dataType : "JSON",
+			success : function(data) {
+				alert();
+			}
+		})
+	}
+
 	$(function() {
 		gopage(1);
 	})
@@ -86,13 +98,15 @@
 														+ item.udi_money
 														+ '</span>元</td>'
 														+ ' <td class="progress" data-percent="100">'
-														+ ' 	<div class="percentage-text">' + percentage * 100 +'%</div>'
+														+ ' 	<div class="percentage-text">'
+														+ percentage * 100
+														+ '%</div>'
 														+ ' 	<div class="outer">'
 														+ ' 		<span id="sanbiaoProcess" class="inner" style="width: ' + width + ';"></span>'
 														+ ' 	</div>'
 														+ ' </td>'
-														+ ' <td class="action"><a class="disabled"' +
-									' href="#" target="_blank" onclick="return false">'
+														+ ' <td class="action"><a class="disabled"'
+														+ ' href="toUplanDetail.action?udit_id= ' + item.udi_type + '" target="_blank">'
 														+ status + '</a>'
 														+ ' </td>' + ' </tr>';
 												$("#sanbiaoHistory").html(
