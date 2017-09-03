@@ -264,11 +264,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_use},#{udi_refundway},#{udi_type})
     </insert>
     
+
+    
     
     <!-- 修改借贷用户审核状态信息 -->
     <update id="updateUserDebitInCheckStatus" parameterType="UserDebitIn">
     	update UserDebitIn set udi_checkstatus=#{udi_checkstatus} where udi_id=#{udi_id}
     </update>
+    
+
+    
     
      <!-- 修改借贷用户状态信息   0  未审核状态   1  审核完成 凑款状态   2 筹款完成待放款状态   3 还款状态(借了未还)   4  完成还款 （失败 ） -->    
     <update id="updateUserDebitInStatus" parameterType="UserDebitIn">
@@ -276,13 +281,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
 
-	<!-- 添加借贷信息 -->
-	<insert id="addUserDebitIn" parameterType="UserDebitIn"
-		useGeneratedKeys="true" keyProperty="udi_id">
-		insert into
-		UserDebitIn(udi_title,u_id,udi_money,udi_status,udi_publishdate,udi_date,udi_refundrealitydate,udi_use,udi_refundway,udi_type)
-		values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_use},#{udi_refundway},#{udi_type})
-	</insert>
+
 	
 	<!-- 后台修改借贷用户权重   权重越大   排在前台借贷信息的位置越靠前 -->    
     <update id="updateUserDebitInWeight" parameterType="UserDebitIn">
@@ -309,12 +308,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
     
-	<!-- 修改借贷用户审核状态信息 -->
-	<update id="updateUserDebitInCheckStatus" parameterType="UserDebitIn">
-		update
-		UserDebitIn set udi_checkstatus=#{udi_checkstatus} where
-		udi_id=#{udi_id}
-	</update>
 
 
 

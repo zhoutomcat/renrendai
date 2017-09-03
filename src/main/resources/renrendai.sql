@@ -15,7 +15,8 @@ create table User(
 	  temp2 varchar(100) default null,
 	  temp3 varchar(100) default null
 );
-
+update user set u_creditnumber=100  
+select * from user;
 --6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2
 update User set u_password='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2'
 
@@ -305,13 +306,14 @@ drop table admin;
 
 --消息
    --用户id
-    --时间 --内容   --  0 表示已读  1  表示未读
+    --时间 --内容   --  
 create table AdminToUserMessage(
-	atum_id 			int primary key auto_increment,
-	u_id 			int ,                
-	atum_time 			long,              
-	atum_content 		varchar(2000),  
-	atum_status 		int default 1,
+	atum_id 			int primary key auto_increment,    
+	u_id 			int ,          --用户id          
+	atum_time 			long,      --发送消息的时间             
+	atum_content 		varchar(2000),     --消息内容
+	
+	atum_status 		int default 1,      --0 表示已读  1  表示未读
 	temp1 varchar(100) default null,
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null

@@ -93,8 +93,10 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/user/toDebitMoney.action")
 	public String toDebitMoney() {
-		return "userDebitMoney";
+		return "addUserMessageMoney";
 	}
+		
+	
 
 	/**
 	 * 跳转到借款填写借贷表信息页面

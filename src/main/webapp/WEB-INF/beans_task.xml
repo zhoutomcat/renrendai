@@ -20,11 +20,16 @@
 
 
 
-	<!-- 打开定时器开关, 启用task注解驱动工 <task:annotation-driven /> -->
-	<!-- 执行器 <task:scheduler id="taskScheduler" pool-size="100" /> -->
-	<!-- 所有的任务配置在这里 <task:scheduled-tasks scheduler="taskScheduler"> -->
-	<!-- 定时任务配置 <task:scheduled ref="TimeTask" method="test" cron="0/10 * 
-		* * * ?"/> </task:scheduled-tasks> -->
+	 <!-- 打开定时器开关, 启用task注解驱动工  -->
+	<!--  <task:annotation-driven />  -->
+	<!-- 执行器 	 -->
+<!-- 	<task:scheduler id="taskScheduler" pool-size="100" /> -->
+	<!-- 所有的任务配置在这里  -->
+	<!--  <task:scheduled-tasks scheduler="taskScheduler"> -->
+	<!-- 定时任务配置 -->
+	<!-- <task:scheduled ref="TimeTask" method="test" cron="0/10 * 
+		* * * ?"/> 
+	</task:scheduled-tasks>  -->
 
 
 

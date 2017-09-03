@@ -22,7 +22,9 @@ public class User extends JsonModel  implements Serializable {
 	//用于用户投标关注
 	private AttentionMark attentionMark;
 	//用户查询借贷用户的信息
-	private UserDebitIn userDebitIn; 
+	private UserDebitIn userDebitIn;
+
+
 	
 	
 
@@ -56,8 +58,25 @@ public class User extends JsonModel  implements Serializable {
 	public void setU_creditnumber(Integer u_creditnumber) {
 		this.u_creditnumber = u_creditnumber;
 	}
-	public String getU_creditdegree() {
-		return u_creditdegree;
+	//定义积分规则                          积分到一定等级     信誉度等级会变化
+	public String getU_creditdegree() {  // default('HR') in('AA','A','B','C','D','HR'), --信誉等级
+		String str=null;
+    	if(this.u_creditnumber>=160){
+    		str="AA";
+    	}else if(this.u_creditnumber>=150){
+    		str="A";
+    	}else if(this.u_creditnumber>=140){
+    		str="B";
+    	}else if(this.u_creditnumber>=130){
+    		str="C";
+    	}else if(this.u_creditnumber>=120){
+    		str="D";
+    	}else if(this.u_creditnumber>=110){
+    		str="E";
+    	}else{
+    		str="HR";
+    	}
+    	return str;
 	}
 	public void setU_creditdegree(String u_creditdegree) {
 		this.u_creditdegree = u_creditdegree;

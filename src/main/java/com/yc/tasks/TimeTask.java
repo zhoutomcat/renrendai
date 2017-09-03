@@ -31,11 +31,38 @@ import org.springframework.stereotype.Component;
 public class TimeTask {
 	//@Scheduled(fixedDelay = 3000)//间隔时间
 	@Scheduled(cron ="0 0 1 ? * *")//间隔时间  "0 15 10 ? * *" 每天傍晚一点触发 
-	public void test() {
+	/*public void test() {
 		System.out.println("job 开始执行" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-	}
+	}*/
 	
 	public void count(){
+		//完成还款       没完成一次信誉积分加一分到一定积分   升等级
+		//失败一次      扣一分                                                    降等级
+		//U计划       逾期一月         扣一分                               降等级
+		//                没逾期，提前还一月      加一分                  生等级
+		//下面这套规则用在了user     javabean中         修改积分等级会变化  
+		/*	1.用户表中有一个积分和一个信誉度
+		public String getU_credit_degree(){   // default('HR') in('AA','A','B','C','D','HR'), --信誉等级
+		    	String str=null;
+		    	if(this.u_credit_number>=160){
+		    		str="AA";
+		    	}else if(this.u_credit_number>=145){
+		    		str="A";
+		    	}else if(this.u_credit_number>=130){
+		    		str="B";
+		    	}else if(this.u_credit_number>=120){
+		    		str="C";
+		    	}else if(this.u_credit_number>=110){
+		    		str="D";
+		    	}else if(this.u_credit_number>=100){
+		    		str="E";
+		    	}else{
+		    		str="HR";
+		    	}
+		    	return str;
+		    }       根据积分来给用户设置等级，新用户默认为HR,积分为100，我们是根据
+		private long udi_refundrealitydate;     //实际还贷日期     来给用户做积分判定的                  影响信誉度
+*/		
 		
 	}
 
