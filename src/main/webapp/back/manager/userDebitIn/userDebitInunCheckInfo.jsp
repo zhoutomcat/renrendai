@@ -5,7 +5,7 @@
 <script type="text/javascript">
 		$(function(){     //函数是等页面一执行完就会调用的,如果不写函数，就要把js代码放在页面下面
 			$('#userDebitTable').edatagrid({
-				url : 'back/findAllUserDebitIn.action', //查询时加载的URL
+				url : 'back/findAllUserDebitInunCheck.action', //查询时加载的URL
 				pagination:true,  //显示分页
 				pageSize: 10,  //默认分页的条数
 				pageList:  [5,10,20,20,50],  //可选分页数
@@ -64,7 +64,7 @@
 					align:'center',
 					formatter: function(value,row,index){
 						//alert(row.attentionMark.am_id)
-						 var tt= new Date(parseInt(row.userDebitIn.udi_publishdate) * 1000).toLocaleString().substr(0,17);
+						 var tt= new Date(parseInt(row.userDebitIn.udi_publishdate) * 1000).toLocaleString().substr(0,20);
 						return tt;
 					},
 				  
@@ -74,7 +74,7 @@
 					width:50,
 					align:'center',
 					formatter: function(value,row,index){
-						 var tt= new Date(parseInt(row.userDebitIn.udi_date) * 1000).toLocaleString().substr(0,17);
+						 var tt= new Date(parseInt(row.userDebitIn.udi_date) * 1000).toLocaleString().substr(0,20);
 						return tt;
 					},
 				},{
@@ -83,7 +83,7 @@
 					width:50,
 					align:'center',
 					formatter: function(value,row,index){
-						 var tt= new Date(parseInt(row.userDebitIn.udi_refundrealitydate) * 1000).toLocaleString().substr(0,17);
+						 var tt= new Date(parseInt(row.userDebitIn.udi_refundrealitydate) * 1000).toLocaleString().substr(0,20);
 						return tt;
 					},	 
 				},{

@@ -15,12 +15,19 @@
 						}
 					}, 
 					{
-						"text" : "借贷信息维护",
+						"text" : "借贷信息未审核维护",
 						"attributes" : {
 							//"url":"back/manager/newstype/addType.jsp"
-							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userDebitInInfo.jsp' />"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userDebitInunCheckInfo.jsp' />"
 						}
-					} ]
+					}, 
+					{
+						"text" : "借贷信息以审核维护",
+						"attributes" : {
+							//"url":"back/manager/newstype/addType.jsp"
+							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitIn/userDebitInCheckInfo.jsp' />"
+						}
+					}   ]
 		} ];
 
 		var treeDatauserDebitOutTree = [ {
@@ -33,19 +40,27 @@
 							//"url":"back/manager/newstype/addType.jsp"
 							"url" : "<iframe width='100%' height='100%'  src='back/manager/userDebitOut/userDebitOutInfo.jsp' />"
 						}
-					} ]
+					}
+					]
 		} ];
 
 		var treeDataUser = [ {
 			"text" : "用户管理",
 			"state" : "closed",
 			"children" : [ {
-				"text" : "用户维护",
+				"text" : "可用用户显示",
 				"attributes" : {
 					//"url":"back/manager/newstype/addType.jsp"
-					"url" : "<iframe width='100%' height='100%'  src='back/manager/user/managerUser.jsp' />"
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/user/managerUserforbidlogin.jsp' />"
 				}
-			} ]
+			},
+			{
+				"text" : "不可用用户显示",
+				"attributes" : {
+					//"url":"back/manager/newstype/addType.jsp"
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/user/managerUserallowlogin.jsp' />"
+				}
+			}]
 		} ];
 
 		var DataAttentions = [ {
@@ -154,10 +169,9 @@
 				</ul>
 			</div>
 			<div title="借贷信息管理" style="overflow: auto; padding: 10px;">
-				<div class="easyui-panel" style="padding: 5px">
+				<!-- <div class="easyui-panel" style="padding: 5px"></div> -->
 					<ul id="userDebitInTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
-				</div>
 			</div>
 			<div title="放贷信息管理" style="overflow: auto; padding: 10px;">
 					<ul id="userDebitOutTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">

@@ -155,7 +155,7 @@ public class UserDebitInController {
 	}
 
 	/**
-	 * 后台查找所有的借贷信息
+	 * 后台查找所有的未审核借贷信息
 	 * 
 	 * @param user
 	 * @param request
@@ -164,8 +164,8 @@ public class UserDebitInController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/back/findAllUserDebitIn.action")
-	public JsonModel findAllUserDebitIn(UserDebitIn userDebitIn, HttpServletRequest request, HttpSession session)
+	@RequestMapping("/back/findAllUserDebitInunCheck.action")
+	public JsonModel findAllUserDebitInunCheck(UserDebitIn userDebitIn, HttpServletRequest request, HttpSession session)
 			throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
@@ -173,7 +173,32 @@ public class UserDebitInController {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("pagesize", pagesize);
-		JsonModel jm = (JsonModel) userDebitInBiz.findAllUserDebitIn(map);
+		JsonModel jm = (JsonModel) userDebitInBiz.findAllUserDebitInunCheck(map);
+		return jm;
+
+	}
+	
+	
+	/**
+	 * 后台查找所有的已审核借贷信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findAllUserDebitInCheck.action")
+	public JsonModel findAllUserDebitInCheck(UserDebitIn userDebitIn, HttpServletRequest request, HttpSession session)
+			throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = (JsonModel) userDebitInBiz.findAllUserDebitInCheck(map);
 		return jm;
 
 	}

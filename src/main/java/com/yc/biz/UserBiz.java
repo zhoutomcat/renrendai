@@ -31,12 +31,8 @@ public interface UserBiz {
 
 	public void saveOrUpdate(User user);
 
-	/**
-	 * 查找所有的用户
-	 * @param map
-	 * @return
-	 */
-	public JsonModel searchUser(Map<String, Integer> map);
+
+
 	/**
 	 * 修改用户
 	 * @param user
@@ -65,6 +61,18 @@ public interface UserBiz {
 	
 	//从用户账户提现
 	public void withdrawUserFund(Map<String, Integer> map);
+	/**
+	 * 查找所有的可用的用户
+	 * @param map
+	 * @return
+	 */
+	JsonModel searchallowUser(Map<String, Integer> map);
+	/**
+	 * 查找所有的不可用用户
+	 * @param map
+	 * @return
+	 */
+	JsonModel searchforbidUser(Map<String, Integer> map);
 	
 
 }

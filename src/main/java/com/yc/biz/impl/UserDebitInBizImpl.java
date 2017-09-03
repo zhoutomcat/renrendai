@@ -80,23 +80,22 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 		return result;
 	}
 
-	@Override
+/*	@Override
 	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel findAllUserDebitIn(Map<String, Integer> map) {
 		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUserDebitInResultMap", map);
 		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUserDebitInResultMapCount",map);
-		
+		//System.out.println(list);
 		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
 		jsonModel.setRows(list);
 		jsonModel.setTotal(total);
 		return jsonModel;
-	}
+	}*/
 
 	@Override
 	public boolean AddUserDebitIn(UserDebitIn udi) {
-		System.out.println(udi);
-		baseDao.save(udi, "addUserDebitIn");
 		//System.out.println(udi);
+		baseDao.save(udi, "addUserDebitIn");
 		return true;	
 	}
 
@@ -110,6 +109,28 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	public boolean updateUserDebitInCheckStatus(UserDebitIn udi) {
 		baseDao.update(udi, "updateUserDebitInCheckStatus");
 		return true;
+	}
+
+	@Override
+	public JsonModel findAllUserDebitInunCheck(Map<String, Integer> map) {
+		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUserDebitInunCheckResultMap", map);
+		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUserDebitInunCheckResultMapCount",map);
+		//System.out.println(list);
+		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
+		jsonModel.setRows(list);
+		jsonModel.setTotal(total);
+		return jsonModel;
+	}
+
+	@Override
+	public JsonModel findAllUserDebitInCheck(Map<String, Integer> map) {
+		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUserDebitInCheckResultMap", map);
+		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUserDebitInCheckResultMapCount",map);
+		//System.out.println(list);
+		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
+		jsonModel.setRows(list);
+		jsonModel.setTotal(total);
+		return jsonModel;
 	}
 
 }

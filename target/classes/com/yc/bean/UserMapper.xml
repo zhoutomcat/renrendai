@@ -78,17 +78,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<!-- 带查询条件，分页条件 排序条件的查询 -->
-	<select id="findUserCondition" resultType="User">
-		select *
-		<include refid="conditionSql" />
+	<select id="findUserallowloginCondition" resultType="User">
+		select * from user where u_status=1
+		<!-- <include refid="conditionSql" /> -->
 		<include refid="orderSql" />
 		<include refid="pageSql" />
 	</select>
 	<!-- 带查询条件统计查询 -->
-	<select id="findUserConditionCount" parameterType="Map"
+	<select id="findUserallowloginConditionCount" parameterType="Map"
 		resultType="int">
-		select count(1)
-		<include refid="conditionSql" />
+		select count(1) from user where u_status=1
+		<!-- <include refid="conditionSql" /> -->
+	</select>
+	
+	<select id="findUserforbidloginCondition" resultType="User">
+		select * from user where u_status=0
+		<!-- <include refid="conditionSql" /> -->
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 带查询条件统计查询 -->
+	<select id="findUserforbidloginConditionCount" parameterType="Map"
+		resultType="int">
+		select count(1) from user where u_status=0
+		<!-- <include refid="conditionSql" /> -->
 	</select>
 
 	<!-- 修改用户 -->

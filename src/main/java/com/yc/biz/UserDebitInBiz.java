@@ -59,11 +59,18 @@ public interface UserDebitInBiz {
 	 */
 	public int findAllSanbiaoHistoryCount();
 	/**
-	 * 后台查询所有的借贷信息
+	 * 后台查询所有的未审核借贷信息
 	 * @param map
 	 * @return
 	 */
-	public JsonModel findAllUserDebitIn(Map<String, Integer> map);
+	public JsonModel findAllUserDebitInunCheck(Map<String, Integer> map);
+	
+	/**
+	 * 后台查询所有的以审核借贷信息
+	 * @param map
+	 * @return
+	 */
+	public JsonModel findAllUserDebitInCheck(Map<String, Integer> map);
 
 	/**
 	 * 添加借款信息的个人信息
@@ -82,6 +89,10 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public boolean updateUserDebitInCheckStatus(UserDebitIn udi);
+
+
+
+
 	
 
 }
