@@ -12,6 +12,7 @@ public class PerRefund implements Serializable {
 	private Integer pr_status;
 	private Double pr_money;
 	private long pr_date;
+	
 	public Integer getPr_id() {
 		return pr_id;
 	}

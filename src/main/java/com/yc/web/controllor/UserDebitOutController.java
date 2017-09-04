@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yc.bean.User;
 import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserDebitOut;
+import com.yc.biz.UserBiz;
 import com.yc.biz.UserDebitOutBiz;
 import com.yc.web.model.JsonModel;
 
@@ -22,6 +23,9 @@ import com.yc.web.model.JsonModel;
 public class UserDebitOutController {
 	@Resource(name = "userDebitOutBizImpl")
 	private UserDebitOutBiz udob;
+	
+	@Resource(name = "userBizImpl")
+	private UserBiz ub;
 
 	// 向u计划投标
 	@RequestMapping("/user/addUplanUserDebitOut.action")
@@ -54,23 +58,38 @@ public class UserDebitOutController {
 		//判断放贷金额是否超额
 		if (money > (udi_money - totalMoney)) {
 			jm.setCode(0);
+			//最多只能投多少钱
 			jm.setObj(udi_money - totalMoney);
 			return jm;
 		}
 		parameterMap = new HashMap<>();
 		parameterMap.put("udi_id", udi_id);
 		parameterMap.put("u_id", user.getU_id());
+		//获取当前系统时间（即借款时间）
 		long m = Calendar.getInstance().getTimeInMillis();
 		parameterMap.put("udo_startdate", m);
 		parameterMap.put("udo_date", m + 86400 * 1000);
 		parameterMap.put("udo_money", money);
 		try {
 			udob.addUplanUserDebitOut(parameterMap);
-			jm.setCode(1);
+//			jm.setCode(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			jm.setCode(0);
 		}
+		//放贷之后为用户账户的增加钱数 （冻结金额）
+		try {
+			Map<String ,Object> map = new HashMap<>();
+			map.put("balance", money);
+			map.put("u_id", user.getU_id());
+			ub.updateUserFundFreeze(map);
+			jm.setCode(1);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			jm.setCode(0);
+		}
+		//判断筹满之后修改标的状态
 		if (money == (udi_money - totalMoney)) {
 			parameterMap = new HashMap<>();
 			parameterMap.put("udit_id", udi_id);
