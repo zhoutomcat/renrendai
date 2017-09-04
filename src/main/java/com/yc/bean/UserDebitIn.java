@@ -20,7 +20,7 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	private long udi_refundrealitydate;
 	private String udi_use;
 	private Integer udi_refundway; // 还贷方式
-	private Integer udi_type;
+	private Integer udi_type;		//  udit_id
 	private Integer udi_weight; // 权重
 
 	private Integer peopleCount;// 加入的人数

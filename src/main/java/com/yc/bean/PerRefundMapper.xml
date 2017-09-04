@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.bean.PerRefundMapper">
+	<!--加入带日志的ehcache缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
+
+	<!-- 添加用户还款信息 -->
+	<insert id="addPerFundInfoByUser" parameterType="PerRefund"  useGeneratedKeys="true"
+		keyProperty="pr_id">
+		insert into
+		perRefund(udi_id,pr_status,pr_money,pr_date)
+		values(#{udi_id},#{pr_status},#{pr_money},#{pr_date})
+	</insert>
+	
+	<!-- 用户还完所有的款之后修改借贷的状态  -->
+	<update id="updatePerFundInfoByUdi_id" parameterType="java.util.Map">
+		update userdebitIn set udi_status=3 where udi_id=#{udi_id}
+	</update>
+
+
+
+</mapper>
+
+
+
+

@@ -6,9 +6,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--加入带日志的ehcache缓存 -->
 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
 
+	<!-- 查找用户所有的未还款的借款信息 -->
+	<select id="findAllUserDebitInInfo" resultMap="findAllUserDebitInInfoResultMap"
+		parameterType="java.util.Map">
+		select a.udi_date,a.udi_id,a.udi_title,a.udi_type,a.udi_money,b.udit_profit,b.udit_month  from
+		(select * from UserDebitIn where udi_status
+		= 2 and u_id = #{u_id} )a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type where udi_status = 2
+	</select>
+
+	<resultMap id="findAllUserDebitInInfoResultMap" type="UserDebitIn">
+		<id property="udi_id" column="udi_id" />
+		<result property="udi_id" column="udi_id" />
+		<result property="udi_date" column="udi_date" />
+		<result property="udi_title" column="udi_title" />
+		<result property="udi_type" column="udi_type" />
+		<result property="udi_money" column="udi_money" />
+		<association property="userDebitInType" javaType="UserDebitInType">
+			<result property="udit_profit" column="udit_profit" />
+			<result property="udit_month" column="udit_month" />
+		</association>
+	</resultMap>
+
 	<!-- 根据用户名和密码查询用户 -->
 	<select id="getUserByLogin" parameterType="User" resultType="User">
-		select * from user where u_name=#{u_name} and u_password=#{u_password} and u_status=1
+		select * from user where u_name=#{u_name} and u_password=#{u_password}
+		and u_status=1
 	</select>
 
 	<!-- 添加用户，要返回用户的编号 -->
@@ -90,7 +117,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(1) from user where u_status=1
 		<!-- <include refid="conditionSql" /> -->
 	</select>
-	
+
 	<select id="findUserforbidloginCondition" resultType="User">
 		select * from user where u_status=0
 		<!-- <include refid="conditionSql" /> -->
@@ -144,5 +171,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{balance} where u_id = #{u_id}
 	</update>
 
+	<!-- 放贷之后为用户账户的增加钱数 （冻结金额） -->
+	<update id="updateUserFundFreeze" parameterType="java.util.Map">
+		update userFund
+		set
+		uf_balance = uf_balance + #{balance} ,uf_freeze = uf_freeze +
+		#{balance} where u_id = #{u_id}
+	</update>
 
 </mapper>

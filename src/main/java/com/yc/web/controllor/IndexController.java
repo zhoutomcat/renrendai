@@ -14,6 +14,28 @@ public class IndexController {
 		return "index";
 	}
 	
+	
+	
+	/**
+	 * 跳转到显示提现信息页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/toRepay.action")
+	public String toRepay() {
+		return "repay";
+	}
+	
+	/**
+	 * 跳转到提现页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/toRepayment.action")
+	public String toRepayment() {
+		return "repayment";
+	}
+	
 	/**
 	 * 跳转到提现页面
 	 * 

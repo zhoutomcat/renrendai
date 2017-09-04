@@ -1,12 +1,32 @@
 package com.yc.biz;
 
+import java.util.List;
 import java.util.Map;
 
+import com.yc.bean.PerRefund;
 import com.yc.bean.User;
+import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserFund;
 import com.yc.web.model.JsonModel;
 
 public interface UserBiz {
+	
+	/**
+	 *  查找用户所有的未还款的借款信息
+	 * @param map
+	 * @return
+	 */
+	public List<UserDebitIn> findAllUserDebitInInfo(Map<String, Object> map);
+	
+	/**
+	 * 用户还完所有的款之后修改借贷的状态
+	 */
+	public void updatePerFundInfoByUdi_id(Map<String, Object> map);
+	
+	/**
+	 * 添加用户还款信息
+	 */
+	public  void addPerFundInfoByUser(PerRefund perRefund);
 	
 	/**
 	 * 登录
@@ -57,10 +77,14 @@ public interface UserBiz {
 	public UserFund findUserFundInfoByUser(User user);
 	
 	//充值用户账户
-	public void chongzhiUserFund(Map<String, Integer> map);
+	public void chongzhiUserFund(Map<String, Object> map);
 	
 	//从用户账户提现
-	public void withdrawUserFund(Map<String, Integer> map);
+	public void withdrawUserFund(Map<String, Object> map);
+	
+	//放贷之后为用户账户的增加钱数 （冻结金额）
+	public void updateUserFundFreeze(Map<String, Object> map);
+	
 	/**
 	 * 查找所有的可用的用户
 	 * @param map

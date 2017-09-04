@@ -3,6 +3,7 @@ package com.yc.web.controllor;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.yc.bean.PerRefund;
 import com.yc.bean.User;
+import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserFund;
 import com.yc.biz.UserBiz;
 import com.yc.utils.RequestUtil;
@@ -29,15 +32,72 @@ public class UserController {
 	@Resource(name = "userBizImpl")
 	private UserBiz userBiz;
 
+	/**
+	 * 添加还款信息
+	 * 
+	 * 暂时实现只能一次性还款
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/user/addPerFundInfoByUser.action")
+	public JsonModel addPerFundInfoByUser( HttpServletRequest request) {
+		JsonModel jm = new JsonModel();
+		int udi_id = Integer.parseInt( request.getParameter("udi_id") );
+		double pr_money = Double.parseDouble( request.getParameter("udo_money") );
+		int pr_status = 1;
+		//获取当前系统时间（即借款时间）
+		long m = Calendar.getInstance().getTimeInMillis();
+		PerRefund pr = new PerRefund();
+		pr.setUdi_id(udi_id);
+		pr.setPr_money(pr_money);
+		//暂时实现只能一次性还款
+		pr.setPr_status(pr_status);
+		pr.setPr_date(m);
+		
+		try {
+			userBiz.addPerFundInfoByUser(pr);
+			Map<String, Object> map = new HashMap<>();
+			map.put("udi_id", udi_id);
+			userBiz.updatePerFundInfoByUdi_id(map);
+			jm.setCode(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+		}
+		return jm;
+	}
+	
+	
+	// 查找用户所有借款信息
+	@RequestMapping("/user/findAllUserDebitInInfo.action")
+	public JsonModel findAllUserDebitInInfo( HttpServletRequest request, HttpSession session,
+			HttpServletResponse response ) throws ServletException, IOException {
+		JsonModel jm = new JsonModel();
+		Map<String, Object> map = new HashMap<>();
+		User user = (User) session.getAttribute("user");
+		map.put("u_id", user.getU_id());
+		List<UserDebitIn> list;
+		try {
+			list = userBiz.findAllUserDebitInInfo(map);
+			jm.setRows(list);
+			jm.setCode(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+		}
+		return jm;
+	}
+
 	// 充值用户账户
 	@RequestMapping("/user/withdrawUserFund.action")
 	public JsonModel withdrawUserFund(HttpServletRequest request, HttpSession session, HttpServletResponse response)
 			throws ServletException, IOException {
 		JsonModel jm = new JsonModel();
 		User user = (User) session.getAttribute("user");
-		int money = Integer.parseInt(request.getParameter("money").toString());
+		double money = Double.parseDouble(request.getParameter("money").toString());
 		try {
-			Map<String, Integer> map = new HashMap<>();
+			Map<String, Object> map = new HashMap<>();
 			map.put("balance", money);
 			map.put("u_id", user.getU_id());
 			userBiz.withdrawUserFund(map);
@@ -57,7 +117,7 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		int money = Integer.parseInt(request.getParameter("money").toString());
 		try {
-			Map<String, Integer> map = new HashMap<>();
+			Map<String, Object> map = new HashMap<>();
 			map.put("balance", money);
 			map.put("u_id", user.getU_id());
 			userBiz.chongzhiUserFund(map);
@@ -143,9 +203,10 @@ public class UserController {
 		}
 		return jm;
 	}
-	
+
 	/**
 	 * 禁止用户登录
+	 * 
 	 * @param u_id
 	 * @param request
 	 * @param session
@@ -173,10 +234,10 @@ public class UserController {
 		}
 		return jm;
 	}
-	
-	
+
 	/**
 	 * 允许用户登录
+	 * 
 	 * @param u_id
 	 * @param request
 	 * @param session
@@ -260,8 +321,8 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/back/findAllAllowUser.action")
-	public JsonModel findAllAllowUser(User user, HttpServletRequest request, HttpServletResponse resp, HttpSession session)
-			throws Exception {
+	public JsonModel findAllAllowUser(User user, HttpServletRequest request, HttpServletResponse resp,
+			HttpSession session) throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
 		int start = (pages - 1) * pagesize;
@@ -275,8 +336,7 @@ public class UserController {
 		 */ // jsonModel型是不需要转成gson型的
 		return jm;
 	}
-	
-	
+
 	/**
 	 * 后台查询所有的不可用的用户
 	 * 
@@ -288,8 +348,8 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/back/findAllForbidUser.action")
-	public JsonModel findAllForbidUser(User user, HttpServletRequest request, HttpServletResponse resp, HttpSession session)
-			throws Exception {
+	public JsonModel findAllForbidUser(User user, HttpServletRequest request, HttpServletResponse resp,
+			HttpSession session) throws Exception {
 		int pages = Integer.parseInt(request.getParameter("page").toString());
 		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
 		int start = (pages - 1) * pagesize;

@@ -40,7 +40,7 @@
 					width:30,
 					align:'center',
 					formatter:function(subscribe_time){
-						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
+						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,22)
 						    return  tt;  
 						} 
 				},{
@@ -49,7 +49,7 @@
 					width:30,
 					align:'center',
 					formatter:function(subscribe_time){
-						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,17)
+						 var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,22)
 						    return  tt;  
 						} 
 				},{

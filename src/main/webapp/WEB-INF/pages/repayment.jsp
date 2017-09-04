@@ -8,14 +8,13 @@
 				function() {
 					$.ajax({
 						type : "POST",
-						url : "user/addUplanUserDebitOut.action?udit_id="
-								+ document.getElementById("udit_id").value,
+						url : "user/addPerFundInfoByUser.action?udi_id="
+								+ document.getElementById("udi_id").value,
 						data : $("#myform").serialize(),
 						dataType : "JSON",
 						success : function(data) {
 							if (data.code == 1) {
 								alert("chenggong");
-								window.location.href = window.location.href;
 								window.location.href = "index.jsp";
 							} else {
 								alert("shibai");
@@ -29,12 +28,13 @@
 
 
 <center>
-	<input id="udit_id" name="udit_id" type="hidden" value="<%=request.getParameter("udit_id")%>" />
+	<input id="udi_id" name="udi_id" type="hidden" value="<%=request.getParameter("udi_id")%>" />
 	<form id="myform" method="post" >
 		请输入金额 :
 		<input type="text" id="udo_money" name="udo_money" />
 		<input id="button" type="button" value="确定"/>
 		<div id="warning" style="color:red">aa</div>
+		<div id="money" value=""></div>
 	</form>
 </center>
 
