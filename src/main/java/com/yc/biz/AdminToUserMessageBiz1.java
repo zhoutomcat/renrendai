@@ -12,15 +12,18 @@ import com.yc.bean.UserDebitIn;
 import com.yc.bean.UserMessage;
 import com.yc.web.model.JsonModel;
 
-public interface AdminToUserMessageBiz {
-	/**
-	 * 后台查找所有的消息推送信息
-	 * @param map
-	 * @return
-	 */
-	public JsonModel findAllAdminToUserMessage(Map<String, Integer> map);
+public interface AdminToUserMessageBiz1 {
 	
 
+
+
+	/**
+	 * 添加消息推送
+	 * @param adminToUserMessage
+	 * @throws SQLException 
+	 * @throws FileNotFoundException 
+	 */
+	public void addMessageToUser(AdminToUserMessage adminToUserMessage) throws FileNotFoundException, SQLException;
 
 
 

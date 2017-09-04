@@ -32,8 +32,8 @@ import com.yc.web.model.JsonModel;
 
 @RestController // 类注解,同时使用@Controller 和@ResponseBody
 public class AdminToUserMessageController {
-/*	@Resource(name="adminToUserMessageBizImpl")
-	private AdminToUserMessageBiz adminToUserMessageBiz;*/
+	@Resource(name="adminToUserMessageBizImpl")
+	private AdminToUserMessageBiz adminToUserMessageBiz;
 
 	
 
@@ -62,10 +62,29 @@ public class AdminToUserMessageController {
 		return jm;
 	}*/
 	
-/*	@RequestMapping("/back/toAdminMessagetoUser.action")
-	public void toAddVoteSubject(HttpServletResponse response,HttpServletRequest request) throws Exception{
-		request.getRequestDispatcher("/back/manager/message/successAdd.jsp").forward(request, response);
-	}*/
+	/**
+	 * 后台查找所有的消息推送信息
+	 * 
+	 * @param user
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findAllAdminToUserMessage.action")
+	public JsonModel findAllAdminToUserMessage(AdminToUserMessage atum, HttpServletRequest request, HttpSession session)
+			throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = adminToUserMessageBiz.findAllAdminToUserMessage(map);
+		return jm;
+	}
+
 	
 
 	

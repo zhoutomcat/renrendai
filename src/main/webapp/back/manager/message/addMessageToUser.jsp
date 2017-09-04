@@ -29,8 +29,7 @@
 </script>
 
 <title>推送消息</title>
-</head>
-<body>
+
 
 	<center>
 			发布消息

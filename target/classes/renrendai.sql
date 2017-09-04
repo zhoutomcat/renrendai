@@ -58,7 +58,8 @@ create table UserDebitIn(
 	   temp2 varchar(100) default null,
 	   temp3 varchar(100) default null		   
 ) 
-
+select * from UserDebitIn 
+delete  from UserDebitIn where udi_id=19
 --修改字段名称和属性：
 -- 将test字段改为test1
 -- ALTER TABLE 表名 CHANGE 原字段名 新字段名 字段类型 约束条件
@@ -317,6 +318,7 @@ create table AdminToUserMessage(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
+select * from AdminToUserMessage a join User u on a.u_id=u.u_id
 alter table UserDebitIn change temp1 udi_checkstatus int  default 0; 
 alter table AdminToUserMessage change temp1 atum_title varchar(200); 
 drop table  AdminToUserMessage

@@ -37,6 +37,13 @@ public class UserDebitInType implements Serializable {
 	public void setUdit_month(Double udit_month) {
 		this.udit_month = udit_month;
 	}
+	@Override
+	public String toString() {
+		return "UserDebitInType [udit_id=" + udit_id + ", udit_name=" + udit_name + ", udit_profit=" + udit_profit
+				+ ", udit_month=" + udit_month + "]";
+	}
+	
+	
 
 
 

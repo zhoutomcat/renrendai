@@ -1,5 +1,6 @@
 package com.yc.web.controllor;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -220,6 +222,7 @@ public class UserDebitInController {
 		UserDebitIn udi = new UserDebitIn();
 		UserDebitInType udit = new UserDebitInType();
 		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		//System.out.println(udi);
 		udit = RequestUtil.getParemeter(request, UserDebitInType.class);
 		JsonModel jm = new JsonModel();
 		User user = (User) session.getAttribute("user");
@@ -433,5 +436,54 @@ public class UserDebitInController {
 		}
 		return jm;
 	}
+	
+	/**
+	 * 后台发布添加U计划
+	 * 
+	 * @param um
+	 * @param session
+	 * @return
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws UnsupportedEncodingException 
+	 */
+	//@RequestMapping(value="/back/addNewUplan.action",produces ="text/html;charset=UTF-8")
+	@RequestMapping(value="/back/addNewUplan.action")
+	public JsonModel addNewUplan(HttpSession session, HttpServletRequest request,HttpServletResponse resp)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		UserDebitIn udi = new UserDebitIn();
+		UserDebitInType udit = new UserDebitInType();
+		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		System.out.println(udi);
+		udit = RequestUtil.getParemeter(request, UserDebitInType.class);
+		System.out.println(udit);
+		JsonModel jm = new JsonModel();
+		/*User user = (User) session.getAttribute("user");
+		udi.setU_id(user.getU_id());*/
+		// 给一些前台页面中没有显示值的属性设置值
+/*		udi.setU_id(2);*/
+/*		udi.setUdi_use("筹款");*/
+		udi.setUdi_status(1);
+		udi.setUdi_type(1);
+		udi.setUdi_use("平台筹款");
+		udi.setUdi_id(6);
+		// 给一些前台页面中没有显示值的属性设置值
+		try {	
+			this.userDebitInBiz.addNewUplanType(udit);
+			this.userDebitInBiz.addNewUplan(udi);
+			jm.setCode(1);
+			resp.sendRedirect("manager/uplan/successAdd.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+			jm.setCode(0);
+			jm.setMsg(e.getMessage());
+		}
+		return jm;
+	}
+	
 
 }

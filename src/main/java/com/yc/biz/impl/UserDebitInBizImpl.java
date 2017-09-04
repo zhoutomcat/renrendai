@@ -163,4 +163,16 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 		return true;
 	}
 
+	@Override
+	public boolean addNewUplan(UserDebitIn udi) {
+		baseDao.save(udi, "addNewUplan");
+		return true;	
+	}
+
+	@Override
+	public boolean addNewUplanType(UserDebitInType udit) {
+		baseDao.save(udit, "addNewUplanType");
+		return true;	
+	}
+
 }

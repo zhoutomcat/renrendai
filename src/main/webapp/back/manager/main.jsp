@@ -108,6 +108,26 @@
 				}
 			}]
 		} ];
+		
+		var treeDataUplanTree = [ {
+			"text" : "U计划管理",
+			"state" : "closed",
+			"children" : [ {
+				"text" : "发布新U计划",
+				"attributes" : {
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/uplan/addNewUplan.jsp' />"
+				}
+			},
+			{
+				"text" : "U计划管理信息",
+				"attributes" : {
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/uplan/uplanManagerInfo.jsp' />"
+				}
+			}]
+		} ];
+		
+		
+		showTree("UplanInfoTree", treeDataUplanTree);
 		showTree("MessageTypeTree", treeDataMessageTypeTree);
 		showTree("userDebitInTree", treeDatauserDebitInTree);
 		showTree("userDebitOutTree", treeDatauserDebitOutTree);
@@ -211,7 +231,11 @@
 			<ul id="MessageTypeTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
 					</ul>
 			</div>
-			
+			<div title="U计划管理" style="overflow: auto; padding: 10px;">
+			<ul id="UplanInfoTree" class="easyui-tree" data-options="animate:true,state:closed,fit:true">
+					</ul>
+			</div>
+					
 		</div>
 	</div>
 	<!-- 	</div>  -->

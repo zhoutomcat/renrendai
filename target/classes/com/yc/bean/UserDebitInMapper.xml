@@ -264,6 +264,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	values(#{udi_title},#{u_id},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_use},#{udi_refundway},#{udi_type})
     </insert>
     
+    
+       <!-- 添加U计划信息 -->
+    <insert id="addNewUplan" parameterType="UserDebitIn" useGeneratedKeys="true" keyProperty="udi_id">
+         insert into UserDebitIn(udi_title,u_id,udi_use,udi_money,udi_status,udi_publishdate,udi_date,udi_refundrealitydate,udi_refundway,udi_type)  
+    	values(#{udi_title},#{u_id},#{udi_use},#{udi_money},#{udi_status},#{udi_publishdate},#{udi_date},#{udi_refundrealitydate},#{udi_refundway},#{udi_type})
+    </insert> 
+    
 
     
     

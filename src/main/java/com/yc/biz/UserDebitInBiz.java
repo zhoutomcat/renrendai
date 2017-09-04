@@ -113,6 +113,16 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public boolean updateSingerUserDebitIn(UserDebitIn udi);
+	/**
+	 * 添加U计划信息
+	 * @param udi
+	 */
+	public boolean addNewUplan(UserDebitIn udi);
+	/**
+	 * 添加U计划类型信息
+	 * @param udit
+	 */
+	public boolean addNewUplanType(UserDebitInType udit);
 
 
 

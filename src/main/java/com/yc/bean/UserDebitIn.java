@@ -35,157 +35,235 @@ public class UserDebitIn extends CommonBean implements Serializable {
 	// 用于后台放贷表的显示
 	private User user;
 
-	public User getUser() {
-		return user;
-	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Integer getUdi_type() {
-		return udi_type;
-	}
-
-	public void setUdi_type(Integer udi_type) {
-		this.udi_type = udi_type;
-	}
-
-	public Double getTotalMoney() {
-		return totalMoney;
-	}
-
-	public void setTotalMoney(Double totalMoney) {
-		this.totalMoney = totalMoney;
-	}
-
-	public Double getMakeMoney() {
-		return makeMoney;
-	}
-
-	public void setMakeMoney(Double makeMoney) {
-		this.makeMoney = makeMoney;
-	}
-
-	public Integer getPeopleCount() {
-		return peopleCount;
-	}
-
-	public void setPeopleCount(Integer peopleCount) {
-		this.peopleCount = peopleCount;
-	}
-
-	public UserDebitInType getUserDebitInType() {
-		return userDebitInType;
-	}
-
-	public void setUserDebitInType(UserDebitInType userDebitInType) {
-		this.userDebitInType = userDebitInType;
-	}
-
-	public List<UserDebitInType> getList() {
-		return list;
-	}
-
-	public void setList(List<UserDebitInType> list) {
-		this.list = list;
-	}
-
-	public long getUdi_date() {
-		return udi_date;
-	}
-
-	public long getUdi_refundrealitydate() {
-		return udi_refundrealitydate;
-	}
-
-	public Integer getUdi_weight() {
-		return udi_weight;
-	}
-
-	public void setUdi_weight(Integer udi_weight) {
-		this.udi_weight = udi_weight;
-	}
 
 	public Integer getUdi_id() {
 		return udi_id;
 	}
 
+
+
 	public void setUdi_id(Integer udi_id) {
 		this.udi_id = udi_id;
 	}
+
+
 
 	public String getUdi_title() {
 		return udi_title;
 	}
 
+
+
 	public void setUdi_title(String udi_title) {
 		this.udi_title = udi_title;
 	}
+
+
 
 	public Integer getU_id() {
 		return u_id;
 	}
 
+
+
 	public void setU_id(Integer u_id) {
 		this.u_id = u_id;
 	}
+
+
 
 	public Double getUdi_money() {
 		return udi_money;
 	}
 
+
+
 	public void setUdi_money(Double udi_money) {
 		this.udi_money = udi_money;
 	}
+
+
 
 	public Integer getUdi_status() {
 		return udi_status;
 	}
 
+
+
 	public void setUdi_status(Integer udi_status) {
 		this.udi_status = udi_status;
 	}
 
-	public long getUdi_publishdate() {
-		return udi_publishdate;
+
+
+	public long getUdi_date() {
+		return udi_date;
 	}
 
-	public void setUdi_publishdate(long udi_publishdate) {
-		this.udi_publishdate = udi_publishdate;
-	}
+
 
 	public void setUdi_date(long udi_date) {
 		this.udi_date = udi_date;
 	}
 
+
+
+	public long getUdi_publishdate() {
+		return udi_publishdate;
+	}
+
+
+
+	public void setUdi_publishdate(long udi_publishdate) {
+		this.udi_publishdate = udi_publishdate;
+	}
+
+
+
+	public long getUdi_refundrealitydate() {
+		return udi_refundrealitydate;
+	}
+
+
+
 	public void setUdi_refundrealitydate(long udi_refundrealitydate) {
 		this.udi_refundrealitydate = udi_refundrealitydate;
 	}
+
+
 
 	public String getUdi_use() {
 		return udi_use;
 	}
 
+
+
 	public void setUdi_use(String udi_use) {
 		this.udi_use = udi_use;
 	}
+
+
 
 	public Integer getUdi_refundway() {
 		return udi_refundway;
 	}
 
+
+
 	public void setUdi_refundway(Integer udi_refundway) {
 		this.udi_refundway = udi_refundway;
 	}
+
+
+
+	public Integer getUdi_type() {
+		return udi_type;
+	}
+
+
+
+	public void setUdi_type(Integer udi_type) {
+		this.udi_type = udi_type;
+	}
+
+
+
+	public Integer getUdi_weight() {
+		return udi_weight;
+	}
+
+
+
+	public void setUdi_weight(Integer udi_weight) {
+		this.udi_weight = udi_weight;
+	}
+
+
+
+	public Integer getPeopleCount() {
+		return peopleCount;
+	}
+
+
+
+	public void setPeopleCount(Integer peopleCount) {
+		this.peopleCount = peopleCount;
+	}
+
+
+
+	public Double getTotalMoney() {
+		return totalMoney;
+	}
+
+
+
+	public void setTotalMoney(Double totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
+
+
+	public Double getMakeMoney() {
+		return makeMoney;
+	}
+
+
+
+	public void setMakeMoney(Double makeMoney) {
+		this.makeMoney = makeMoney;
+	}
+
+
 
 	public Integer getUdi_checkstatus() {
 		return udi_checkstatus;
 	}
 
+
+
 	public void setUdi_checkstatus(Integer udi_checkstatus) {
 		this.udi_checkstatus = udi_checkstatus;
 	}
+
+
+
+	public List<UserDebitInType> getList() {
+		return list;
+	}
+
+
+
+	public void setList(List<UserDebitInType> list) {
+		this.list = list;
+	}
+
+
+
+	public UserDebitInType getUserDebitInType() {
+		return userDebitInType;
+	}
+
+
+
+	public void setUserDebitInType(UserDebitInType userDebitInType) {
+		this.userDebitInType = userDebitInType;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -197,6 +275,7 @@ public class UserDebitIn extends CommonBean implements Serializable {
 				+ ", udi_checkstatus=" + udi_checkstatus + ", list=" + list + ", userDebitInType=" + userDebitInType
 				+ ", user=" + user + "]";
 	}
+
 
 
 }

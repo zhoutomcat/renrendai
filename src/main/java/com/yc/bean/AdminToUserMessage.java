@@ -2,6 +2,9 @@ package com.yc.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
+
+import com.yc.web.model.JsonModel;
 
 public class AdminToUserMessage implements Serializable {
 
@@ -14,6 +17,16 @@ public class AdminToUserMessage implements Serializable {
 	private Integer atum_status;
 	private String atum_title;
 	
+	private User user;
+	
+	
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getAtum_title() {
 		return atum_title;
 	}
@@ -54,8 +67,11 @@ public class AdminToUserMessage implements Serializable {
 	public String toString() {
 		return "AdminToUserMessage [atum_id=" + atum_id + ", u_id=" + u_id + ", atum_time=" + atum_time
 				+ ", atum_content=" + atum_content + ", atum_status=" + atum_status + ", atum_title=" + atum_title
-				+ "]";
+				+ ", user=" + user + "]";
 	}
+
+
+
 
 	
 	

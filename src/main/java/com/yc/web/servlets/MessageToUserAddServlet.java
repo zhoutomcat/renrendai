@@ -23,7 +23,9 @@ import com.jspsmart.upload.SmartUploadException;
 import com.yc.bean.Admin;
 import com.yc.bean.AdminToUserMessage;
 import com.yc.biz.AdminToUserMessageBiz;
+import com.yc.biz.AdminToUserMessageBiz1;
 import com.yc.biz.impl.AdminToUserMessageBizImpl;
+import com.yc.biz.impl.AdminToUserMessageBizImpl1;
 
 public class MessageToUserAddServlet extends HttpServlet {
 	private String filepath;   //真实文件位置  tomcat在硬盘上的位置
@@ -31,7 +33,7 @@ public class MessageToUserAddServlet extends HttpServlet {
 	private String deniedFilesList = "bat,sh,exe,class,html,js,css";
 	private long maxFileSize = 2000000;
 	private long totalMaxFileSize = 4*maxFileSize;
-	private AdminToUserMessageBiz adminToUserMessageBiz = new AdminToUserMessageBizImpl();
+	private AdminToUserMessageBiz1 adminToUserMessageBiz = new AdminToUserMessageBizImpl1();
 
 
 	@Override

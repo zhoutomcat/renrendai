@@ -85,7 +85,7 @@ public class UserDebitOutController {
 	}
 
 	/**
-	 * 查找所有的放贷信息
+	 * 后台查找所有的放贷信息
 	 * 
 	 * @param user
 	 * @param request

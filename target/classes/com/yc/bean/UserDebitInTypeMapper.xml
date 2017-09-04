@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	insert into UserDebitInType(udit_name,udit_profit,udit_month) values(#{udit_name},
     	#{udit_profit},#{udit_month})
     </insert>   
-	
+    
+    <!-- 添加U计划借贷类型 -->
+	  <insert id="addNewUplanType" parameterType="UserDebitInType" useGeneratedKeys="true" keyProperty="udit_id">
+    	insert into UserDebitInType(udit_profit,udit_month) values(#{udit_profit},#{udit_month})
+    </insert>   
 	
 </mapper>

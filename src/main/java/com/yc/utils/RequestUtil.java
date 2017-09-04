@@ -25,6 +25,7 @@ public class RequestUtil<T> {
 				continue;
 			}
 			String value = request.get(p).toString();
+	
 			if (value != null&& !"".equals(value)) {
 				for (Method m : setMethods) {
 					// 判断是哪一个set方法要运行起来
@@ -75,9 +76,11 @@ public class RequestUtil<T> {
 		// setEmpSal() -> empsal
 
 		List<String> params = getAllParameters(setMethods);
+		
 		// 从request中取出所有的参数
 		for (String p : params) {
 			String value = request.getParameter(p);
+
 			if (value != null&& !"".equals(value)) {
 				for (Method m : setMethods) {
 					// 判断是哪一个set方法要运行起来
