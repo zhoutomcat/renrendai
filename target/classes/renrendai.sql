@@ -43,16 +43,16 @@ drop table Userfund
 udi_moneysure           number(10,2), --已借金额  		--去掉 		 修改	--把这个字段放在用户表中（可以统计每个用户每次借款的信息）
 create table UserDebitIn(
        udi_id 			int primary key auto_increment,
-       udi_title 		varchar(100) not null, 
-       u_id			int, 
-       udi_money 		double, 
-       udi_status 		int , 
+       udi_title 		varchar(100) not null,
+       u_id			int,
+       udi_money 		double,
+       udi_status 		int ,
        udi_publishdate         long,
        udi_date 		long,
        udi_refundrealitydate	long,
        udi_use	                varchar(2000),
-       udi_refundway		int, 	     
-       udi_type          int,            
+       udi_refundway		int,
+       udi_type          int,
        udi_weight   int  default 0,       
 	   udi_checkstatus int default 0,    --审核状态     默认为0   审核通过以后修改为1   只有通过审核才能显示在前台
 	   temp2 varchar(100) default null,
@@ -70,13 +70,29 @@ alter table UserDebitIn change temp1 udi_checkstatus int  default 0;
 alter table UserDebitIn set udi_weight=0 where udi_id=10
 drop table UserDebitIn 
 select * from UserDebitIn
+
 delete from UserDebitIn where udi_id=25	
 update userdebitIn set udi_refundrealitydate=1597484941
+
+delete from UserDebitIn where udi_id=5 
+update userdebitIn set udi_status=2 where udi_id=10
+
 
 select udit_profit,udit_month from UserDebitInType;
 
 insert into UserDebitIn,UserDebitInType
 select * from UserDebitIn udi join  UserDebitInType udit on udi.udi_type=udit.udit_id
+
+--   查找用户所有的未还款的借款信息
+select udi_title,udi_type,udi_money,udit_profit,udit_month  from
+		(select * from UserDebitIn where udi_status
+		= 2 and u_id = 1 )a left join
+		(select
+		udit_id,udit_profit,udit_month
+		from UserDebitInType
+		)b on
+		b.udit_id=a.udi_type
+
 
 --借贷类型表     
 create table UserDebitInType(
@@ -260,6 +276,7 @@ create table PerRefund(
 select * from PerRefund
 drop table  PerRefund
 
+
 --关注投标表: 
   --关注人的id--借贷表id外键 --关注时间--关注状态   0代表取消关注   1代表正在关注	     	
 create table AttentionMark(
@@ -276,7 +293,7 @@ drop table AttentionMark
 
 
 --关注用户表: 
- --关注人的id--被关注人的id --关注时间 --关注状态   0代表取消关注   1代表正在关注        	修改 
+ --关注人的id--被关注人的id --关注时间 --关注状态   0代表取消关注   1代表正在关注        	修改
 create table AttentionUser(
 	au_id 			 int primary key auto_increment,
 	u_id 			 int,   
@@ -339,7 +356,7 @@ create table UserMessage(
 	   um_workinfo    varchar(1000),     
 	   um_incomeinfo  varchar(1000),  
 	   um_sex       	 varchar(4),	         
-       um_age         int,               
+       um_age         int,
    	   um_description  text, 
    	   bi_idCard varchar(20) unique,
 	   temp1 varchar(100) default null,

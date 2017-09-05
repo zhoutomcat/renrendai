@@ -26,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody class="data-list" id="sanbiaoHistory">
-
+					
 
 				</tbody>
 			</table>
@@ -40,17 +40,6 @@
 
 
 <script>
-	function voteSanbiao() {
-		$.ajax({
-			type : "POST",
-			url : "",
-			data : "pages=" + pages,
-			dataType : "JSON",
-			success : function(data) {
-				alert();
-			}
-		})
-	}
 
 	$(function() {
 		gopage(1);

@@ -109,6 +109,22 @@ udi_refundrealitydate,udi_use,udi_refundway,udi_type)
 1442355893,
 1532184121,
 '扩大生产/经营',1,9);
+--插入2条a用户筹款成功过的数据
+insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
+udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+ values('资金周转',1,100000,2,
+1439355893,
+1442355893,
+1532184121,
+'资金周转',1,7);
+
+insert into userDebitIn(udi_title,u_id,udi_money,udi_status, udi_publishdate, udi_date,
+udi_refundrealitydate,udi_use,udi_refundway,udi_type)
+ values('扩大生产/经营',1,100000,2,
+1439355893,
+1442355893,
+1532184121,
+'扩大生产/经营',1,9);
 
 select * from userDebitIn
 --实例还贷日期不确定，到时候前段需要修改    显示正在还款
