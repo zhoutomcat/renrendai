@@ -4,12 +4,58 @@
 
 
 <script type="text/javascript">
+	//手机接受验证码
+	function get_mobile_code() {
+		$.ajax({
+			type : "POST",
+			url : "toSms.action",
+			data : {
+				mobile : jQuery.trim($('#u_tel').val())
+			},
+			dataType : "xml",
+			success : function(msg) {
+				
+			}
+		});
+		RemainTime()
+	}
+	var iTime = 10;
+	var Account;
+	function RemainTime() {
+		document.getElementById('zphone').disabled = true;
+		var iSecond, sSecond = "", sTime = "";
+		if (iTime >= 0) {
+			iSecond = parseInt(iTime % 60);
+			iMinute = parseInt(iTime / 60)
+			if (iSecond >= 0) {
+				if (iMinute > 0) {
+					sSecond = iMinute + "分" + iSecond + "秒";
+				} else {
+					sSecond = iSecond + "秒";
+				}
+			}
+			sTime = sSecond;
+			if (iTime == 0) {
+				clearTimeout(Account);
+				sTime = '获取手机验证码';
+				iTime = 30;
+				document.getElementById('zphone').disabled = false;
+			} else {
+				Account = setTimeout("RemainTime()", 1000);
+				iTime = iTime - 1;
+			}
+		} else {
+			sTime = '';
+		}
+		document.getElementById('zphone').value = sTime;
+	}
+
 	function reg() {
 		$.ajax({
 			type : "POST",
 			data : $("#myform").serialize(),
 			/* url : "voteUser_register.action", */
-			url : "user_register.action",
+			url : "user/user_register.action",
 			dataType : "JSON",
 			success : function(data) {
 				if (data.code == 1) {
@@ -22,28 +68,6 @@
 		});
 	}
 
-	/* 	function checkUsername(uname) {
-	 if (!uname) {
-	 alert("用户名不能为空");
-	 $("#submit").attr("disabled", true);
-	 return;
-	 }
-	 $.ajax({
-	 type : "POST",
-	 data : "uname=" + encodeURIComponent(uname),
-	 url : "voteUser_isUsernameExist.action",
-	 dataType : "JSON",
-	 success : function(data) {
-	 if (data.code == 0) {
-	 $("#submit").attr("disabled", false);
-	 $("#result").html("用户名可以使用");
-	 } else {
-	 $("#submit").attr("disabled", true);
-	 $("#result").html("用户名已经存在，请更换用户名");
-	 }
-	 }
-	 });
-	 } */
 </script>
 
 <div id="regLogin" class="wrap">
@@ -75,7 +99,13 @@
 						</tr>
 						<tr>
 							<td class="field">电 话：</td>
-							<td><input type="text" class="text" name="u_tel" /></td>
+							<td><input type="text" class="text" id="u_tel" name="u_tel" value="18874610678" /></td>
+							<input id="zphone" type="button" value="获取手机验证码  " onClick="get_mobile_code();">
+						</tr>
+						<tr>
+							 验证码：
+							<input type="text" id="smscode" name="smscode" />
+							<br />
 						</tr>
 						<tr>
 							<td class="field">邮箱：</td>

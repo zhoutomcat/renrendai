@@ -13,9 +13,17 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
-	
-	
-	
+
+	/**
+	 * 跳转到sms(短信验证)页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/toSms.action")
+	public String toSms() {
+		return "sms";
+	}
+
 	/**
 	 * 跳转到显示提现信息页面
 	 * 
@@ -25,7 +33,7 @@ public class IndexController {
 	public String toRepay() {
 		return "repay";
 	}
-	
+
 	/**
 	 * 跳转到提现页面
 	 * 
@@ -35,7 +43,7 @@ public class IndexController {
 	public String toRepayment() {
 		return "repayment";
 	}
-	
+
 	/**
 	 * 跳转到提现页面
 	 * 
@@ -45,7 +53,7 @@ public class IndexController {
 	public String toWithdraw() {
 		return "withdraw";
 	}
-	
+
 	/**
 	 * 跳转到充值页面
 	 * 
@@ -91,7 +99,7 @@ public class IndexController {
 		return "uplan2";
 	}
 
-	@RequestMapping(value = "/toRegister.action")
+	@RequestMapping(value = "/user/toRegister.action")
 	public String toRegister() {
 		return "register";
 		// return "/WEB-INF/pages/login.jsp"; //没有视图解析器

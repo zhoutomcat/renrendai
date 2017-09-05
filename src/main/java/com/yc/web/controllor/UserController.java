@@ -280,6 +280,14 @@ public class UserController {
 		String repwd = request.getParameter("reu_password");
 		String zccode = request.getParameter("zccode");
 		String rand = session.getAttribute("rand").toString();
+		String mobile_code = session.getAttribute("mobile_code").toString();
+		String zcMobile_code = request.getParameter("smscode").toString();
+		if( !mobile_code.equals(zcMobile_code) ){
+			jm.setCode(0);
+			jm.setMsg("手机验证码错误");
+			return jm;
+		}
+		
 		if (!rand.equals(zccode)) {
 			jm.setCode(0);
 			jm.setMsg("验证码错误");
