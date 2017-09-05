@@ -175,4 +175,14 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 		return true;	
 	}
 
+	@Override
+	public JsonModel findAllUplanManagerInfo(Map<String, Integer> map) {
+		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUplanManagerInfoCondition", map);
+		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUplanManagerInfoConditionCount",map);
+		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
+		jsonModel.setRows(list);
+		jsonModel.setTotal(total);
+		return jsonModel;
+	}
+
 }

@@ -57,24 +57,29 @@ $(function(){
 						<tr>
 							<td class="field">还款方式：</td>
 							<td>
-						<%-- 	 <select class="text" name="udi_type" id="udi_refundway">
-									<c:forEach items="${userDebitInTypeList }" var="userDebitInType">									
-										<option value="${userDebitInType.id }" >${userDebitInType.udi_refundway}</option>				
-								</c:forEach>
-								</select>  --%>
-								<input type="text" name=" udi_refundway" value="1"  id="House_add_action_floorage" class="text" />
+							 	<input type="text" name=" udi_refundway" value="1"  id="House_add_action_floorage" class="text" /> 
 							</td>
 						</tr>
  						<tr>
 							<td class="field">借贷期限：</td>
 							<td>
-								<input type="text" name="udit_month" value="24" id="House_add_action_price" class="text" />
+							 	 <select class="text" name="udi_type" id="userDebitInType">
+									<c:forEach items="${userDebitInTypeList }" var="userDebitInType">									
+										<option value="${userDebitInType.udit_id }" >${userDebitInType.udit_month}</option>				
+								</c:forEach>
+								</select>  
+							<!-- 	<input type="text" name="udit_month" value="24" id="House_add_action_price" class="text" /> -->
 							</td>
 						</tr>
 						<tr>
 							<td class="field">借贷利率：</td>
 							<td>
-								<input type="text" value="6.6" name="udit_profit" />
+								 <select class="text" name="udi_type" id="userDebitInType">
+									<c:forEach items="${userDebitInTypeList }" var="userDebitInType">									
+										<option value="${userDebitInType.udit_id }" >${userDebitInType.udit_profit}</option>				
+								</c:forEach>
+								</select>  
+							<!-- 	<input type="text" value="6.6" name="udit_profit" /> -->
 							</td>
 						</tr> 
 					</table>

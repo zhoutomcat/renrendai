@@ -485,5 +485,29 @@ public class UserDebitInController {
 		return jm;
 	}
 	
+	
+	
+	/**
+	 * 单表查询所有的U计划借贷信息
+	 * @param udi
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findAllUplanManagerInfo.action")
+	public JsonModel findAllUplanManagerInfo(UserDebitIn udi, HttpServletRequest request, HttpServletResponse resp,
+			HttpSession session) throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = userDebitInBiz.findAllUplanManagerInfo(map);
+		return jm;
+	}
+	
 
 }

@@ -123,6 +123,12 @@ public interface UserDebitInBiz {
 	 * @param udit
 	 */
 	public boolean addNewUplanType(UserDebitInType udit);
+	/**
+	 * 查询所有的U计划借贷信息
+	 * @param map
+	 * @return
+	 */
+	public JsonModel findAllUplanManagerInfo(Map<String, Integer> map);
 
 
 

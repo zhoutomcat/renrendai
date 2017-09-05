@@ -70,8 +70,8 @@ alter table UserDebitIn change temp1 udi_checkstatus int  default 0;
 alter table UserDebitIn set udi_weight=0 where udi_id=10
 drop table UserDebitIn 
 select * from UserDebitIn
-delete from UserDebitIn where udi_id=5 
-update userdebitIn set udi_weight=0 where udi_id=10
+delete from UserDebitIn where udi_id=25	
+update userdebitIn set udi_refundrealitydate=1597484941
 
 select udit_profit,udit_month from UserDebitInType;
 
@@ -456,5 +456,5 @@ select * from UserDebitInType
 select * from userMessage
 delete from usermessage where um_id=5
 
-  
+select * from UserDebitIn udi join UserDebitInType udit on udi.udi_type=udit.udit_id where udi.udi_title='U计划'
 

@@ -314,7 +314,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where udi_id=#{udi_id}
 	</update>
 
-    
+      	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findAllUplanManagerInfoCondition" parameterType="UserDebitIn"
+		resultMap="findAllUplanManagerInfoResultMap">
+		select * from UserDebitIn udi join UserDebitInType udit on udi.udi_type=udit.udit_id where udi.udi_title='U计划'
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 带查询条件统计查询 -->
+	<select id="findAllUplanManagerInfoConditionCount" parameterType="Map"
+		resultType="int">
+		select count(1) from UserDebitIn udi join UserDebitInType udit on udi.udi_type=udit.udit_id where udi.udi_title='U计划'
+	</select>
+	
+		<resultMap type="UserDebitIn" id="findAllUplanManagerInfoResultMap">
+			<id property="udi_id" column="udi_id" />
+			<result property="udi_id" column="udi_id" />
+			<result property="u_id" column="u_id" />
+			<result property="udi_type" column="udi_type" />
+			<result property="udi_money" column="udi_money" />
+			<result property="udi_title" column="udi_title" />
+			<result property="udi_refundway" column="udi_refundway" />
+			<result property="udi_status" column="udi_status" />
+			<result property="udi_weight" column="udi_weight" />
+			<result property="udi_publishdate" column="udi_publishdate" />
+			<result property="udi_date" column="udi_date" />
+			<result property="udi_refundrealitydate" column="udi_refundrealitydate" />
+			<result property="udi_checkstatus" column="udi_checkstatus" />
+		<!-- property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
+			<association property="userDebitInType" javaType="UserDebitInType">
+				<result property="udit_id" column="udit_id" />
+				<result property="udit_month" column="udit_month" />
+				<result property="udit_name" column="udit_name" />
+				<result property="udit_profit" column="udit_profit" />
+			</association>
+    </resultMap>  
+	
 
 
 
