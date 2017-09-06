@@ -396,7 +396,17 @@ public class UserController {
 		}
 		return jm;
 	}
-
+	/**
+	 * 删除用户
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
 	@RequestMapping("/back/deluser.action")
 	private JsonModel delUser(User user, HttpServletRequest request, HttpServletResponse response)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {

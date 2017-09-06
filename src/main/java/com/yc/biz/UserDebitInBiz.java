@@ -129,6 +129,38 @@ public interface UserDebitInBiz {
 	 * @return
 	 */
 	public JsonModel findAllUplanManagerInfo(Map<String, Integer> map);
+	/**
+	 * 删除U计划借贷信息
+	 * @param udi
+	 * @return
+	 */
+	public boolean delUplanManagerInfo(UserDebitIn udi);
+	/**
+	 * 删除U计划类型借贷信息
+	 * @param udit
+	 * @return
+	 */
+	public boolean delUplanTypeManagerInfo(UserDebitInType udit);
+	/**
+	 * 更新U计划借贷信息
+	 * @param udi
+	 * @return
+	 */
+	public boolean updateNewUplanManagerInfo(UserDebitIn udi);
+	/**
+	 * 更新U计划借贷类型信息
+	 * @param udit
+	 * @return
+	 */
+	public boolean updateNewUplanTypeManagerInfo(UserDebitInType udit);
+	/**
+	 * 单表查询所有的U计划借贷信息
+	 * @param map
+	 * @return
+	 */
+	public JsonModel findSingleUplanManagerInfo(Map<String, Integer> map);
+
+
 
 
 

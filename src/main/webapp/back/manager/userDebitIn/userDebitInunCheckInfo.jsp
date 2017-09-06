@@ -119,9 +119,23 @@
 					width:20,
 					align:'center',
 					formatter: function(value,row,index){
-						//alert(row.attentionMark.am_id)
-						return row.userDebitIn.udi_status;
-					}
+						 var status="";
+						if(row.userDebitIn.udi_status==0){
+							status="未审核状态";
+						}if(row.userDebitIn.udi_status==1){
+							status="凑款状态";
+						}if(row.userDebitIn.udi_status==2){
+							status="筹款完成待放款状态";
+						}if(row.userDebitIn.udi_status==3){
+							status="还款状态";
+						}if(row.userDebitIn.udi_status==4){
+							status="完成还款";
+						}else{
+							return status;
+						}
+					//	return row.userDebitIn.udi_status;
+					} 
+				
 				},{
 					field:'udi_weight',
 					title:'借贷权重',

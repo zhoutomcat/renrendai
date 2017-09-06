@@ -113,6 +113,7 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	}
 
 	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel findAllUserDebitInunCheck(Map<String, Integer> map) {
 		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUserDebitInunCheckResultMap", map);
 		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUserDebitInunCheckResultMapCount",map);
@@ -124,6 +125,7 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	}
 
 	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel findAllUserDebitInCheck(Map<String, Integer> map) {
 		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUserDebitInCheckResultMap", map);
 		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUserDebitInCheckResultMapCount",map);
@@ -148,6 +150,7 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	}
 
 	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel findAllSingerUserDebitIn(Map<String, Integer> map) {
 		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllSingerUserDebitInCondition", map);
 		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllSingerUserDebitInConditionCount",map);
@@ -176,9 +179,45 @@ public class UserDebitInBizImpl implements UserDebitInBiz {
 	}
 
 	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
 	public JsonModel findAllUplanManagerInfo(Map<String, Integer> map) {
 		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findAllUplanManagerInfoCondition", map);
 		int total=(int) baseDao.getFunc(UserDebitIn.class, "findAllUplanManagerInfoConditionCount",map);
+		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
+		jsonModel.setRows(list);
+		jsonModel.setTotal(total);
+		return jsonModel;
+	}
+
+	@Override
+	public boolean delUplanManagerInfo(UserDebitIn udi) {
+		baseDao.del(udi, "delUplanManagerInfo");
+		return true;
+	}
+
+	@Override
+	public boolean delUplanTypeManagerInfo(UserDebitInType udit) {
+		baseDao.del(udit, "delUplanTypeManagerInfo");
+		return true;
+	}
+
+	@Override
+	public boolean updateNewUplanManagerInfo(UserDebitIn udi) {
+		baseDao.update(udi, "updateNewUplanManagerInfo");
+		return true;
+	}
+
+	@Override
+	public boolean updateNewUplanTypeManagerInfo(UserDebitInType udit) {
+		baseDao.update(udit, "updateNewUplanTypeManagerInfo");
+		return true;
+	}
+
+	@Override
+	@Transactional(readOnly=true,propagation=Propagation.SUPPORTS,isolation=Isolation.DEFAULT)
+	public JsonModel findSingleUplanManagerInfo(Map<String, Integer> map) {
+		List<UserDebitIn> list=baseDao.findAll(UserDebitIn.class, "findSingleUplanManagerInfoCondition", map);
+		int total=(int) baseDao.getFunc(UserDebitIn.class, "findSingleUplanManagerInfoConditionCount",map);
 		JsonModel<UserDebitIn> jsonModel=new JsonModel<UserDebitIn>();
 		jsonModel.setRows(list);
 		jsonModel.setTotal(total);

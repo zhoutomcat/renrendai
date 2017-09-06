@@ -6,8 +6,8 @@
 			var userEditRow = undefined;
 			var userFlag;
 		$(function(){     //函数是等页面一执行完就会调用的,如果不写函数，就要把js代码放在页面下面
-			var userobject=$('#uplanManagerInfoTable').edatagrid({
-				url :'back/findAllUplanManagerInfo.action', //查询时加载的URL
+			var userobject=$('#uplanSingleManagerInfoTable').edatagrid({
+				url :'back/findSinglelUplanManagerInfo.action', //查询时加载的URL
 				loadMsg:'数据加载中',
 				pagination:true,  //显示分页
 				pageSize: 10,  //默认分页的条数
@@ -112,31 +112,7 @@
 					width:20,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
-				} ,{
-					field:'udit_profit',
-					title:'借贷利润',
-					width:20,
-					align:'center',
-					formatter: function(value,row,index){
-					return row.userDebitInType.udit_profit;
-					}
-				},{
-					field:'udit_month',
-					title:'借贷时间',
-					width:20,
-					align:'center',
-					formatter: function(value,row,index){
-						return row.userDebitInType.udit_month;
-						}
-				},{
-					field:'udit_status',
-					title:'借贷类型状态',
-					width:20,
-					align:'center',
-					formatter: function(value,row,index){
-						return row.userDebitInType.udit_status;
-						}
-				} 
+				}
 				
 				]],
 				
@@ -158,43 +134,7 @@
 			  					userFlag = "修改";
 			  				}
 			  			}
-					  },'-',{
-			  			text:"删除",
-			  			iconCls: 'icon-remove',
-			  			handler: function(){
-			  				var rows = userobject.datagrid("getChecked");
-			  				if(rows.length<0){
-			  					$.messager.show({title:'温馨提示',msg:'请编辑您要删除的数据',timeout:2000,showType:'slide'});
-			  				}else{
-			  					$.messager.confirm('确认提示', '一旦删除数据将不能恢复，您确定要删除嘛？', function(r){
-			  						if (r){
-			  							//获取id
-			  							var udi_ids ="";
-			  							console.info(rows);
-			  							console.info(rows.length);
-			  							for(var i=0,len=rows.length;i<len-1;i++){
-			  								udi_ids += rows[i].udi_id+",";    								
-			  							}
-			  							udi_ids+=rows[i].udi_id;
-			  							//将数据发送到后台
-			  							$.post("back/delUplanManagerInfo.action",{udi_id:udi_ids},function(data){
-			  							
-			  							/* $.post("../deptServlet",{op:"delDept",deptno:deptnos},function(data){ */
-			  								data = parseInt( $.trim( data ) );
-			  								if(data>0){
-			  									$.messager.alert('失败提示','用户信息删除失败','error');
-			  								}else{
-			  									$.messager.show({title:'温馨提示',msg:'用户信息删除成功',timeout:2000,showType:'slide'});
-			  									userobject.datagrid("reload");
-			  								}
-			  							},"text");
-			  						}else{
-			  							return ;
-			  						}
-			  					});
-			  				}
-			  			}
-					  },'-',{
+				  },'-',{
 			  			text:"保存",
 			  			iconCls: 'icon-save',
 			  			handler: function(){
@@ -207,7 +147,7 @@
 			  					$.messager.show({title:'温馨提示',msg:'请编辑您要'+userFlag+'的数据',timeout:2000,showType:'slide'});
 			  					
 			  				}else{
-			  					$.post("back/updateNewUplanManagerInfo.action",row,function(data){
+			  					$.post("back/updateSingleNewUplanManagerInfo.action",row,function(data){
 			  					/* row["op"] = deptOp;
 			  					$.post("../deptServlet",row,function(data){ */
 			  						data = parseInt( $.trim( data ) );
@@ -239,7 +179,7 @@
 </script>
 
 
-<table id="uplanManagerInfoTable"></table>
+<table id="uplanSingleManagerInfoTable"></table>
 
 
     

@@ -340,15 +340,17 @@ public class UserDebitInController {
 		//udi.setUdi_status(2);
 		//System.out.println(udi.getUdi_status());
 		if(udi.getUdi_status()==0){
-			udi.setUdi_status(1);        //1  审核完成 凑款状态
+			udi.setUdi_status(0);        //1  审核完成 凑款状态
 		}else if(udi.getUdi_status()==1){
-			udi.setUdi_status(2);        //2筹款完成待放款状态
+			udi.setUdi_status(1);        //2筹款完成待放款状态
 		}else if(udi.getUdi_status()==2){ 
-			udi.setUdi_status(3);      //3 还款状态(借了未还)    影响信誉
+			udi.setUdi_status(2);      //3 还款状态(借了未还)    影响信誉
 		}else if(udi.getUdi_status()==3){
+			udi.setUdi_status(3);     //4  完成还款 （失败 ）     根据完成还款  或者失败来给用户信誉度加扣积分
+		}else if(udi.getUdi_status()==4){
 			udi.setUdi_status(4);     //4  完成还款 （失败 ）     根据完成还款  或者失败来给用户信誉度加扣积分
 		}else{
-			udi.setUdi_status(4);    //4  完成还款 （失败 ）     根据完成还款  或者失败来给用户信誉度加扣积分
+			udi.setUdi_status(0);    //4  完成还款 （失败 ）     根据完成还款  或者失败来给用户信誉度加扣积分
 		}
 		 boolean result=userDebitInBiz.updateUserDebitInStatus(udi);   //修改用户借贷状态
 		 JsonModel jm=new JsonModel();
@@ -472,6 +474,7 @@ public class UserDebitInController {
 		udi.setUdi_use("平台筹款");
 		udi.setUdi_id(6);
 		// 给一些前台页面中没有显示值的属性设置值
+		udit.setUdit_name("U计划");
 		try {	
 			this.userDebitInBiz.addNewUplanType(udit);
 			this.userDebitInBiz.addNewUplan(udi);
@@ -488,7 +491,7 @@ public class UserDebitInController {
 	
 	
 	/**
-	 * 单表查询所有的U计划借贷信息
+	 * 多表查询所有的U计划借贷信息
 	 * @param udi
 	 * @param request
 	 * @param resp
@@ -506,6 +509,110 @@ public class UserDebitInController {
 		map.put("start", start);
 		map.put("pagesize", pagesize);
 		JsonModel jm = userDebitInBiz.findAllUplanManagerInfo(map);
+		return jm;
+	}
+	
+	/**
+	 * 删除U计划借贷表和借贷类型表的记录
+	 * @param udi
+	 * @param udit
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/delUplanManagerInfo.action")
+	private JsonModel delUplanManagerInfo(UserDebitIn udi,UserDebitInType udit, HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		udit= RequestUtil.getParemeter(request, UserDebitInType.class);
+		boolean result = userDebitInBiz.delUplanManagerInfo(udi);
+		boolean result1=userDebitInBiz.delUplanTypeManagerInfo(udit);
+		if (result&&result1) {
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
+	}
+	
+	/**
+	 * 修改U计划借贷表和借贷类型表的数据
+	 * @param user
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/updateNewUplanManagerInfo.action")
+	private JsonModel updateNewUplanManagerInfo(UserDebitIn udi,UserDebitInType udit, HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		udit= RequestUtil.getParemeter(request, UserDebitInType.class);
+		boolean result = userDebitInBiz.updateNewUplanManagerInfo(udi);
+		boolean result1=userDebitInBiz.updateNewUplanTypeManagerInfo(udit);
+		if (result&&result1) {
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
+	}
+	
+	/**
+	 * 单表修改U计划用户数据
+	 * @param udi
+	 * @param udit
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/back/updateSingleNewUplanManagerInfo.action")
+	private JsonModel updateNewUplanManagerInfo(UserDebitIn udi,HttpServletRequest request, HttpServletResponse response)
+			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		JsonModel jm = new JsonModel();
+		udi = RequestUtil.getParemeter(request, UserDebitIn.class);
+		boolean result = userDebitInBiz.updateNewUplanManagerInfo(udi);
+		if (result){
+			jm.setCode(1);
+		} else {
+			jm.setCode(0);
+		}
+		return jm;
+	}
+	
+	
+	/**
+	 * 单表查询所有的U计划借贷信息
+	 * @param udi
+	 * @param request
+	 * @param resp
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/back/findSinglelUplanManagerInfo.action")
+	public JsonModel findSingleUplanManagerInfo(UserDebitIn udi, HttpServletRequest request, HttpServletResponse resp,
+			HttpSession session) throws Exception {
+		int pages = Integer.parseInt(request.getParameter("page").toString());
+		int pagesize = Integer.parseInt(request.getParameter("rows").toString());
+		int start = (pages - 1) * pagesize;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("pagesize", pagesize);
+		JsonModel jm = userDebitInBiz.findSingleUplanManagerInfo(map);
 		return jm;
 	}
 	

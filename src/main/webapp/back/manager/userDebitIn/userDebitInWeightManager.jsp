@@ -52,6 +52,24 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
+					formatter: function(value,row,index){
+					 	var status="";
+						if(row.udi_status==0){
+							status="未审核状态";
+						}
+						if(row.udi_status==1){
+							status="凑款状态";
+						}if(row.udi_status==2){
+							status="筹款完成待放款状态";
+						}if(row.udi_status==3){
+							status="还款状态";
+						}if(row.udi_status==4){
+							status="完成还款";
+						}else{
+							return status;
+						} 
+						//return row.userDebitIn.udi_status;
+					}
 				},{
 					field:'udi_publishdate',
 					title:'借贷发起时间',
@@ -95,6 +113,18 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
+					formatter: function(value,row,index){
+						//alert(row.attentionMark.am_id)
+						var refundway="";
+						if(row.udi_refundway==1){
+							refundway="月还贷";
+						}
+						if(row.udi_refundway==0){
+							refundway="一次性还贷";
+						}else{
+							return refundway; 	
+							}
+						}
 				},{
 					field:'udi_type',
 					title:'借贷类型',
@@ -113,6 +143,18 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true},
+						formatter: function(value,row,index){
+							//alert(row.attentionMark.am_id)
+							var checkstatus="";
+							if(row.udi_checkstatus==0){
+								checkstatus="未审核状态";
+							}
+							if(row.udi_checkstatus==1){
+								checkstatus="审核通过状态";
+							}else{
+								return checkstatus; 	
+								}
+							}
 					}
 				}]],
 				  toolbar:[{

@@ -119,9 +119,14 @@
 				}
 			},
 			{
-				"text" : "U计划管理信息",
+				"text" : "U计划多表管理信息",
 				"attributes" : {
 					"url" : "<iframe width='100%' height='100%'  src='back/manager/uplan/uplanManagerInfo.jsp' />"
+				}
+			},{
+				"text" : "U计划单表管理信息",
+				"attributes" : {
+					"url" : "<iframe width='100%' height='100%'  src='back/manager/uplan/uplanSingleManagerInfo.jsp' />"
 				}
 			}]
 		} ];

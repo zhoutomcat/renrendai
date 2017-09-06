@@ -138,6 +138,20 @@ public class IndexController {
 		return "addUserDebitIn";
 	}
 	
+	/**
+	 * 跳转到修改借款个人详细信息页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/user/toUpdateDebitMoney.action")
+	public String toUpdateDebitMoney() {
+		return "updateDebitMoney";
+	}
+	
+	
+	
+	
+	
 
 
 	/**
