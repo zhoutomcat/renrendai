@@ -97,11 +97,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<!-- 添加关注 -->
-	<insert id="saveAttentionMark" parameterType="AttentionMark"
-		useGeneratedKeys="true" keyProperty="vsid">
-		insert into AttentionMark(am_status,u_id,udi_id)
-		values(#{am_status},#{u_id},#{udi_id})
+	<insert id="addAttentionMark" parameterType="AttentionMark"
+		useGeneratedKeys="true" keyProperty="am_id">
+		insert into AttentionMark(u_id,udi_id,am_time)
+		values(#{u_id},#{udi_id},#{am_time})
 	</insert>
+	
+	<!-- 通过udi_id取消关注 -->
+	<update id="">
+		
+	</update>
+	
 
 	<!-- 用户个人显示自己的关注投标 -->
 	<select id="findAllAttentionMarkByUser" parameterType="AttentionMark"
@@ -141,6 +147,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on udi.udi_id=a.udi_id join UserDebitInType udt on
 		udi.udi_type=udt.udit_id where a.u_id=#{u_id} and a.am_status = 1
 	</select>
+	
+	<!-- 判断udi_i是否有关注记录  -->
+	<select id="attentionMarkIsNotExist" resultType="AttentionMark" parameterType="AttentionMark">
+		select * from attentionMark where udi_id = #{udi_id} and u_id = #{u_id}
+	</select>
+	
+	
 
 
 

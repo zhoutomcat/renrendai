@@ -109,12 +109,9 @@ select * from UserDebitInType
 
 drop table UserDebitInType
 
-truncate table UserDebitInType
-
-
 --查询U计划中所有的钱数
-select sum(udi_money) from UserDebitIn , UserDebitInType   
-	where udit_id = udi_type and udit_name ='U计划' 
+select sum(udi_money) from UserDebitIn , UserDebitInType
+	where udit_id = udi_type and udit_name ='U计划'
 
 select udit_id,udit_name from UserDebitInType
 
@@ -290,6 +287,7 @@ create table AttentionMark(
 	temp3 varchar(100) default null
 )
 drop table AttentionMark 
+select * from AttentionMark;
 
 
 --关注用户表: 

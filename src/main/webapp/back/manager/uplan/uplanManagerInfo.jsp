@@ -74,11 +74,11 @@
 					title:'实际还贷时间',
 					width:50,
 					align:'center',
-				/* 	formatter:function(subscribe_time){
+				 	formatter:function(subscribe_time){
 						// substr(0,17)修改成substr(0,20)  精确到秒
 						var tt= new Date(parseInt(subscribe_time) * 1000).toLocaleString().substr(0,20)
 						    return  tt;  
-						}  */
+						}  
 				},{
 					field:'udi_refundway',
 					title:'还贷方式',

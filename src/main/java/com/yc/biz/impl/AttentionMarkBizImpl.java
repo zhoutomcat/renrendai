@@ -1,10 +1,10 @@
 package com.yc.biz.impl;
 
 import java.util.List;
-
 import java.util.Map;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.bean.AttentionMark;
 import com.yc.bean.User;
-import com.yc.bean.UserDebitIn;
 import com.yc.biz.AttentionMarkBiz;
-import com.yc.biz.UserBiz;
 import com.yc.dao.BaseDao;
 import com.yc.web.model.JsonModel;
 
@@ -49,8 +47,8 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz {
 	}
 
 	@Override
-	public void saveOrUpdate(AttentionMark am) {
-		this.baseDao.save(am, "saveAttentionMark");
+	public void addAttentionMark(AttentionMark am) {
+		this.baseDao.save(am, "addAttentionMark");
 	}
 
 	@Override
@@ -64,6 +62,12 @@ public class AttentionMarkBizImpl implements AttentionMarkBiz {
 	public int findAllAttentionMarkByUserCount( AttentionMark am ) {
 		int result = (int) this.baseDao.findOne(am, "findAllAttentionMarkByUserCount");
 		return result;
+	}
+
+	@Override
+	public AttentionMark attentionMarkIsNotExist(AttentionMark am) {
+		am = (AttentionMark) baseDao.findOne(am, "attentionMarkIsNotExist");
+		return am;
 	}
 
 }
