@@ -7,8 +7,7 @@
 
 <script>
 	$(function() {
-		$
-				.ajax({
+		$.ajax({
 					type : "POST",
 					url : "findAllUplanData.action",
 					dataType : "JSON",

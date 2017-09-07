@@ -7,7 +7,9 @@ import javax.servlet.ServletContextListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.yc.bean.UserDebitInType;
+import com.yc.biz.DebitMoneyBiz;
 import com.yc.biz.UserDebitInTypeBiz;
+import com.yc.biz.impl.DebitMoneyBizImpl;
 
 
 
@@ -31,6 +33,8 @@ public class InitListener implements ServletContextListener {
 		UserDebitInTypeBiz typeBiz=(UserDebitInTypeBiz) ac.getBean("userDebitInTypeBizImpl");
 		List<UserDebitInType> userDebitInTypeList=typeBiz.getTypeList();
 		application.setAttribute("userDebitInTypeList", userDebitInTypeList);
+		//DebitMoneyBiz dmb=(DebitMoneyBiz) ac.getBean("debitMoneyBizImpl");
+	
 		//TODO:   项目初始化操作
 	}
 

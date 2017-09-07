@@ -49,7 +49,7 @@ public interface UserBiz {
 	 */
 	public User isUnameExist(User user);
 
-	public void saveOrUpdate(User user);
+
 
 
 

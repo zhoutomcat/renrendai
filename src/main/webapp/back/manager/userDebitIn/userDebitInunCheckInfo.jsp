@@ -101,7 +101,6 @@
 					width:20,
 					align:'center',
 					formatter: function(value,row,index){
-						//alert(row.attentionMark.am_id)
 						var refundway="";
 						if(row.userDebitIn.udi_refundway==1){
 							refundway="月还贷";

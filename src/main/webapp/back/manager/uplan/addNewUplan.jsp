@@ -2,6 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../head.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+/* 	function checkUsername(uname){
+	if(!uname){
+		alert("用户名不能为空!");
+		$("#submit").attr("disabled",true);    //attr=attribute        禁用注册按钮
+		return;
+	}
+	$.ajax({
+		type:"post",
+		data:"uname="+encodeURIComponent(uname),      // encodeURIComponent 解决用户名乱码问题
+		url:"voteUser_isUnameExist.action",
+		dataType:"json",
+		success:function(data){
+			if(data.code== 1){
+				$("#submit").attr("disabled",false);
+				$("#result").html("用户名可以使用");
+			}else{
+				$("#submit").attr("disabled",true);
+				$("#result").html("用户名已经存在，请更换用户名");
+			}
+		}
+	});
+} */
+</script>
     <title>U计划</title>
 	<center>
 			<h1>发出U计划</h1>

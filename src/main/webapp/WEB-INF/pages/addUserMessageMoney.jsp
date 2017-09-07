@@ -4,6 +4,21 @@
 
  <script type="text/javascript">
 $(function(){
+ 	$.ajax({
+		type : "POST",
+		url : "user/userMessageIsExist.action",
+		dataType : "JSON",
+		success : function(data) {
+			if(data.code== 0){
+				alert("您已经填写过个人详细信息表");
+				location.href="user/toAddUserDebitIn.action";
+			}else{
+				alert("您还未填写个人详细信息表");
+				location.href="user/addUserMessageMoney.action";
+			}
+		}
+	}); 
+	
 	$("#addbtn").click(function(){
 		for (instance in CKEDITOR.instances) {
 			CKEDITOR.instances[instance].updateElement();
@@ -24,6 +39,12 @@ $(function(){
 		});
 	});	
 });
+
+
+//$("#addbtn").click(function(){
+
+
+
 </script>
 
 

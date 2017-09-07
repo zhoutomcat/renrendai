@@ -3,27 +3,28 @@
  <%@ include file="header.jsp"%>
 
  <script type="text/javascript">
-$(function(){
-	$("#addbtn").click(function(){
+ $(function() {	
+$("#updatebtn").click(function(){
 		for (instance in CKEDITOR.instances) {
 			CKEDITOR.instances[instance].updateElement();
 		}
 		$.ajax({
 			type:"POST",
-			url:"user/addUserMessageMoney.action",
+			url:"user/updateUserMessageMoney.action",
 			data:$("#myform").serialize(),
 			dataType:"JSON",
 			success:function(data){
 				if(data.code==1){
-					alert("上传详细信息成功！");
-					location.href="user/toAddUserDebitIn.action";
+				alert("修改详细信息成功！");
+				location.href="user/toAddUserDebitIn.action";
 				}else{
-					alert("上传详细信息失败，原因："+data.msg);
+					alert("修改详细信息失败，原因："+data.msg);
 				}
 			}
 		});
 	});	
-});
+ });
+
 </script>
 
 
@@ -31,10 +32,10 @@ $(function(){
 	<div class="dialog">
 		<dl class="clearfix">
 			<dd class="past">修改借款人详细信息</dd>
-			<dd class="past2"><a href="user/toAddUserDebitIn.action" >填写借贷信息</dd>
+			<dd class="past2"><!-- <a href="user/toAddUserDebitIn.action" > -->填写借贷信息</dd>
 		</dl>
 		<div class="box">
-			 <form method="post" action=""  id="myform"> 
+			 <form method="post"   id="myform"> 
 		<!-- 	 <form id="DebitMoney_add_action" name="DebitMoney_add_action" action="user/DebitMoneyAdd.action" method="post">  -->
 				<div class="infos">   
 					<table class="field">
@@ -105,7 +106,7 @@ $(function(){
 					</table>
 					<div class="buttons">
 					<!-- 	 <input type="submit" id="House_add_action_0" value="立即发布" />  -->
-							 <input type="button" id="addbtn" value="修改"/> 
+							 <input type="button" id="updatebtn" value="修改"/> 
 					</div>
 				</div>
 			</form>

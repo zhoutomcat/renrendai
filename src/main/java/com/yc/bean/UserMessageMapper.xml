@@ -9,17 +9,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-<!-- 删除关注    冻结关注 -->
-<delete id="delAttentionMark">
-delete from AttentionMark where am_id=#{am_id}
-</delete>
-
 
 <!-- 添加借款详细信息 -->
 <insert id="addDebitMoney" parameterType="UserMessage" useGeneratedKeys="true" keyProperty="um_id">
 insert into UserMessage(u_id,um_reallyName,um_idCard,um_nowPlace,um_workinfo,um_incomeinfo,um_sex,um_age,um_description,bi_idCard) 
 values(#{u_id},#{um_reallyName},#{um_idCard},#{um_nowPlace},#{um_workinfo},#{um_incomeinfo},#{um_sex},#{um_age},#{um_description},#{bi_idCard}) 
 </insert>
+
+<!-- 修改用户个人详细表的记录 -->
+<update id="updateUserMessageMoney" parameterType="UserMessage"> 
+	update UserMessage set
+		 um_reallyName=#{um_reallyName},um_idCard=#{um_idCard},um_nowPlace=#{um_nowPlace},
+		 um_workinfo=#{um_workinfo},um_incomeinfo=#{um_incomeinfo},um_sex=#{um_sex},um_age=#{um_age},
+		 bi_idCard=#{bi_idCard}, um_description=#{um_description}
+		  where um_id=#{um_id}
+</update>
 
 	<!-- 各种查询条件的拼接 -->
 	<sql id="conditionSql">
@@ -88,6 +92,12 @@ values(#{u_id},#{um_reallyName},#{um_idCard},#{um_nowPlace},#{um_workinfo},#{um_
 		resultType="int">
 		select count(1)
 		<include refid="conditionSql" />
+	</select>
+	
+	
+	<!-- 判断用户详细表中用户id是否存在 -->
+	<select id="isUserMessageIdExist" resultType="UserMessage" parameterType="UserMessage">
+	select * from UserMessage where u_id=#{u_id}
 	</select>
 
 

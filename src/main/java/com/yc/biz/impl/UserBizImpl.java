@@ -54,10 +54,6 @@ public class UserBizImpl implements UserBiz {
 		return null;
 	}
 
-	@Override
-	public void saveOrUpdate(User user) {
-
-	}
 
 	/**
 	 * 找到所有的可用的用户 查所有
@@ -89,6 +85,10 @@ public class UserBizImpl implements UserBiz {
 
 	@Override
 	public boolean updateUser(User user) {
+		if(user.getU_id()!=null&&user.getU_id()!=0){
+			//更新操作
+		}
+		//保存操作
 		user.setU_password(Encrypt.md5AndSha(user.getU_password()));
 		baseDao.update(user, "updateuser");
 		return true;

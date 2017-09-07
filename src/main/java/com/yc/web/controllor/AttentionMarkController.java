@@ -39,7 +39,7 @@ public class AttentionMarkController {
 		parameterMap.put("udit_id", request.getParameter("udit_id"));
 		int udi_id = udob.findUserDebitInIdByUserDebitInTypeId(parameterMap);
 		jm.setObj(udi_id);
-		//判断udi_i是否有关注记录
+		//判断udi_id是否有关注记录
 		try {
 			AttentionMark am = new AttentionMark();
 			am.setU_id(user.getU_id());
