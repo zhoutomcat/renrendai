@@ -299,7 +299,7 @@ public class UserController {
 			return jm;
 		}
 		try {
-			user.setU_registerdate(System.currentTimeMillis());
+			user.setU_registerdate(System.currentTimeMillis()/1000);
 			userBiz.register(user); // 添加时User没有id 但更新一定有 所以可以写到一起
 			jm.setCode(1);
 		} catch (Exception e) {
