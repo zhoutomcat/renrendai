@@ -191,7 +191,8 @@
 			<div onclick="changeTheme('gray');">灰色惬意</div>
 			<div onclick="changeTheme('metro-green');">现代绿色</div>
 			<div onclick="changeTheme('metro-orange');">现代橙色</div>
-			<div onclick="changeTheme('metro-red');">深红沐浴</div> -->
+			<div onclick="changeTheme('metro-red');">深红沐浴</div> 
+			<div onclick="changeTheme('black');">黑色炫酷</div> -->
 			<div>默认皮肤</div>
 			<div>灰色惬意</div>
 			<div>现代绿色</div>

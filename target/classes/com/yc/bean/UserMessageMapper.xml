@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.bean.UserMessageMapper">
+	<!--加入带日志的ehcache缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
+		
+
+
+
+<!-- 删除关注    冻结关注 -->
+<delete id="delAttentionMark">
+delete from AttentionMark where am_id=#{am_id}
+</delete>
+
+
+<!-- 添加借款详细信息 -->
+<insert id="addDebitMoney" parameterType="UserMessage" useGeneratedKeys="true" keyProperty="um_id">
+insert into UserMessage(u_id,um_reallyName,um_idCard,um_nowPlace,um_workinfo,um_incomeinfo,um_sex,um_age,um_description,bi_idCard) 
+values(#{u_id},#{um_reallyName},#{um_idCard},#{um_nowPlace},#{um_workinfo},#{um_incomeinfo},#{um_sex},#{um_age},#{um_description},#{bi_idCard}) 
+</insert>
+
+	<!-- 各种查询条件的拼接 -->
+	<sql id="conditionSql">
+		from userMessage
+		<where>
+			<if test="bi_idCard  !=  null and bi_idCard  !=  ''">
+				bi_idCard=#{bi_idCard}
+			</if>
+			<if test="u_id !=  null and u_id  !=  ''">
+				and u_id=#{u_id}
+			</if>
+			<if test="um_age!=null and um_age!=''">
+				and um_age=#{um_age}
+			</if>
+			<if test="um_description!=null and um_description!=''">
+				and um_description=#{um_description}
+			</if>
+			<if test="um_idCard!=null and um_idCard!=''">
+				and um_idCard=#{um_idCard}
+			</if>
+			<if test="um_incomeinfo!=null and um_incomeinfo!=''">
+				and um_incomeinfo=#{um_incomeinfo}
+			</if>
+			<if test="um_nowPlace=null and um_nowPlace!=''">
+				and um_nowPlace=#{um_nowPlace}
+			</if>
+			<if test="um_reallyName!=null and um_reallyName!=''">
+				and um_reallyName=#{um_reallyName}
+			</if>
+			<if test="um_sex!=null and um_sex!=''">
+				and um_sex=#{um_sex}
+			</if>
+			<if test="um_workinfo!=null and um_workinfo!=''">
+				and um_workinfo=#{um_workinfo}
+			</if>
+		</where>
+	</sql>
+
+	<!-- 排序条件的拼接 -->
+	<sql id="orderSql">
+		<if test="orderby!=null and orderby!=''">
+			order by #{orderby}
+			<if test="orderway!=null and orderway!=''">
+				#{orderway}
+			</if>
+		</if>
+	</sql>
+
+
+	<!-- 分页条件的拼接 -->
+	<sql id="pageSql">
+		<if test="start!=null ">
+			limit #{start},#{pagesize}
+		</if>
+	</sql>
+
+	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findUserMessageCondition" resultType="UserMessage">
+		select *
+		<include refid="conditionSql" />
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 带查询条件统计查询 -->
+	<select id="findUserMessageConditionCount" parameterType="Map"
+		resultType="int">
+		select count(1)
+		<include refid="conditionSql" />
+	</select>
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.bean.AdminToUserMessageMapper">
+	<!--加入带日志的ehcache缓存 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"></cache>
+	
+		<!-- 排序条件的拼接 -->
+	<sql id="orderSql">
+		<if test="orderby!=null and orderby!=''">
+			order by #{orderby}
+			<if test="orderway!=null and orderway!=''">
+				#{orderway}
+			</if>
+		</if>
+	</sql>
+
+	<!-- 分页条件的拼接 -->
+	<sql id="pageSql">
+		<if test="start!=null ">
+			limit #{start},#{pagesize}
+		</if>
+	</sql>
+		
+<!-- 添加借款详细信息 -->
+<insert id="addMessageToUser" parameterType="AdminToUserMessage" useGeneratedKeys="true" keyProperty="atum_id">
+insert into AdminToUserMessage(u_id,atum_time,atum_content,atum_status,atum_title) 
+values(#{u_id},#{atum_time},#{atum_content},#{atum_status},#{atum_title}) 
+</insert>
+
+<!-- 后台查找所有的消息推送信息 -->
+	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findAllAdminToUserMessageResultMap" parameterType="AdminToUserMessage"
+		resultMap="findAdminToUserMessageResultMap">
+		select * from AdminToUserMessage a join User u on a.u_id=u.u_id
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+
+	<select id="findAllAdminToUserMessageResultMapCount" parameterType="Map"
+		resultType="int">
+		select count(distinct(a.u_id)) from AdminToUserMessage a join User u on a.u_id=u.u_id
+	</select>
+	
+	
+	<resultMap type="AdminToUserMessage" id="findAdminToUserMessageResultMap">
+		<id property="atum_id" column="atum_id" />
+		<result property="u_id" column="u_id" />
+		<result property="atum_time" column="atum_time" />
+		<result property="atum_content" column="atum_content" />
+		<result property="atum_title" column="atum_title" />
+		<result property="atum_status" column="atum_status" />
+		<!-- property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
+		<association property="user" javaType="User">
+				<result property="u_id" column="u_id" />
+				<result property="u_name" column="u_name" />
+			</association>
+	</resultMap>
+	
+
+
+
+
+</mapper>
