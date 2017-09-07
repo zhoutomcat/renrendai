@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ include file="header.jsp"%>
-<!-- <script type="text/javascript" src="js/add.js"></script> -->   
 
  <script type="text/javascript">
 $(function(){
@@ -28,7 +27,7 @@ $(function(){
 <div id="regLogin" class="wrap">
 	<div class="dialog">
 		<dl class="clearfix">
-			<dt>借款信息填写处</dt>
+			<dt><a href="user/toUpdateDebitMoney.action" >修改个人详细信息</a></dt>
 			<dd class="past">填写借款人详细信息</dd>
 		</dl>
 		<div class="box">
@@ -39,7 +38,7 @@ $(function(){
 						<tr>
 							<td class="field">借贷标题：</td>
 							<td>
-								<input type="text" name="udi_title"  id="House_add_action_title" class="text"  value="U计划"/>
+								<input type="text" name="udi_title"  id="House_add_action_title" class="text"  value="散标"/>
 							</td>
 						</tr>
 						<tr>

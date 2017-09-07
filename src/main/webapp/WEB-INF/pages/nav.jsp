@@ -13,13 +13,13 @@
 				<li class="channel-item "><a href="toUplan.action">U计划</a></li>
 				<li class="channel-item "><a href="toUserFund.action">我的账户</a></li>
 				<li class="channel-item active-channel"><a href="#">薪计划</a></li>
-				<li class="channel-item "><a href="toAttentionMark.action">关注列表</a></li>
+				<li class="channel-item "><a href="toAttentionMark.action">关注列表</a></li> <<<<<<< HEAD
 				<li class="channel-item "><a href="toRepay.action">我要还款</a></li>
 				<c:if test="${userMessage==null }">
 					<li class="channel-item" style="width: 144px;"><a href="user/toDebitMoney.action">我要借款</a></li>
-				</c:if>
-				<c:if test="${userMessage!=null }">
-					<li class="channel-item" style="width: 144px;"><a href="user/toAddUserDebitIn.action">我要借款</a></li>
+					<c:if test="${userMessage!=null }">
+						<li class="channel-item" style="width: 144px;"><a href="user/toAddUserDebitIn.action">我要借款</a></li>
+					</c:if>
 				</c:if>
 				<li class="user-item fn-clear" num=""><c:if test="${user==null}">
 						<div class="denglu">

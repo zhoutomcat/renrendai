@@ -341,18 +341,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result property="udi_date" column="udi_date" />
 			<result property="udi_refundrealitydate" column="udi_refundrealitydate" />
 			<result property="udi_checkstatus" column="udi_checkstatus" />
-		<!-- property表示集合类型属性名称，ofType表示集合中的对象是什么类型 -->
 			<association property="userDebitInType" javaType="UserDebitInType">
 				<result property="udit_id" column="udit_id" />
 				<result property="udit_month" column="udit_month" />
 				<result property="udit_name" column="udit_name" />
 				<result property="udit_profit" column="udit_profit" />
+				<result property="udit_status" column="udit_status" />
 			</association>
     </resultMap>  
+    
 	
-
-
-
+	<!-- 删除U计划借贷信息 -->
+	<delete id="delUplanManagerInfo" parameterType="UserDebitIn">
+		delete from UserDebitIn where udi_id=#{udi_id}
+	</delete>
+	
+	<!-- 更新U计划借贷信息 -->
+	<update id="updateNewUplanManagerInfo" parameterType="UserDebitIn">
+		update UserDebitIn set
+		 udi_title=#{udi_title},udi_money=#{udi_money},udi_status=#{udi_status},udi_refundway=#{udi_refundway},
+		  udi_type=#{udi_type},udi_weight=#{udi_weight}
+		  where udi_id=#{udi_id}
+	</update>
+	
+	
+	  	<!-- 带查询条件，分页条件 排序条件的查询 -->
+	<select id="findSingleUplanManagerInfoCondition" parameterType="UserDebitIn"
+		resultMap="findAllUplanManagerInfoResultMap">
+		select * from UserDebitIn  where udi_title='U计划'
+		<include refid="orderSql" />
+		<include refid="pageSql" />
+	</select>
+	<!-- 带查询条件统计查询 -->
+	<select id="findSingleUplanManagerInfoConditionCount" parameterType="Map"
+		resultType="int">
+		select count(1) from UserDebitIn  where udi_title='U计划'
+	</select>
 
 
 

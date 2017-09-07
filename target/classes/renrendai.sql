@@ -105,7 +105,10 @@ create table UserDebitInType(
 	temp2 varchar(100) default null,
 	temp3 varchar(100) default null
 )
+select * from UserDebitIn
 select * from UserDebitInType
+update UserDebitIn,UserDebitInType set udit_name='ssss' where 
+UserDebitInType.udit_id=UserDebitIn.udi_type and UserDebitIn.udi_type=4
 
 drop table UserDebitInType
 

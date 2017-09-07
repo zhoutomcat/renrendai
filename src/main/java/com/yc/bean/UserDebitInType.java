@@ -11,8 +11,17 @@ public class UserDebitInType implements Serializable {
 	private String udit_name;
 	private Double udit_profit;
 	private Double udit_month;
+	private Integer udit_status;
+	
+	
 
 
+	public Integer getUdit_status() {
+		return udit_status;
+	}
+	public void setUdit_status(Integer udit_status) {
+		this.udit_status = udit_status;
+	}
 	public Integer getUdit_id() {
 		return udit_id;
 	}
@@ -40,9 +49,9 @@ public class UserDebitInType implements Serializable {
 	@Override
 	public String toString() {
 		return "UserDebitInType [udit_id=" + udit_id + ", udit_name=" + udit_name + ", udit_profit=" + udit_profit
-				+ ", udit_month=" + udit_month + "]";
+				+ ", udit_month=" + udit_month + ", udit_status=" + udit_status + "]";
 	}
-	
+
 	
 
 

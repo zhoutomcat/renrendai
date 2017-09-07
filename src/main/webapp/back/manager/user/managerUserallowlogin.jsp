@@ -88,18 +88,17 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true}},
-				 	/*formatter:function(row){
+/* 				 	 formatter:function(value,row,index){
 						var status="";
+						if(row.u_status==0){
+							status="账号被禁用";
 						if(row.u_status==1){
 							status="账号可以使用";
 						}
-						if(row.u_status==0){
-							status="账号被禁用";
 						}else{
-							status="账号可以使用";
-						}	
-						return status;
-						}  */		
+							return status;
+						}		
+						}    */	
 				},
 				{
 					field : '_operate',
