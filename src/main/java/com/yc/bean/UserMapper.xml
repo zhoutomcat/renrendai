@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		keyProperty="u_id">
 		insert into
 		User(u_name,u_password,u_registerdate,u_tel,u_email)
-		values(#{u_password}, #{u_password}, now(), #{u_tel}, #{u_email})
+		values(#{u_name}, #{u_password}, #{u_registerdate}, #{u_tel}, #{u_email})
 	</insert>
 
 	<!-- 根据id查用户 <select id="getUser" parameterType="User" resultType="User"> 

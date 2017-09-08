@@ -47,6 +47,7 @@ public class AttentionMarkController {
 			am  = attentionMarkBiz.attentionMarkIsNotExist(am);
 			if(am!=null){
 //				session.setAttribute("am", am);
+//				request.setAttribute("am", am);
 				jm.setCode(1);		//这里的1代表存在
 				return jm;
 			}else{

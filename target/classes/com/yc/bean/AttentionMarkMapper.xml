@@ -150,7 +150,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 判断udi_i是否有关注记录  -->
 	<select id="attentionMarkIsNotExist" resultType="AttentionMark" parameterType="AttentionMark">
-		select * from attentionMark where udi_id = #{udi_id} and u_id = #{u_id}
+		select * from attentionMark where udi_id = #{udi_id} and u_id = #{u_id} and am_status = 1
 	</select>
 	
 	

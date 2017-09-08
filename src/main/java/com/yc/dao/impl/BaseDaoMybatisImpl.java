@@ -31,16 +31,19 @@ public class BaseDaoMybatisImpl<T> extends SqlSessionDaoSupport implements BaseD
 	@Override
 	public void save(T t, String sqlId) {
 		super.getSqlSession().insert(MAPPERPATH + t.getClass().getSimpleName() + "Mapper." + sqlId, t);
+		super.getSqlSession().flushStatements();
 	}
 
 	@Override
 	public void save(Class<T> clazz, String sqlId, Map<String, Object> parameterMap) {
 		super.getSqlSession().insert(MAPPERPATH + clazz.getSimpleName() + "Mapper." + sqlId, parameterMap);
+		super.getSqlSession().flushStatements();
 	}
 	
 	@Override
 	public void save(Class<T> clazz, String sqlId, List<T> list) {
 		super.getSqlSession().insert(MAPPERPATH + clazz.getSimpleName() + "Mapper." + sqlId, list);
+		super.getSqlSession().flushStatements();
 	}
 
 	@Override

@@ -21,13 +21,14 @@
 					<c:if test="${userMessage!=null }">
 						<li class="channel-item" style="width: 144px;"><a href="user/toAddUserDebitIn.action">我要借款</a></li>
 					</c:if>
-				
 				<li class="user-item fn-clear" num=""><c:if test="${user==null}">
 						<div class="denglu">
 							<a target="_self" href="user/toRegister.action">注册</a> / <a target="_self"
 								href="toLogin.action">登录</a>
 						</div>
-					</c:if> <c:if test="${user!=null}">
+					</c:if>
+					</li>
+					 <c:if test="${user!=null}">
 						<div class="denglu">
 							欢迎您：${user.u_name} <a href="user/user_layout.action">退出</a>
 						</div>

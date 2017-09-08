@@ -143,8 +143,9 @@
 					width:30,
 					align:'center',
 					editor:{type:"text",options:{required:true},
-						formatter: function(value,row,index){
+						/* formatter: function(value,row,index){
 							//alert(row.attentionMark.am_id)
+							alert(row.udi_checkstatus);
 							var checkstatus="";
 							if(row.udi_checkstatus==0){
 								checkstatus="未审核状态";
@@ -154,7 +155,7 @@
 							}else{
 								return checkstatus; 	
 								}
-							}
+							} */
 					}
 				}]],
 				  toolbar:[{

@@ -67,7 +67,7 @@ public class UserDebitOutController {
 		parameterMap.put("u_id", user.getU_id());
 		//获取当前系统时间（即借款时间）
 		long m = Calendar.getInstance().getTimeInMillis();
-		parameterMap.put("udo_startdate", m);
+		parameterMap.put("udo_startdate", m/1000);
 		parameterMap.put("udo_date", m + 86400 * 1000);
 		parameterMap.put("udo_money", money);
 		try {
