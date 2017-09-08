@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class UserFilter implements Filter {
+public class RightFilter implements Filter {
 
 	@Override
 	public void destroy() {
@@ -28,9 +28,10 @@ public class UserFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") == null) {
-			request.getRequestDispatcher("index.action").forward(request, response);
-		} else if (session.getAttribute("admin") == null) {
-			
+			response.sendRedirect("toLogin.action");
+		}
+		if (session.getAttribute("admin") == null) {
+			response.sendRedirect(request.getContextPath()+"/back/login.html");
 		} else {
 			arg2.doFilter(request, response);
 		}
