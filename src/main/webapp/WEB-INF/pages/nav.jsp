@@ -27,7 +27,7 @@
 								href="toLogin.action">登录</a>
 						</div>
 					</c:if>
-					</li>
+					
 					 <c:if test="${user!=null}">
 						<div class="denglu">
 							欢迎您：${user.u_name} <a href="user/user_layout.action">退出</a>
